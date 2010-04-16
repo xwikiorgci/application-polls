@@ -1760,7 +1760,7 @@ ol.drag-n-drop {
     ## display the ordered options:
     &lt;ol class="poll-ranking-order"&gt;
       #foreach($option in $resultRanking)
-        &lt;li&gt;$optionsMap.get($option.id) &lt;span class="details"&gt;(${option.voteValue})&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;$optionsMap.get($option.id) &lt;span class="details"&gt;($mathtool.roundTo(2, ${option.voteValue}))&lt;/span&gt;&lt;/li&gt;
       #end
     &lt;/ol&gt;
   #end
