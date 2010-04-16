@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>Polls</web>
+<name>Create</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>Polls.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1270892056000</creationDate>
+<date>1270892056000</date>
+<contentUpdateDate>1270892056000</contentUpdateDate>
+<version>1.1</version>
+<title>$msg.get("polls.create.title")</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>false</hidden>
+<content>{{include document="Polls.Macros"/}}
+
+{{velocity output="false"}}
+$xwiki.jsfx.use('js/xwiki/editors/fullScreenEdit.js', {'forceSkinAction': true, 'language': ${context.language}})
+$xwiki.ssfx.use('js/xwiki/editors/fullScreenEdit.css', true)
+
+#if("$!{request.xcreate}" == 'poll')
+## =======================================================
+## Processing the creation form
+##
+#set($space = "$!{request.getParameter('space')}")
+#if("$!{space}" == '')
+  #set($space = $pollsSpace)
+#end
+##
+#set($title = "$!{request.getParameter('title')}")
+##
+#set($options = "$!{request.getParameter('options')}")
+#set($options = $options.split('\n'))
+#set($cleanedOptions = [])
+#foreach($option in $options)
+  #if("${option.trim}" != '')
+    #set($discard = $cleanedOptions.add($option.trim()))
+  #end
+#end
+#set($options = $cleanedOptions)
+#if($title == '')
+  #set($errorMessage = $msg.get('polls.form.error.missingTitle'))
+#elseif($options.size() &lt; 2)
+  #set($errorMessage = $msg.get('polls.form.error.missingOptions'))
+#else
+  #set($pollName = $title.replaceAll('[:.#@^?]', '').trim())
+  #set($pollDoc = $xwiki.getDocument($xwiki.getUniquePageName($space, $pollName)))
+  #if($pollDoc.isNew())
+    #set($errorMessage = '')
+    #set($newPoll = $pollDoc.newObject($pollClass))
+    #set($discard = $pollDoc.updateObjectsFromRequest($pollClass))
+    #if("${newPoll.getProperty('question').value}" == '')
+      ## Actual poll question
+      #set($errorMessage = $msg.get('polls.form.error.missingQuestion'))
+    #elseif("${newPoll.getProperty('type').value}" == '')
+      ## Poll type
+      #set($errorMessage = $msg.get('polls.form.error.missingVoteType'))
+    #elseif("${newPoll.getProperty('type').value}" == 'rating')
+      ## Ratings levels
+      #set($maxLevels = $mathtool.toInteger("${newPoll.getProperty('optionsPerVoter').value}"))
+      #if("$!{maxLevels}" == '' || $maxLevels &lt;= 0 || $maxLevels &gt; $pollMaxRatingLevel)
+        #set($errorMessage = $msg.get('polls.form.error.missingRatingLevel', [$pollMaxRatingLevel]))
+      #end
+    #else
+      ## Dates validity
+      #set($startDate = "$!{newPoll.getProperty('from').value}")
+      #if ("${startDate}" == '')
+        #set($errorMessage = $msg.get('polls.form.error.missingOpenDate', [${pollDateFormat}]))
+      #else
+        #set($endDate = "$!{newPoll.getProperty('to').value}")
+          #if ("${endDate}" == '')
+            #set($errorMessage = $msg.get('polls.form.error.missingCloseDate', [${pollDateFormat}]))
+          #else
+            #if(!$!{newPoll.getProperty('to').value.after($!{newPoll.getProperty('from').value})})
+              #set($errorMessage = $msg.get('polls.form.error.wrongDateOrder'))
+            #end
+          #end
+      #end
+    #end
+    #if("$!{errorMessage}" == '')
+      ## All validity checks passed; proceed to fill everything in
+      ## Title, parent, content 
+      $pollDoc.setTitle($title)
+      $pollDoc.setParent($pollsHome)
+      $pollDoc.setContent("{{include document=${pollSheet}/}}"))
+      ## Option objects
+      #set($optionPosition = 1)
+      #foreach($option in $options)
+        #set($optionObj = $pollDoc.newObject($pollOptionClass))
+        $optionObj.set('id', $util.generateRandomString(6))
+        $optionObj.set('position', ${velocityCount})
+        $optionObj.set('text', ${option})
+      #end
+      ## Save and view
+      $pollDoc.save($msg.get('polls.versionSummary.pollCreated'))
+      $response.sendRedirect($pollDoc.getURL())
+      #stop
+    #end## no validation error
+  #else## pollDoc is new, should never happen
+    $response.sendRedirect($pollDoc.getURL('view', 'xpage=docalreadyexists'))
+    #stop
+  #end
+#end
+##
+## Done processing the creation form
+##
+#end## request.xcreate
+##
+## Creation form:
+##
+{{/velocity}}
+
+{{velocity}}
+#if("$!{errorMessage}" != '')
+
+{{error}}$errorMessage{{/error}}
+
+#end
+{{/velocity}}
+
+{{include document="Polls.PollEditSheet"/}}</content></xwikidoc>

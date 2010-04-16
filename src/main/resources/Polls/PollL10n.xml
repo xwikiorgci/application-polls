@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>Polls</web>
+<name>PollL10n</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>Polls.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1270892056000</creationDate>
+<date>1270892056000</date>
+<contentUpdateDate>1270892056000</contentUpdateDate>
+<version>1.1</version>
+<title>Polls application localization</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>true</hidden>
+<content>##
+## Home page
+##
+polls.home.title=Polls
+polls.home.create=Create a new poll
+polls.index.doc.title=Poll name
+polls.index.type=Type
+polls.index.from=Starts
+polls.index.to=Ends
+polls.index.doc.creator=Launched by 
+##
+## Creation/editing
+##
+polls.create.title=Launch a new poll
+## Error messages
+polls.form.error.missingTitle=The title field is mandatory.
+polls.form.error.missingOptions=Please provide at least two options.
+polls.form.error.missingQuestion=The poll question is mandatory.
+polls.form.error.missingVoteType=The vote type is mandatory.
+polls.form.error.missingRatingLevel=The maximum rating level is mandatory for rating polls, and must be greater than 0 and at most {0}.
+polls.form.error.missingOpenDate=The poll opening date is mandatory and must have the format {0}.
+polls.form.error.missingCloseDate=The poll closing date is mandatory and must have the format {0}.
+polls.form.error.wrongDateOrder=The poll closing date must be after the opening date.
+## Section titles
+polls.form.section.general=What are you polling?
+polls.form.section.options=Options
+polls.form.section.voteType=Vote type
+polls.form.section.timeline=Timeline
+polls.form.section.votes=Votes
+## Fiels labels
+polls.form.label.space=Where:
+polls.form.label.title=Title
+polls.form.label.allOptions=Enter all options, one on each line
+polls.form.label.optionCount.multiple=Maximum number of choices
+polls.form.label.optionCount.multiple.details=multiple choice and weighted multiple choice only
+polls.form.label.optionCount.separator=or
+polls.form.label.optionCount.rating=Maximum rating level (minimum is 0, the ratings can be from 0 = lowest to this maximum inclusive)
+polls.form.label.optionCount.rating.details=rating only
+polls.form.label.timeline=Polling period
+polls.form.label.timeline.dateFormat=(date format: {0})
+## Tools
+polls.form.tools.delete=[delete]
+polls.form.tools.delete.tooltip=Delete
+polls.form.tools.move=[move]
+polls.form.tools.move.tooltip=Drag and drop to change the order
+polls.form.tools.addOption=Add another option
+## Form actions
+polls.form.actions.create=Create poll
+polls.form.actions.cancel=Cancel
+##
+## Viewing/voting
+##
+## Voting instructions
+polls.vote.instructions.single=Choose one of the options below.
+polls.vote.instructions.multiple=Choose at least 1 and at most {0} of the options below.
+polls.vote.instructions.weighted=Assign non-zero percentages to at least 1 and at most {0} of the options below. The sum must be 100%.
+polls.vote.instructions.rating=Rate from 0 (least favorable) to {0} (most favorable) each one of the options.
+polls.vote.instructions.ranking.noscript=Use the "move up/move down" tools to reorder the items according to your preference (higher is better).
+polls.vote.instructions.ranking.script=Drag and drop the items to reorder them according to your preference (higher is better).
+## Timeline
+polls.vote.timeline.notOpen=This poll is not open yet. It will be available from {0} to {1}.
+polls.vote.timeline.ongoing=This poll is open from {0} to {1}.
+polls.vote.timeline.closed=This poll is now closed.
+## Voting form
+polls.vote.label.voted=You answered:
+polls.vote.actions.vote=Submit
+polls.vote.actions.updateVote=Update answer
+polls.vote.actions.cancel=Go to the Polls home page &amp;raquo;
+## Tools
+polls.vote.tools.moveup=[move up]
+polls.vote.tools.moveup.tooltip=Move up
+polls.vote.tools.movedown=[move down]
+polls.vote.tools.movedown.tooltip=Move down
+polls.vote.tools.incValue=Increase value by 1
+polls.vote.tools.decValue=Decrease value by 1
+## Error messages
+polls.vote.warning.unauthorized=You must be logged-in and have proper rights on this document in order to vote.
+polls.vote.error.single.noneSelected=Please choose one of the options below.
+polls.vote.error.multiple.noneSelected=Please select at least one option.
+polls.vote.error.multiple.wrongSelectedNumber=Please choose at least one and at most {0} of the options below.
+polls.vote.error.weighted.wrongSelectedNumber=Please assign non-zero weights to at most {0} of the options.
+polls.vote.error.weighted.wrongTotalWeight=Please assign weights that sum up to 100. The sum of your current weight assignments is {0}.
+polls.vote.error.rating.optionMissing=Please select a rating for each option.
+polls.vote.error.rating.ratingOutOfRange=Rating out of range for option {0}.
+polls.vote.error.ranking.unknownElement=Invalid order: unknown element {0}.
+polls.vote.error.ranking.duplicateElement=Invalid order: duplicate element {0}.
+## Results
+polls.vote.results.title.before=
+polls.vote.results.title.during=Intermediate results
+polls.vote.results.title.after=Results
+polls.vote.results.participants={0} participant{0,choice,0#s|1#|1&lt;s}
+polls.vote.results.chart.percentage=Percentage
+polls.vote.results.chart.voteCount=Number of votes
+polls.vote.results.chart.columnsNumberWarning=Only the first {0} columns can be displayed in the chart.
+polls.vote.results.table.option=Option
+polls.vote.results.table.percentage=Percentage
+polls.vote.results.table.voteCount=Number of votes
+polls.vote.results.table.voters=Chosen by
+polls.vote.results.table.average=Average
+##
+## Document version log
+##
+polls.versionSummary.pollCreated=Poll created
+polls.versionSummary.optionAdded=Poll option added
+polls.versionSummary.userVoted={0} voted
+##
+## Class translations
+##
+Polls.PollClass_type_single=Single choice
+Polls.PollClass_type_multiple=Multiple choice
+Polls.PollClass_type_weighted=Weighted multiple choice
+Polls.PollClass_type_rating=Rating
+Polls.PollClass_type_ranking=Ranking</content></xwikidoc>

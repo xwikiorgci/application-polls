@@ -1,0 +1,1890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>Polls</web>
+<name>Macros</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>Polls.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1270892056000</creationDate>
+<date>1270892056000</date>
+<contentUpdateDate>1270892056000</contentUpdateDate>
+<version>1.1</version>
+<title>Poll application macros</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>true</hidden>
+<object>
+<class>
+<name>XWiki.JavaScriptExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<picker>0</picker>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<sort>none</sort>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<editor>---</editor>
+<name>code</name>
+<number>2</number>
+<picker>0</picker>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<name>
+<name>name</name>
+<number>1</number>
+<picker>0</picker>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<defaultValue></defaultValue>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<picker>0</picker>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<sort>none</sort>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>Polls.Macros</name>
+<number>0</number>
+<className>XWiki.JavaScriptExtension</className>
+<guid>a2627477-ac84-4557-86b7-9cf8e3375459</guid>
+<property>
+<cache>long</cache>
+</property>
+<property>
+<code>// Make sure the XWiki 'namespace' exists.
+if(typeof(XWiki) == 'undefined') {
+  XWiki = new Object();
+}
+
+// Make sure the polls 'namespace' exists.
+if(typeof(XWiki.polls) == 'undefined') {
+  XWiki.polls = new Object();
+}
+
+XWiki.polls.Editor = Class.create({
+  initialize : function() {
+    this.makeSectionsCollapsable();
+    this.makeContentAwareLabels();
+    this.makeOptionsSortable();
+    this.ajaxOptionAdd();
+    this.ajaxObjectDelete('.poll-option');
+    this.ajaxObjectDelete('.poll-vote');
+  },
+  makeSectionsCollapsable : function() {
+    $$('fieldset&gt;.section-title').each(function(item) {
+      item.observe('click', function(event){
+        event.element().parentNode.toggleClassName('collapsed');
+      });
+    });
+  },
+
+  adjustLabelToPollType : function (selectedItem, optionCount) {
+    if (selectedItem.value == 'multiple' || selectedItem.value == 'weighted') {
+      optionCount.removeClassName('hidden');
+      optionCount.down('.poll-label-nb-choices').removeClassName('hidden');
+      optionCount.down('.poll-label-nb-levels').addClassName('hidden');
+    } else if (selectedItem.value == 'rating') {
+      optionCount.removeClassName('hidden');
+      optionCount.down('.poll-label-nb-choices').addClassName('hidden');
+      optionCount.down('.poll-label-nb-levels').removeClassName('hidden');
+    } else {
+      optionCount.addClassName('hidden');
+      optionCount.down('.poll-label-nb-choices').removeClassName('hidden');
+      optionCount.down('.poll-label-nb-levels').removeClassName('hidden');
+    }
+  },
+
+  makeContentAwareLabels : function() {
+    var optionCount = $('poll-maxvotes-elt');
+    if (optionCount) {
+      optionCount.select('.details').invoke('addClassName', 'hidden');
+      optionCount.down('.option-separator').addClassName('hidden');
+      optionCount.addClassName('hidden');
+      $$('.poll-type-options input[type=radio]').each(function(item) {
+        if (item.checked) {
+          this.adjustLabelToPollType(item, optionCount);
+        }
+        item.observe('click', function(event) {
+          this.adjustLabelToPollType(event.element(), optionCount);
+        }.bindAsEventListener(this));
+      }.bind(this));
+    }
+  },
+
+  makeOptionsSortable : function() {
+    $$('.poll-option-position').invoke('addClassName', 'hidden');
+    var target = $('poll-options-list')
+    if (target) {
+      target.addClassName('drag-n-drop');
+      target.select('.poll-option-tools').each(function(item) {
+        var handle = new Element('a', {'class' : 'tool move', 'title' : "$msg.get('polls.form.tools.move.tooltip')"});
+        handle.update('$msg.get('polls.form.tools.move')')
+        item.insert({bottom : handle});
+      });
+      Sortable.create('poll-options-list', {
+        handle : 'move',
+        onUpdate : this.updateOrder.bind(this)
+      });
+    }
+  },
+
+  updateOrder : function(container) {
+    var order = '';
+    var children = container.childElements();
+    for (var i = 0; i &lt; children.size(); ++i) {
+      var child = children[i].down(".poll-option-position input");
+      if (child) {
+        child.value = i + 1;
+      }
+    }
+  },
+
+
+  ajaxOptionAdd : function() {
+    $$('.poll-option-add').each(function(item) {
+      item.observe('click', function(event) {
+        item.blur();
+        event.stop();
+        if (!item.disabled) {
+          new Ajax.Request (
+            /* Ajax request URL */
+            '?xaction=addOption&amp;xpage=plain',
+            /* Ajax request parameters */
+            {
+              onCreate : function() {
+                item.disabled = true;
+              },
+              onSuccess : function(response) {
+                var list = $('poll-options-list');
+                if (list) {
+                  var newOption = new Element('div').update(response.responseText).down('li');
+                  var handle = new Element('a', {'class' : 'tool move', 'title' : "$msg.get('polls.form.tools.move.tooltip')"});
+                  list.insert({bottom : newOption});
+                  newOption.down('.poll-option-tools').insert({bottom : handle});
+                  newOption.down('.poll-option-position').addClassName('hidden');
+                  Sortable.create('poll-options-list', {
+                    handle : 'move',
+                    onUpdate : this.updateOrder.bind(this)
+                  });
+                  this.ajaxObjectDelete('.poll-option');
+                }
+              }.bind(this),
+              onComplete : function() {
+                item.disabled = false;
+              }
+            }
+          );
+        }
+      }.bind(this));
+    }.bind(this));
+  },
+
+  ajaxObjectDelete : function(elementSelector) {
+    $$(elementSelector + ' .tools a.delete').each(function(item) {
+      item.observe('click', function(event) {
+        item.blur();
+        event.stop();
+        if (!item.disabled) {
+          new XWiki.widgets.ConfirmedAjaxRequest(
+            /* Ajax request URL */
+            item.readAttribute('href'),
+            /* Ajax request parameters */
+            {
+              onCreate : function() {
+                item.disabled = true;
+              },
+              onSuccess : function() {
+                var elementToDelete = item.up(elementSelector);
+                if (elementToDelete) {
+                  elementToDelete.remove();
+                }
+              }.bind(this),
+              onComplete : function() {
+                item.disabled = false;
+              }
+            },
+            /* Interaction parameters */
+            {
+              confirmationText: "$msg.get('core.editors.object.delete.confirm')",
+              progressMessageText : "$msg.get('core.editors.object.delete.inProgress')",
+              successMessageText : "$msg.get('core.editors.object.delete.done')",
+              failureMessageText : "$msg.get('core.editors.object.delete.failed')"
+            }
+          );
+        }
+      }.bindAsEventListener());
+    });
+  }
+});
+
+XWiki.polls.Voter = Class.create({
+  initialize : function () {
+    // Specific enhancements for each voting tool type
+    this.pollType = $('polltype');
+    if (this.pollType) {
+      this.pollType = this.pollType.value;
+    }
+    if (this.pollType == 'single') {
+      this.single_checkVoted();
+    } else if (this.pollType == 'multiple') {
+      this.multiple_limitChoices();
+      this.multiple_checkVoted();
+    } else if (this.pollType == 'weighted') {
+      this.weighted_makeSliders();
+      this.weighted_checkVoted();
+    } else if (this.pollType == 'rating') {
+      this.rating_checkVoted();
+    } else if (this.pollType == 'ranking') {
+      this.ranking_makeSortable();
+    }
+    // TODO: Ajax vote update?
+  },
+
+  single_checkVoted : function() {
+    $("xwikicontent").down('form').observe('submit', function(event) {
+      var form = event.element();
+      if(!form.select('input[type="radio"]').any(function(item) { return item.checked; })) {
+        new XWiki.widgets.Notification('$msg.get('polls.vote.error.single.noneSelected')', 'error');
+        event.stop();
+      }
+    });
+  },
+
+  multiple_checkVoted : function() {
+    $("xwikicontent").down('form').observe('submit', function(event) {
+      var form = event.element();
+      if(!form.select('input[type="checkbox"]').any(function(item) { return item.checked; })) {
+        new XWiki.widgets.Notification('$msg.get('polls.vote.error.multiple.noneSelected')', 'error');
+        event.stop();
+      }
+    });
+  },
+
+  multiple_limitChoices : function() {
+    var maxChoices = $('poll-max-choices');
+    if (maxChoices) {
+      this.maxChoices = maxChoices.value;
+      this.expressedChoices = 0;
+      $$('.poll-options td input[type=checkbox]').each(function(item){
+        this.multiple_updateLimitChoices(item);
+        item.observe('click', function(event){
+          this.multiple_updateLimitChoices(event.element(), true);
+        }.bindAsEventListener(this));
+      }.bind(this));
+    }
+  },
+
+  multiple_updateLimitChoices : function (input, activeCheck) {
+    var doEnable = false;
+    if (input.checked) {
+      this.expressedChoices++;
+    } else if (activeCheck) {
+      if (this.expressedChoices == this.maxChoices) {
+        doEnable = true;
+      }
+      this.expressedChoices--;
+    }
+    if (doEnable) {
+      $$('.poll-options td input[type=checkbox]').each(function(item) {
+        item.disabled = false;
+      });
+    } else if (this.expressedChoices == this.maxChoices) {
+      $$('.poll-options td input[type=checkbox]').each(function(item) {
+        if (!item.checked) {
+          item.disabled = true;
+        }
+      });
+    } 
+  },
+
+  weighted_makeSliders : function() {
+    var options = $$('form .poll-option-weight');
+    this.sliders = new Array();
+    for (var i = 0, l = options.length; i &lt; l; ++i) {
+      var option = options[i];
+      option.addClassName("hidden");
+      var initialValue = option.down("select").getValue();
+
+      // Initialize the HTML structure needed for the slider
+      var track = new Element("div", {'class' : 'poll-option-range'});
+      var handle = new Element("div", {'class' : 'poll-option-range-handle'});
+      var mask = new Element("div", {"class" : "poll-option-range-mask"});
+      mask.setStyle({opacity : 0.9});
+      var rangeBar = new Element("div", {"class" : "poll-option-range-bar"});
+      rangeBar.setStyle({opacity : 0.8});
+      var incArrow = new Element("a", {"class" : "poll-option-range-arrow arrow-inc"});
+      var decArrow = new Element("a", {"class" : "poll-option-range-arrow arrow-dec"});
+      var minLabel = new Element("span", {"class" : "poll-option-range-label"});
+      minLabel.update("0%");
+      minLabel.setStyle({right: "100%"});
+      var maxLabel = new Element("span", {"class" : "poll-option-range-label"});
+      maxLabel.update("100%");
+      maxLabel.setStyle({left: "100%"});
+      var valueLabel = new Element("span", {"class" : "poll-option-weight-value"});
+      valueLabel.update("0%");
+
+      track.appendChild(valueLabel);
+      track.appendChild(maxLabel);
+      track.appendChild(minLabel);
+      track.appendChild(rangeBar);
+      track.appendChild(mask);
+      track.appendChild(handle);
+      track.appendChild(incArrow);
+      track.appendChild(decArrow);
+      options[i].insert({'after' : track});
+      var slider = new Control.Slider(handle, track, {
+        range: $R(0, 100),
+        values: $R(0, 100),
+        sliderValue: 0,
+        onSlide: this.weighted_sliderUpdate.bind(this, options[i]),
+        onChange: this.weighted_sliderUpdate.bind(this, options[i])
+      });
+      slider.controlledOption = options[i].down('select');
+      slider.mask = mask;
+      slider.rangeBar = rangeBar;
+      slider.maxLabel = maxLabel;
+      slider.valueLabel = valueLabel;
+      slider.incArrow = incArrow;
+      incArrow.slider = slider;
+      incArrow.observe('click', function(event){
+        event.stop();
+        var arrow = event.element()
+        if (!arrow._disabled) {
+          arrow.slider.setValue(arrow.slider.controlledOption.selectedIndex + 1);
+        }
+      });
+      slider.decArrow = decArrow;
+      decArrow.slider = slider;
+      decArrow.observe('click', function(event){
+        event.stop();
+        var arrow = event.element()
+        if (!arrow._disabled) {
+          arrow.slider.setValue(arrow.slider.controlledOption.selectedIndex - 1);
+        }
+      });
+      this.sliders.push(slider);
+      slider.setValue(initialValue);
+    }
+  },
+
+  weighted_sliderUpdate : function(option, value) {
+    option.down('select').selectedIndex = value;
+    var total = 0;
+    this.sliders.each(function(item) { total += item.value - 0; });
+    this.sliders.each(function(item) {
+      item.allowedValues = $R(0, item.value + 100 - total).sortBy(Prototype.K);
+      item.minimum = item.allowedValues.min();
+      item.maximum = item.allowedValues.max();
+      item.mask.setStyle({width : total - item.value + '%'});
+      item.rangeBar.setStyle({width : item.value + '%'});
+      item.maxLabel.setStyle({left : item.value + 100 - total + '%'});
+      item.maxLabel.update(item.value + 100 - total + '%');
+      if (item.value + 100 - total == 0) {
+        item.maxLabel.update('');
+      }
+      item.valueLabel.update(item.value + '%');
+      this.weighted_enableArrow(item.decArrow, (item.value &gt; item.minimum));
+      this.weighted_enableArrow(item.incArrow, (item.value &lt; item.maximum));
+    }.bind(this));
+  },
+
+  weighted_enableArrow : function(arrow, doEnable) {
+    if (doEnable) {
+      if(arrow._disabled) {
+        arrow._disabled = false;
+        arrow.removeClassName('arrow-disabled');
+        arrow.setStyle({opacity : 1});
+      }
+    } else {
+      if (!arrow._disabled) {
+        arrow._disabled = true;
+        arrow.addClassName('arrow-disabled');
+        arrow.setStyle({opacity : 0.1});
+      }
+    }
+  },
+
+  weighted_checkVoted : function() {
+    var maxChoices = $('poll-max-choices');
+    if (maxChoices) {
+       maxChoices = maxChoices.value - 0;
+    }
+    $("xwikicontent").down('form').observe('submit', function(event) {
+      var form = event.element();
+      var totalWeight = 0;
+      var expressedVotes = 0;
+      form.select('select').each(function(item) {
+        var value = item.getValue() - 0; 
+        totalWeight += value;
+        if (value != 0) {
+          ++expressedVotes;
+        }
+      })
+      if (maxChoices &gt; 0 &amp;&amp; expressedVotes &gt; maxChoices) {
+        new XWiki.widgets.Notification('$msg.get('polls.vote.error.weighted.wrongSelectedNumber', [ '__value_goes_here__'])'.replace('__value_goes_here__', maxChoices), 'error');
+        event.stop();
+      } else if (totalWeight != 100) {
+        new XWiki.widgets.Notification('$msg.get('polls.vote.error.weighted.wrongTotalWeight', [ '__value_goes_here__'])'.replace('__value_goes_here__', totalWeight), 'error');
+        event.stop();
+      }
+    });
+  },
+
+  rating_checkVoted : function() {
+    $("xwikicontent").down('form').observe('submit', function(event) {
+      var form = event.element();
+      var shouldStop = false;
+      form.select('.poll-option').each(function(optionRow) {
+        if(shouldStop) {
+          return;
+        }
+        if(!optionRow.select('input[type="radio"]').any(function(item) { return item.checked; })) {
+          new XWiki.widgets.Notification('$msg.get('polls.vote.error.rating.optionMissing')', 'error');
+          event.stop();
+          shouldStop = true;
+        }
+      });
+    });
+  },
+
+  ranking_makeSortable : function() {
+    try {
+      $('ranking-instructions-no-script').addClassName('hidden');
+      $('ranking-instructions-js-tool').removeClassName('hidden');
+    } catch (exception) {
+      // Elements don't exist, no problem
+    }
+    var target = $('poll-ranking-tool');
+    if (target) {
+      target.select('.tools').invoke('remove');
+      target.addClassName('drag-n-drop');
+      Sortable.create('poll-ranking-tool', {
+        onUpdate : this.ranking_updateOrder.bind(this)
+      });
+    }
+  },
+
+  ranking_updateOrder : function(container) {
+    var order = '';
+    var children = container.childElements();
+    for (var i = 0; i &lt; children.size(); ++i) {
+      var child = children[i].down("input[type=hidden]");
+      if (i &gt; 0) {
+        order += ',';
+      }
+      order += child.value;
+    }
+    $('ranking-order').value = order;
+  }
+});
+
+
+document.observe("xwiki:dom:loaded", function() {
+  // TODO: only instantiate when necessary
+  new XWiki.polls.Voter();
+  new XWiki.polls.Editor();
+});</code>
+</property>
+<property>
+<name>Poll application scripts</name>
+</property>
+<property>
+<parse>1</parse>
+</property>
+<property>
+<use>onDemand</use>
+</property>
+</object>
+<object>
+<class>
+<name>XWiki.StyleSheetExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<name>code</name>
+<number>2</number>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<name>
+<name>name</name>
+<number>1</number>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>onDemand=On demand|always=Always</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>Polls.Macros</name>
+<number>0</number>
+<className>XWiki.StyleSheetExtension</className>
+<guid>74904d33-2585-4cc4-8ea0-4fce09ad8800</guid>
+<property>
+<cache>long</cache>
+</property>
+<property>
+<code>#template('colorThemeInit.vm')
+/** -----------------------------------------------
+ * General: various tool icons 
+ */
+.tools .tool {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  overflow: hidden;
+  text-indent: -9999px;
+  background: transparent none left top no-repeat;
+}
+/* IE6/7 bug with display:inline-block and text-indent. */
+* html .tools .tool {
+  text-indent: 0;
+  line-height: 0;
+  font-size: 0;
+}
+*+html .tools .tool {
+  text-indent: 0;
+  line-height: 0;
+  font-size: 0;
+}
+.tools .disabled {
+  visibility: hidden;
+}
+ol.drag-n-drop li {
+  /* IE6/7 don't seem to know that list items should be displayed as list items... Option ordering is buggy without this rule. */
+  display: list-item !important;
+}
+/** -----------------------------------------------
+ * Create/edit form
+ */
+/* Sections (fieldsets) of poll creation/editing */
+.poll .poll-section {
+  margin: 1em 0;
+  padding: 8px 16px;
+  background-color: $theme.backgroundSecondaryColor;
+}
+legend {
+  font-weight: bold;
+}
+legend.section-title {
+  color: $theme.titleColor;
+  background: $theme.backgroundSecondaryColor none 2px center no-repeat;
+  padding: 2px 1em 2px 22px;
+  border: 2px solid $theme.pageContentBackgroundColor;
+  cursor: pointer;
+}
+.poll-section:hover legend.section-title {
+  color: $theme.linkColor;
+}
+fieldset fieldset {
+  border: 1px solid $theme.pageContentBackgroundColor;
+  padding: 4px 12px;
+  margin: 2px 0;
+}
+fieldset fieldset legend {
+  padding: 2px 8px;
+  margin: 0 -8px;
+}
+.poll-space {
+  margin: 1em 0;
+  padding: 4px 16px 4px 40px;
+  background: $theme.backgroundSecondaryColor url("$xwiki.getSkinFile('icons/silk/folder.gif')") 20px center no-repeat;
+}
+.poll-space label {
+  font-weight: bold;
+}
+/* Collapsible sections */
+fieldset.collapsed * {
+  display: none;
+}
+fieldset.collapsed legend {
+  display: inline;
+}
+.poll-section .step {
+  display: none;
+}
+/* Specific icons for sections */
+.poll-general .section-title {
+  background-image: url("$xwiki.getSkinFile('icons/silk/help.gif')");
+}
+.poll-options .section-title {
+  background-image: url("$xwiki.getSkinFile('icons/silk/text_list_bullets.gif')");
+}
+.poll-type .section-title {
+  background-image: url("$xwiki.getSkinFile('icons/silk/tick.gif')");
+}
+.poll-timeline .section-title {
+  background-image: url("$xwiki.getSkinFile('icons/silk/date.gif')");
+}
+.poll-votes .section-title {
+  background-image: url("$xwiki.getSkinFile('icons/silk/chart_bar.gif')");
+}
+/* Labels and inputs */
+.poll label {
+  font-weight: bold;
+}
+.poll input:hover, .poll textarea:hover {
+  border-color: $theme.textColor;
+}
+.poll input:focus, .poll textarea:focus {
+  border-color: $theme.linkColor;
+}
+.poll-title input,
+.poll-desc textarea,
+.poll-options textarea{
+  width: 98%;
+}
+
+label .details {
+  font-weight: normal;
+  font-size: 80%;
+  color: $theme.textPrimaryColor;
+}
+.poll .option-separator {
+  text-transform: uppercase;
+  color: $theme.textPrimaryColor;
+}
+
+.poll-type-options .xwiki-form-listclass {
+  display: inline;
+  margin-right: 2em;
+} 
+/* Misc form elements - layout */
+.poll-max-votes {
+ margin-top: 0.5em;
+}
+.poll-max-votes pre,
+.poll-timeline pre,
+.poll-votes pre {
+  display: inline;
+}
+ol.poll-options-list {
+  margin: 0;
+  padding: 0;
+  clear: both;
+}
+li.poll-option {
+  list-style-type: none;
+  clear: both;
+}
+ol.drag-n-drop {
+  padding-left: 2em;
+}
+.drag-n-drop li.poll-option {
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+.poll-option-position, .poll-option-text, .poll-option-tools {
+  display: inline-block;
+  vertical-align: top;
+  float: none;
+}
+.drag-n-drop .poll-option-tools {
+  width: 32px;
+}
+.poll-option-text {
+  margin-right: 36px;
+}
+.poll-option-tools {
+  margin-left: -36px;
+}
+/* No need for full screen editing for options.
+   Also, the activator kind of breaks the layout */
+.poll-option-text .fullScreenEditLinkContainer {
+  display: none;
+}
+/* Specific tools for poll editing */
+.tools .delete {
+  background-image: url("$xwiki.getSkinFile('icons/silk/cross.gif')");
+}
+.tools .move {
+  background-image: url("$xwiki.getSkinFile('icons/datamodel/move.png')");
+  cursor: move;
+  vertical-align: top;
+}
+.poll-option-add {
+  clear: both;
+  font-style: italic;
+  color: $theme.textPrimaryColor;
+  padding: 4px 0 4px 22px;
+  background: transparent url("$xwiki.getSkinFile('icons/silk/add.gif')") 4px center no-repeat;
+}
+.poll-option-add a {
+  color: $theme.textPrimaryColor;
+}
+
+/** -----------------------------------------------
+ * View/vote mode
+ */
+.poll-question {
+  margin: 0.5em 0;
+  border: 1px dotted $theme.borderColor;
+  padding: 4px 12px; /* 4px 28px;*/
+  background: $theme.backgroundSecondaryColor; /* url("$xwiki.getSkinFile('icons/silk/chart_curve.gif')") 8px 2px no-repeat;*/
+}
+.poll-instructions {
+  font-size: 80%;
+  font-style: italic;
+  padding: 0 13px;
+  margin-bottom: 16px;
+  color: $theme.textPrimaryColor;
+}
+.poll-calendar {
+  padding: 6px 6px 6px 28px;
+  background: $theme.backgroundSecondaryColor url("$xwiki.getSkinFile('icons/silk/date.gif')") 4px 6px no-repeat;
+}
+.poll-not-open, .poll-closed {
+  font-weight: bold;
+}
+.poll-open {
+  width: 25%;
+  float: right;
+  margin: 0 0 4px 1em;
+}
+.poll-participants {
+  width: 25%;
+  float: right;
+  margin: 0 0 4px 1em;
+  padding: 6px 6px 6px 28px;
+  background: $theme.backgroundSecondaryColor url("$xwiki.getSkinFile('icons/silk/group.gif')") 4px 6px no-repeat;
+}
+.poll-voted-label {
+  display: block;
+  font-weight: bold;
+}
+/* Poll options in voting mode: */
+/* Table... */
+.poll-options table {
+  margin: 2px;
+  border-top: 1px solid $theme.backgroundSecondaryColor;
+  border-bottom: 1px solid $theme.backgroundSecondaryColor;
+}
+.poll-options table td {
+  border: none;
+  padding: 0 1em;
+}
+.poll-options .odd td {
+  background-color: $theme.backgroundSecondaryColor;
+}
+/* .. or ordered list */
+.poll-options ol {
+  display: inline-block;
+}
+.poll-options li+li {
+  border-top: 1px dotted $theme.borderColor;
+}
+/* General voting controls */
+.poll-options td label {
+  margin: 0 1em;
+}
+.poll-options td select {
+  text-align: right;
+}
+/* Poll ranking tool: */
+/* fix the layout 
+   (the rendered options text is wrapped in a p)
+ */
+#poll-ranking-tool p {
+  display: inline-block;
+}
+* html #poll-ranking-tool p {
+  display: inline;
+  margin: 0;
+}
+*+html #poll-ranking-tool p {
+  display: inline;
+  margin: 0;
+}
+/* specific tool icons (no script)*/
+.tools .movedown {
+  background-image: url("$xwiki.getSkinFile('icons/silk/arrow_down.gif')");
+}
+.tools .moveup {
+  background-image: url("$xwiki.getSkinFile('icons/silk/arrow_up.gif')");
+}
+/* drag and drop "invitation" on hover (js only) */
+#poll-ranking-tool.drag-n-drop li:hover {
+  cursor: move;
+  background: $theme.highlightColor;
+  border-right: 16px solid $theme.borderColor;
+  padding-right: 8px;
+
+}
+#poll-ranking-tool li {
+  padding-right: 24px;
+  list-style-position: outside;
+}
+* html #poll-ranking-tool li {
+  list-style-position: inside;
+}
+*+html #poll-ranking-tool li {
+  list-style-position: inside;
+}
+.poll-ranking-order .details {
+  font-size: 80%;
+  color: $theme.textPrimaryColor;
+}
+/* Poll weighted vote */
+/* Particular look for weighted vote:
+   voting controls are more complex and need more space */
+.poll-options table .poll-option-weighted td {
+  padding: 0.5em 2em;
+  background-color: $theme.pageContentBackgroundColor;
+}
+.poll-options table.poll-options-weighted {
+  border: none;
+}
+.poll-options-weighted tr+tr td {
+  border-top: 1px dotted $theme.borderColor;
+}
+/* Slider elements styling */
+.poll-option-range {
+  width: 200px;
+  height:10px;
+  margin: 10px 30px;
+  background-color: $theme.textColor;
+  position: relative;
+}
+.poll-option-range-handle {
+  width: 10px;
+  height: 15px;
+  background-color: $theme.linkColor;
+  cursor:move;
+  position: absolute;
+}
+.poll-option-range-mask, .poll-option-range-bar {
+  width: 0px;
+  height: 10px;
+  position: absolute;
+  top: 0;
+  overflow: hidden !important;
+}
+.poll-option-range-mask {
+  right: 0;
+  background-color: $theme.pageContentBackgroundColor;
+}
+.poll-option-range-bar {
+  left: 0;
+  background-color: $theme.linkColor;
+}
+.poll-option-range-arrow {
+  display: block;
+  position: absolute;
+  top: 0;
+  line-height: 0;
+  border: 5px solid $theme.pageContentBackgroundColor;
+  border-left: 7px solid $theme.linkColor;
+  border-right: 7px solid $theme.linkColor;
+  cursor: pointer;
+}
+.poll-option-range .arrow-disabled {
+  border-left-color: $theme.textColor;
+  border-right-color: $theme.textColor;
+  opacity: 0.1;
+}
+.poll-option-range .arrow-dec {
+  left: -12px;
+  border-left: none;
+}
+.poll-option-range .arrow-inc {
+  right: -12px;
+  border-right: none;
+}
+.poll-option-range-label {
+  position: absolute;
+  top: 12px;
+  color: $theme.textPrimaryColor;
+  font-size: 70%;
+}
+.poll-option-weight-value {
+  color: $theme.linkColor;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  left: 110%;
+}
+/**---------------------------------------------
+ * Poll macro display
+ */
+.poll-macro-box {
+  border: 1px dotted $theme.borderColor;
+  background: $theme.backgroundSecondaryColor;
+  padding: 4px 12px;
+  display: inline-block;
+}
+.poll-macro-box .poll-link {
+  text-align: right;
+  font-weight: bold;
+}</code>
+</property>
+<property>
+<name>Poll application style</name>
+</property>
+<property>
+<parse>1</parse>
+</property>
+<property>
+<use>onDemand</use>
+</property>
+</object>
+<content>{{include document="Polls.Parameters"/}}
+
+{{velocity output=false}}
+#**
+ * Read poll data from the document. Running this macro
+ * will store the poll object in $pollObj, the poll type
+ * in $pollType, and poll options in $options.
+ *
+ * @param $pollDoc The document containing the poll
+ *#
+#macro(poll_readPollData $pollDoc)
+  #set($pollObj = $pollDoc.getObject($pollClass))
+  #set($pollType = $pollObj.getProperty('type').value)
+  #poll_getOptions($pollDoc $options)
+#end
+
+#**
+ * Obtain the poll options ordered by their
+ * 'position' property
+ * @param $pollDoc The document containing the poll
+ * @param $options An array that will be populated
+ *        with the instances of PollOptionClass
+ *        existing in this document, ordered by their
+ *        'position' property
+ *#
+#macro(poll_getOptions $pollDoc $options)
+  #set($rawOptions = $pollDoc.getObjects($pollOptionClass))
+  #set($resultOrdering = [])
+  #set($options = [])
+  #foreach($option in $rawOptions)
+    #set($discard = $resultOrdering.add({'object' : $option, 'position' : $option.getProperty('position').value}))
+  #end
+  #set($resultOrdering = $sorttool.sort($resultOrdering, ['position']))
+  #foreach($option in $resultOrdering)
+    #set($discard = $options.add($option.object))
+  #end
+  #if ($options.size() == 0)
+    #set($options = $rawOptions)
+  #end
+#end
+
+#**
+ * Generate the input id for a certain property
+ * of an object
+ *
+ * @param property
+ * @param xobject
+ *#
+#macro(poll_generateInputID $property $xobject $cssclass)$!{xobject.xWikiClass.name}_$!{xobject.number}_$!{property} #end
+
+#**
+ * Display the input for a certain property
+ * of an object.
+ * This intends to replace $object.display(),
+ * which FTM generates some very annoying markup.
+ *
+ * @param property
+ * @param xobject
+ *#
+#macro(poll_input $property $xobject)
+  &lt;input type="text" name="$!{xobject.xWikiClass.name}_$!{xobject.number}_$!{property}" value="$!{xobject.getProperty(${property}).value}"/&gt;
+#end
+#**
+ * Display the label for a certain property
+ * of an object
+ *
+ * @param property
+ * @param xobject
+ *#
+#macro(poll_label $property $xobject)
+  &lt;label for="$!{xobject.xWikiClass.name}_$!{xobject.number}_$!{property}"&gt;$doc.displayPrettyName($property)&lt;/label&gt;
+#end
+
+#**
+ * Display the label and the input for a certain property
+ * of an object, wrapped in a div element.
+ * This intends to replace $object.display(),
+ * which FTM generates some very annoying markup.
+ *
+ * @param property
+ * @param xobject
+ * @param cssclass
+ *#
+#macro(poll_displayPropertyInForm $property $xobject $cssclass)
+  &lt;div class="$!{cssclass}"&gt;
+    #label($property $xobject)
+    #input($property $xobject)
+  &lt;/div&gt;
+#end
+
+#**
+ * Displays a tool that allows deleting an object
+ *
+ * @param theObj The object to delete
+ * @param text A custom text for the delete link
+ * @param tooltip A custom tooltip for the delete link
+ *
+ * DO NOT INDENT OR INSERT SPACES
+ *#
+#macro(poll_objectDeleteTool $theObj $text $tooltip)#set($url = $doc.getURL("objectremove", "classname=${theObj.xWikiClass.name}&amp;amp;classid=${theObj.number}&amp;amp;xredirect=$escapetool.url(${doc.getURL($context.action)})"))&lt;a class="tool delete" href="${url}" title="${tooltip}"&gt;$text&lt;/a&gt;#end
+
+
+#**
+ * Displays a tool that allows adding a new object 
+ * of a certain xclass
+ *
+ * @param class The xclass to instantiate
+ * @param text A custom text for the delete link
+ *#
+#macro(poll_objectAddTool $class $text)
+  #set($nextPosition = 1)
+  #foreach($object in $doc.getObjects($class))
+    #set($crtPosition = $object.getProperty('position').value)
+    #if ($crtPosition &gt;= $nextPosition)
+      #set($nextPosition = $crtPosition + 1)
+    #end
+  #end
+  #set($nextId = $util.generateRandomString(6))
+  #set($url = $doc.getURL('objectadd', "classname=${class}&amp;amp;${class}_id=${nextId}&amp;amp;${class}_position=${nextPosition}&amp;amp;xredirect=$escapetool.url(${doc.getURL($context.action)})"))
+  &lt;a class="add" href="${url}"&gt;$text&lt;/a&gt;
+#end
+
+#**
+ * Custom display of the poll options in the form
+ * according to the poll type (field 'type' of the 
+ * poll object).
+ *
+ * - single choice =&gt; radio boxes
+ * - multiple choice =&gt; check boxes
+ * - weighted multiple choice =&gt; weight selectors
+ * - rating =&gt; radio box groups
+ * - ranking =&gt; reodering tool
+ *
+ * @param $poll The PollsClass instance giving the
+ *              vote type
+ * @param $options An array with all the PollOptionClass
+ *              instances for this poll
+ * @param $expressedVotes An array of the votes already
+ *        given by the current user, if any; the elements
+ *        of the array are instances of PollVoteClass
+ *#
+#macro(poll_displayOptions $poll $options $expressedVotes)
+  #set($pollType = $poll.getProperty('type').value)
+  #set($maxOptions = $poll.getProperty('optionsPerVoter').value)
+  #if($pollType == 'rating' &amp;&amp; ($maxOptions &gt; $pollMaxRatingLevel || $maxOptions &lt;= 0))
+    #set($maxOptions = $pollMaxRatingLevel)
+  #end
+  #if("$!{maxOptions}" == '')
+    #set($maxOptions = $options.size())
+  #end
+  #set($myVotes = {})
+  #foreach($voteObj in $expressedVotes)
+    #set($value = $voteObj.getProperty('value').value)
+    #if ("$!{value}" == '')
+      #set($value = 1)
+    #end
+    #set($discard = $myVotes.put($voteObj.getProperty('optionID').value, $value))
+  #end
+  #if ($pollType == 'multiple')
+    #poll_displayMultipleChoiceTool($options $maxOptions $myVotes)
+  #elseif ($pollType == 'weighted')
+    #poll_displayWeightedChoiceTool($options $maxOptions $myVotes)
+  #elseif ($pollType == 'rating')
+    #poll_displayRatingTool($options $maxOptions $myVotes)
+  #elseif ($pollType == 'ranking')
+    #poll_displayRankingTool($options $myVotes)
+  #else## includes ($pollType == 'single')
+    #poll_displaySingleChoiceTool($options $myVotes)
+  #end
+#end
+
+#**
+ * Display a single choice tool for the poll options:
+ * radiobuttons
+ *
+ * @param $options An array with all the PollOptionClass
+ *              instances for this poll
+ * @param $myVotes An map {optionID -&gt; voteValue} array of
+ *        the votes already given by the current user, if any
+ *#
+#macro(poll_displaySingleChoiceTool $options $myVotes)
+  &lt;table summary="Poll options"&gt;
+  #foreach($option in $options)
+    &lt;tr class="#if($velocityCount % 2 == 1)odd #else even #end"&gt;
+      &lt;td&gt;&lt;input type="radio" name="${pollVoteClass}_optionID" value="${option.id}" #if($myVotes.get($option.id)) checked="checked" #end/&gt;&lt;/td&gt;
+      &lt;td&gt;$option.text&lt;/td&gt;
+    &lt;/tr&gt;
+  #end
+  &lt;/table&gt;
+#end
+
+#**
+ * Display a multiple choice tool for the poll options:
+ * checkboxes
+ *
+ * @param $options An array with all the PollOptionClass
+ *              instances for this poll
+ * @param maxChoices The maximum number of allowed choices
+ * @param $myVotes An map {optionID -&gt; voteValue} array of
+ *        the votes already given by the current user, if any
+ *#
+#macro(poll_displayMultipleChoiceTool $options $maxChoices $myVotes)
+  &lt;input type="hidden" id="poll-max-choices" value="${maxChoices}"/&gt;
+  &lt;table summary="Poll options"&gt;
+  #foreach($option in $options)
+    &lt;tr class="#if($velocityCount % 2 == 1)odd #else even #end"&gt;
+      &lt;td&gt;&lt;input type="checkbox" name="${pollVoteClass}_optionID" value="${option.id}" #if($myVotes.get($option.id)) checked="checked" #end/&gt;&lt;/td&gt;
+      &lt;td&gt;$option.text&lt;/td&gt;
+    &lt;/tr&gt;
+  #end
+  &lt;/table&gt;
+#end
+
+#**
+ * Display a weighted choice tool for the poll options:
+ * select controls with values from 0 to 100
+ * (only for non-js browsing).
+ * These will be replaced in js with nice sliders.
+ *
+ * @param $options An array with all the PollOptionClass
+ *              instances for this poll
+ * @param maxChoices The maximum number of allowed choices
+ * @param $myVotes An map {optionID -&gt; voteValue} array of
+ *        the votes already given by the current user, if any
+ *#
+#macro(poll_displayWeightedChoiceTool $options $maxChoices $myVotes)
+  &lt;input type="hidden" id="poll-max-choices" value="${maxChoices}"/&gt;
+  &lt;table summary="Poll options" class="poll-options-weighted"&gt;
+  #foreach($option in $options)
+    &lt;tr class="poll-option-weighted #if($velocityCount % 2 == 1)odd #else even #end"&gt;
+      &lt;td&gt;$option.text&lt;/td&gt;
+      &lt;td&gt;&lt;span class="poll-option-weight"&gt;
+        &lt;select name="${pollVoteClass}_optionID_${option.id}"&gt;
+        #foreach($i in [0..100])
+          &lt;option value="$i" #if("${myVotes.get($option.id)}" == "${i}") selected="selected" #end&gt;$i&lt;/option&gt;
+        #end
+        &lt;/select&gt;%
+      &lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  #end
+  &lt;/table&gt;
+#end
+
+#**
+ * Display a rating tool for the poll options:
+ * radiobuttons for rating from 0 to max for
+ * each option
+ *
+ * @param $options An array with all the PollOptionClass
+ *              instances for this poll
+ * @param maxLevel The number of rating levels
+ *               (rating from 0 to max)
+ * @param $myVotes An map {optionID -&gt; voteValue} array of
+ *        the votes already given by the current user, if any
+ *#
+#macro(poll_displayRatingTool $options $maxLevel $myVotes)
+  &lt;table summary="Poll options"&gt;
+  #foreach($option in $options)
+    &lt;tr class="poll-option #if($velocityCount % 2 == 1)odd #else even #end"&gt;
+      &lt;td&gt;$option.text&lt;/td&gt;
+      &lt;td&gt;
+        #foreach($i in [0..$maxLevel])
+          &lt;label&gt;&lt;input type="radio" name="${pollVoteClass}_optionID_${option.id}" value="$i" #if(${i} == 0 || "${myVotes.get($option.id)}" == "${i}") checked="checked" #end/&gt;$i&lt;/label&gt;
+        #end
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  #end
+  &lt;/table&gt;
+#end
+
+#**
+ * Display a ranking tool for the poll options:
+ * allows the users to order the options according
+ * to their preference
+ *
+ * @param $options An array with all the PollOptionClass
+ *              instances for this poll
+ * @param $myVotes An map {optionID -&gt; voteValue} array of
+ *        the votes already given by the current user, if any
+ *#
+#macro(poll_displayRankingTool $options $myVotes)
+  #set($sep = ',')
+  ## Arrange the options according to the permutation given as a parameter
+  ## If the permutation is invalid, keep the original order
+  #poll_internal_RankingOrderFromRequest($options $sep $sortedOptions)
+  #if ($sortedOptions == $options)
+    #poll_internal_RankingOrderFromUserVotes($options $myVotes $sortedOptions)
+  #end
+  ## Do not rely on the $order array, it may be missing or wrong
+  #set($newOrder = [])
+  #foreach($option in $sortedOptions)
+    #set($discard = $newOrder.add($option.id))
+  #end
+  &lt;div class="hidden"&gt;&lt;input type="hidden" name="order" value="#poll_internal_join($newOrder, $sep)" id="ranking-order"/&gt;&lt;/div&gt;
+  &lt;ol id='poll-ranking-tool'&gt;
+  #foreach($option in $sortedOptions)
+    &lt;li id="ranking-order_$velocityCount" class="#if($velocityCount % 2 == 1)odd #else even #end"&gt;
+      &lt;span class="reordering-tools tools"&gt;
+        #if($velocityCount != 1)
+          ## the same order as for the 'move down' link of the previous option
+          &lt;a href="?order=#poll_internal_join($!{newOrder}, $sep)" class="tool moveup" title="$msg.get('polls.vote.tools.moveup.tooltip')"&gt;$msg.get('polls.vote.tools.moveup')&lt;/a&gt;
+          ## swap back, to obtain the initial order again; $i and $j were also set in the previous step of the loop
+          #poll_internal_swap($newOrder $i $j)
+        #else
+          &lt;span class="tool moveup disabled"&gt;$msg.get('polls.vote.tools.moveup')&lt;/span&gt;
+        #end
+        #if($velocityCount != $options.size())
+          #set($i = $velocityCount)
+          #set($j = $velocityCount - 1)
+          #poll_internal_swap($newOrder $i $j)
+          &lt;a href="?order=#poll_internal_join($!{newOrder}, $sep)" class="tool movedown" title="$msg.get('polls.vote.tools.movedown.tooltip')"&gt;$msg.get('polls.vote.tools.movedown')&lt;/a&gt;
+        #else
+          &lt;span class="tool movedown disabled"&gt;$msg.get('polls.vote.tools.movedown')&lt;/span&gt;
+        #end
+      &lt;/span&gt;
+      &lt;input type="hidden" value="${option.id}"/&gt;
+      $option.text
+    &lt;/li&gt;
+  #end
+  &lt;/ol&gt;
+#end
+#**
+ * Internal: swap two elements in an array
+ *
+ * @param array
+ * @param position of the first element
+ * @param position of the second element
+ *#
+#macro(poll_internal_swap $array $i $j)
+  ## only used internally; don't waste time checking
+  ## if $i and $j are lower than $array.size()
+  #set($tmp = $array.get($i))
+  #set($discard = $array.set($i, $array.get($j)))
+  #set($discard = $array.set($j, $tmp))
+#end
+
+#**
+ * Internal: display all elements in an array,
+ * separated by a certain separator
+ *
+ * @param array
+ * @param separator
+ * 
+ * DO NOT INDENT OR INTRODUCE SPACES
+ *#
+#macro(poll_internal_join $array $separator)#foreach($elt in $array)#if($velocityCount&gt;1)${separator}#end${elt}#end#end
+#**
+ * Internal: read and apply ranking from request parameter
+ *
+ * @param $options The array of options (instances of PollOptionClass)
+ *                 being ranked
+ * @param $separator The character separating the ordered option IDs
+ *                 in the request parameter value
+ * @param $orderedOptions Result: array of ordered options
+ *#
+#macro(poll_internal_RankingOrderFromRequest $options $separator $orderedOptions)
+  #set($order = "$!{request.order}")
+  #set($order = $order.split($separator))
+  #poll_internal_RankingOrderFromPermutation($options $order $orderedOptions)
+#end
+
+#**
+ * Internal: read and apply ranking from user votes
+ *
+ * @param $options The array of options (instances of PollOptionClass)
+ *                 being ranked
+ * @param $userVotes A map {optionID -&gt; positions} containing the current
+ *                 user votes
+ * @param $orderedOptions Result: array of ordered options
+ *#
+#macro(poll_internal_RankingOrderFromUserVotes $options $userVotes $orderedOptions)
+  #set($resultOrdering = [])
+  #set($order = [])
+  #foreach($votedOption in $userVotes.keySet())
+    #set($discard = $resultOrdering.add({'id' : $votedOption, 'position' : $userVotes.get($votedOption)}))
+  #end
+  #set($resultOrdering = $sorttool.sort($resultOrdering, ['position']))
+  #foreach($optionID in $resultOrdering)
+    #set($discard = $order.add($optionID.id))
+  #end
+  #poll_internal_RankingOrderFromPermutation($options $order $orderedOptions)
+#end
+
+#**
+ * Internal: apply ranking from and option id permutation
+ *
+ * @param $options The array of options (instances of PollOptionClass)
+ *                 being ranked
+ * @param $permutation An array containing the ordered option ids
+ * @param $orderedOptions Result: array of ordered options
+ *#
+#macro(poll_internal_RankingOrderFromPermutation $options $permutation $orderedOptions)
+  ## Arrange the options according to the permutation given as a parameter
+  ## If the permutation is invalid, keep the original order
+  #if($order.size() != $options.size())
+    #set($orderedOptions = $options)
+  #else
+    #set($optionMap = {})
+    #set($orderedOptions = [])
+    #foreach($option in $options)
+      #set($discard = $optionMap.put($option.id, $option))
+    #end
+    #foreach($elt in $order)
+      #set($next = $optionMap.get("${elt}"))
+      #if ("$!{next}" == '')
+        #set($orderedOptions = $options)
+        #break
+      #else
+        #set($discard = $orderedOptions.add($next))
+      #end
+    #end
+  #end
+#end
+
+#*---------------------------------------------**
+  Vote macros
+**---------------------------------------------*#
+#** 
+ * Processes the vote for single choice polls.
+ *
+ *#
+#macro(poll_voteSingle)
+  #set($voteOption = "$!{request.getParameter($pollVoteClass.concat('_optionID'))}")
+  #if(!$doc.getObject($pollOptionClass, 'id', $voteOption, false))
+
+
+{{error}}$msg.get('polls.vote.error.single.noneSelected'){{/error}}
+
+  #else
+    #set($voteObject = $doc.getObject($pollVoteClass, 'voter', $context.user, false))
+    #if(!$voteObject)
+      #set($voteObject = $doc.newObject($pollVoteClass))
+    #end
+    #set($discard = $voteObject.set('voter', $context.user))
+    #set($discard = $voteObject.set('optionID', $voteOption))
+    #set($discard = $voteObject.set('value', 1))
+    $doc.save($msg.get('polls.versionSummary.userVoted', [$xwiki.getUserName($context.user, false)]), true)
+    $response.sendRedirect($doc.getURL())
+    #stop
+  #end
+#end
+
+#** 
+ * Processes the vote for multiple choice polls.
+ *
+ * @param $maxChoices The maximum number of allowed choices.
+ *#
+#macro(poll_voteMultiple $maxChoices)
+  #set($voteOptions = $!{request.getParameterValues($pollVoteClass.concat('_optionID'))})
+  #set($validOptions = [])
+  #foreach ($voteOption in $voteOptions)
+    #if($doc.getObject($pollOptionClass, 'id', $voteOption, false))
+      #set($discard = $validOptions.add($voteOption))
+    #end
+  #end
+  #if ($validOptions.size() == 0 || $validOptions.size() &gt; $maxChoices)
+
+
+{{error}}$msg.get('polls.vote.error.multiple.wrongSelectedNumber', [${maxChoices}]){{/error}}
+
+
+  #else
+    #foreach($vote in $doc.getObjects($pollVoteClass, 'voter', $context.user))
+      #set($discard = $doc.removeObject($vote))
+    #end
+    #foreach($voteOption in $validOptions)
+      #set($voteObject = $doc.newObject($pollVoteClass))
+      #set($discard = $voteObject.set('voter', $context.user))
+      #set($discard = $voteObject.set('optionID', $voteOption))
+      #set($discard = $voteObject.set('value', 1))
+    #end
+    $doc.save($msg.get('polls.versionSummary.userVoted', [$xwiki.getUserName($context.user, false)]), true)
+    $response.sendRedirect($doc.getURL())
+    #stop
+  #end
+#end
+
+#** 
+ * Processes the vote for weighted multiple choice polls.
+ *
+ * @param $maxChoices The maximum number of allowed choices.
+ * @param $options The options of this poll - an array of
+ *                 PollOptionClass instances
+ *#
+#macro(poll_voteWeighted $maxChoices $options)
+  #set($optionWeights = {})
+  #set($totalWeight = 0)
+  #set($expressedChoices = 0)
+  #foreach ($option in $options)
+    #set($optionWeight = $mathtool.toInteger("$!{request.getParameter($pollVoteClass.concat('_optionID_').concat($option.id))}"))
+    #set($totalWeight = $totalWeight + $optionWeight)
+    #if ($optionWeight &gt; 0)
+      #set($discard = $optionWeights.put($option.id, $optionWeight))
+      #set($expressedChoices = $expressedChoices + 1)
+    #end
+  #end
+  #if ($expressedChoices &gt; $maxChoices)
+
+
+
+{{error}}$msg.get('polls.vote.error.multiple.wrongSelectedNumber', [${maxChoices}]){{/error}}
+
+  #elseif($totalWeight != 100)
+
+
+{{error}}$msg.get('polls.vote.error.multiple.wrongSelectedNumber', [${totalWeight}]){{/error}}
+
+  #else
+    #foreach($vote in $doc.getObjects($pollVoteClass, 'voter', $context.user))
+      #set($discard = $doc.removeObject($vote))
+    #end
+    #foreach($voteOption in $optionWeights.keySet())
+      #set($voteObject = $doc.newObject($pollVoteClass))
+      #set($discard = $voteObject.set('voter', $context.user))
+      #set($discard = $voteObject.set('optionID', $voteOption))
+      #set($discard = $voteObject.set('value', $optionWeights.get($voteOption)))
+    #end
+    $doc.save($msg.get('polls.versionSummary.userVoted', [$xwiki.getUserName($context.user, false)]), true)
+    $response.sendRedirect($doc.getURL())
+    #stop
+  #end
+#end
+
+
+#** 
+ * Processes the vote for rating polls.
+ *
+ * @param maxLevel The maximum rating level. Ratings should
+ *                 range between 0 and maxLevel
+ * @param $options The options of this poll - an array of
+ *                 PollOptionClass instances
+ *#
+#macro(poll_voteRating $maxLevel $options)
+  #set($optionRatings = {})
+  #set($errorMessage = '')
+  #foreach ($option in $options)
+    #set($optionRating = "$!{request.getParameter($pollVoteClass.concat('_optionID_').concat($option.id))}")
+    #if ($optionRating == '')
+      #set($errorMessage = $msg.get('polls.vote.error.rating.optionMissing', [${option.position}]))
+      #break
+    #else
+      #set($optionRating = $mathtool.toInteger($optionRating))
+      #if ($optionRating &lt; 0 || $optionRating &gt; $maxLevel)
+        #set($errorMessage = $msg.get('polls.vote.error.rating.ratingOutOfRange', [${option.position}]))
+        #break
+      #else
+        #set($discard = $optionRatings.put($option.id, $optionRating))
+      #end
+    #end
+  #end
+  #if ($errorMessage != '')
+
+
+{{error}}$errorMessage{{/error}}
+
+  #else
+    #foreach($vote in $doc.getObjects($pollVoteClass, 'voter', $context.user))
+      #set($newRating = $optionRatings.get(${vote.getProperty('optionID').value}))
+      #if ("$!{newRating}" == '')
+        #set($discard = $doc.removeObject($vote))
+      #else
+        #set($discard = $vote.set('value', $optionRatings.get(${vote.getProperty('optionID').value})))
+        #set($discard = $optionRatings.remove(${vote.getProperty('optionID').value}))
+      #end
+    #end
+    #foreach($voteOption in $optionRatings.keySet())
+      #set($voteObject = $doc.newObject($pollVoteClass))
+      #set($discard = $voteObject.set('voter', $context.user))
+      #set($discard = $voteObject.set('optionID', $voteOption))
+      #set($discard = $voteObject.set('value', $optionRatings.get($voteOption)))
+    #end
+    $doc.save($msg.get('polls.versionSummary.userVoted', [$xwiki.getUserName($context.user, false)]), true)
+    $response.sendRedirect($doc.getURL())
+    #stop
+  #end
+#end
+
+
+#** 
+ * Processes the vote for ranking polls.
+ *
+ * @param $options The options of this poll - an array of
+ *                 PollOptionClass instances
+ *#
+#macro(poll_voteRanking $options)
+  ## Arrange the options according to the permutation given as a parameter
+  #set($errorMessage = '')
+  #set($order = "$!{request.order}")
+  #set($sep = ',')
+  #set($order = $order.split($sep))
+  #if($order.size() != $options.size())
+    #set($errorMessage = "Invalid ordering, wrong number of elements: ${order.size()} instead of ${options.size()}.")
+  #else
+    #set($optionMap = {})
+    #set($sortedOptions = {})
+    #foreach($option in $options)
+      #set($discard = $optionMap.put($option.id, $option))
+    #end
+    #foreach($elt in $order)
+      #set($next = $optionMap.get("$!{elt}"))
+      #if ("$!{next}" == '')
+        #set($errorMessage = $msg.get('polls.vote.error.ranking.unknownElement', [${elt}]))
+        #break
+      #elseif($sortedOptions.containsKey($elt))
+        #set($errorMessage = $msg.get('polls.vote.error.ranking.duplicateElement', [${elt}]))
+        #break
+      #else
+        #set($discard = $sortedOptions.put($elt, $velocityCount))
+      #end
+    #end
+  #end
+  #if ($errorMessage != '')
+
+
+{{error}}$errorMessage{{/error}}
+
+  #else
+    #foreach($vote in $doc.getObjects($pollVoteClass, 'voter', $context.user))
+      #set($newPosition = $sortedOptions.get(${vote.getProperty('optionID').value}))
+      #if ("$!{newPosition}" == '')
+        #set($discard = $doc.removeObject($vote))
+      #else
+        #set($discard = $vote.set('value', $sortedOptions.get(${vote.getProperty('optionID').value})))
+        #set($discard = $sortedOptions.remove(${vote.getProperty('optionID').value}))
+      #end
+    #end
+    #foreach($voteOption in $sortedOptions.keySet())
+      #set($voteObject = $doc.newObject($pollVoteClass))
+      #set($discard = $voteObject.set('voter', $context.user))
+      #set($discard = $voteObject.set('optionID', $voteOption))
+      #set($discard = $voteObject.set('value', $sortedOptions.get($voteOption)))
+    #end
+    $doc.save($msg.get('polls.versionSummary.userVoted', [$xwiki.getUserName($context.user, false)]), true)
+    $response.sendRedirect($doc.getURL())
+    #stop
+  #end
+#end
+
+#**
+ * Display poll results
+ *
+ * @param poll
+ * @param type
+ * @param options
+ * @param votes
+ * @param showtable
+ * @param showchart
+ *#
+#macro(poll_results $poll $type $options $votes $showtable $showchart)
+  #if ($votes.size() &gt; 0)
+    #set($allVoters = {})
+    #foreach($vote in $votes)
+      #set($discard = $allVoters.put($vote.getProperty('voter').value, 1))
+    #end
+    &lt;div class="box poll-participants"&gt;$msg.get('polls.vote.results.participants', [$allVoters.size()])&lt;/div&gt;
+    #if ($type == 'rating' || $type == 'ranking')
+      #poll_resultsPerValue($poll $type $options $votes $showtable $showchart)
+    #else
+      #poll_resultsCounts($poll $type $options $votes $showtable $showchart)
+    #end
+  #end
+#end
+
+#**
+ * Display poll results for rating and ranking
+ *
+ * @param poll
+ * @param type
+ * @param options
+ * @param votes
+ * @param showtable
+ * @param showchart
+ *#
+#macro(poll_resultsPerValue $poll $type $options $votes $showtable $showchart)
+  #if ($type == 'rating')
+    #set($minLevel = 0)
+    #set($maxLevel = $poll.getProperty('optionsPerVoter').value)
+    #if($maxLevel &gt; $pollMaxRatingLevel || $maxLevel &lt;= 0)
+      #set($maxLevel = $pollMaxRatingLevel)
+    #end
+  #else## ranking
+    #set($minLevel = 1)
+    #set($maxLevel = $options.size())
+  #end
+  #set($voteCounts = {})
+  #set($voteResults = {})
+  #foreach($option in $options)
+    #set($discard = $voteCounts.put($option.id, {}))
+    #foreach($i in [${minLevel}..${maxLevel}])
+      #set($discard = $voteCounts.get($option.id).put($i, 0))
+    #end
+    #set($discard = $voteResults.put($option.id, 0))
+  #end
+  #foreach($voteObj in $votes)
+    #set($key = $voteObj.getProperty('optionID').value)
+    #set($value = $voteObj.getProperty('value').value)
+    #set($row = $voteCounts.get($key))
+    #set($discard = $row.put($value, $mathtool.add($row.get($value), 1)))
+  #end
+  #foreach($option in $options)
+    #set($key = $option.id)
+    #set($sum = 0)
+    #set($row = $voteCounts.get($key))
+    #foreach($i in [${minLevel}..${maxLevel}])
+      #set($discard = $voteResults.put($key, $mathtool.add($voteResults.get($key), $mathtool.mul($i, $row.get($i)))))
+      #set($sum = $sum + $row.get($i))
+    #end
+    #set($discard = $voteResults.put($key, $mathtool.div($voteResults.get($key), $sum)))
+  #end
+
+  #if($type == 'ranking')
+    ## Must obtain an actual order
+    #set($resultRanking = [])
+    #set($optionsMap = {})
+    #foreach($option in $options)
+      #set($discard = $resultRanking.add({'text' : $option.getProperty('text').value, 'id' : $option.getProperty('id').value, 'voteValue' : $voteResults.get($option.getProperty('id').value).doubleValue()}))
+      #set($discard = $optionsMap.put($option.id, $option.getProperty('text').value))
+    #end
+    #set($sortBy = ['voteValue', 'text'])
+    #set($resultRanking = $sorttool.sort($resultRanking, $sortBy))
+    ## display the ordered options:
+    &lt;ol class="poll-ranking-order"&gt;
+      #foreach($option in $resultRanking)
+        &lt;li&gt;$optionsMap.get($option.id) &lt;span class="details"&gt;(${option.voteValue})&lt;/span&gt;&lt;/li&gt;
+      #end
+    &lt;/ol&gt;
+  #end
+
+  #if ($showchart)
+#set($pollDocument = $xwiki.getDocument($poll.getName()))
+#set($column = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+#set($span = $maxLevel - $minLevel + 1)
+#set($firstCharIndex = $span % $column.length())
+#set($secondCharIndex = $span / $column.length() - 1)
+#set($columnIdentifier = $column.charAt($firstCharIndex))
+#if($secondCharIndex &gt;= 0)
+  #if($secondCharIndex &lt; $column.length())
+    #set($columnIdentifier = "${column.charAt(${secondCharIndex})}${columnIdentifier}")
+  #else
+    #set($columnIdentifier = 'ZZ')
+
+
+{{warning}}$msg.get('polls.vote.results.chart.columnsNumberWarning', [701]){{/warning}}
+
+  #end
+#end
+{{chart source="inline" type="bar" params="range:B2-${columnIdentifier}${mathtool.add($options.size(), 1)};series:columns;" title="$pollDocument.getDisplayTitle().replaceAll('"', '')"}}
+| #foreach($i in [${minLevel}..${maxLevel}])|$i#end
+
+  #foreach($option in $options)
+    #set($row = $voteCounts.get($option.id))
+|${option.getProperty('text').value.replaceAll('\r?\n|\r', ' ').trim()}#foreach($i in [${minLevel}..${maxLevel}])|$row.get(${i})#end
+
+    #end
+{{/chart}}
+  #end
+
+  #if($showtable)
+  &lt;table class="poll-results"&gt;
+    &lt;tr&gt;
+      &lt;th&gt;$msg.get('polls.vote.results.table.option')&lt;/th&gt;
+      #foreach($i in [${minLevel}..${maxLevel}])
+        &lt;th&gt;${i}&lt;/th&gt;
+      #end
+      &lt;th&gt;$msg.get('polls.vote.results.table.average')&lt;/th&gt;
+    &lt;/tr&gt;
+    #foreach($option in $options)
+      #set($row = $voteCounts.get($option.id))
+      &lt;tr&gt;
+        &lt;td&gt;$option.text&lt;/td&gt;
+        #foreach($i in [${minLevel}..${maxLevel}])
+          &lt;td&gt;$row.get(${i})&lt;/td&gt;
+        #end
+        &lt;td&gt;$mathtool.roundTo(2, $voteResults.get($option.id))&lt;/td&gt;
+      &lt;/tr&gt;
+    #end 
+  &lt;/table&gt;
+  #end## show table
+#end
+
+
+#**
+ * Display poll results for single, multiple and
+ * weighted multiple choice
+ *
+ * @param poll
+ * @param type
+ * @param options
+ * @param votes
+ * @param showtable
+ * @param showchart
+ *#
+#macro(poll_resultsCounts $poll $type $options $votes $showtable $showchart)
+  #set($voteValues = {})
+  #set($voteCounts = {})
+  #set($voteVoters = {})
+  #set($voters = {})
+  #foreach($option in $options)
+    #set($discard = $voteValues.put($option.id, 0))
+    #set($discard = $voteCounts.put($option.id, 0))
+    #set($discard = $voteVoters.put($option.id, []))
+  #end
+  #foreach($voteObj in $votes)
+    #set($key = $voteObj.getProperty('optionID').value)
+    #if($type == 'weighted')
+      #set($value = $mathtool.div($voteObj.value, 100.0))
+    #else
+      #set($value = 1)
+    #end
+    #set($discard = $voteValues.put($key, $mathtool.add($voteValues.get($key), $value)))
+    #set($discard = $voteCounts.put($key, $mathtool.add($voteCounts.get($key), 1)))
+    #set($discard = $voteVoters.get($key).add($voteObj.voter))
+    #set($discard = $voters.put($voteObj.voter, 1))
+  #end
+  #if($showchart)
+#set($pollDocument = $xwiki.getDocument($poll.getName()))
+{{chart source="inline" type="bar" params="range:B2-B${mathtool.add($options.size(), 1)};series:columns;" title="$pollDocument.getDisplayTitle().replaceAll('"', '')"}}
+#if($type == 'single' || $type == 'multiple')
+| |$msg.get('polls.vote.results.chart.voteCount')
+#foreach($option in $options)
+|${option.getProperty('text').value.replaceAll('\r?\n|\r', ' ').trim()}|$voteCounts.get($option.id)
+#end
+#elseif($type == 'weighted')
+| |$msg.get('polls.vote.results.chart.percentage')
+#foreach($option in $options)
+|${option.getProperty('text').value.replaceAll('\r?\n|\r', ' ').trim()}|$mathtool.div($mathtool.mul($voteValues.get($option.id), 100.0), $voters.size())
+#end
+#end
+{{/chart}}
+
+  #end## show chart
+  #if ($showtable)
+  &lt;table class="poll-results"&gt;
+    &lt;tr&gt;&lt;th&gt;$msg.get('polls.vote.results.table.option')&lt;/th&gt;&lt;th&gt;$msg.get('polls.vote.results.table.percentage')&lt;/th&gt;&lt;th&gt;$msg.get('polls.vote.results.table.voteCount')&lt;/th&gt;&lt;th&gt;$msg.get('polls.vote.results.table.voters')&lt;/th&gt;&lt;/tr&gt;
+    #foreach($option in $options)
+      &lt;tr&gt;
+        &lt;td&gt;$option.text&lt;/td&gt;
+        &lt;td&gt;
+           #set($percentage = $mathtool.roundTo(2, $mathtool.div($mathtool.mul($voteValues.get($option.id), 100.0), $voters.size())))
+           ${percentage}%
+        &lt;/td&gt;
+        &lt;td&gt;$voteCounts.get($option.id)&lt;/td&gt;
+        &lt;td&gt;
+          #foreach($voter in $voteVoters.get($option.id))#if($velocityCount != 1), #end${xwiki.getUserName($voter, false)}#end
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    #end 
+  &lt;/table&gt;
+  #end## show table
+#end
+{{/velocity}}</content></xwikidoc>

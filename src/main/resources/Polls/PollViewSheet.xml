@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>Polls</web>
+<name>PollViewSheet</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>Polls.PollSheet</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1270892056000</creationDate>
+<date>1270892056000</date>
+<contentUpdateDate>1270892056000</contentUpdateDate>
+<version>1.1</version>
+<title>Sheet for displaying polls in view mode</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>true</hidden>
+<content>{{include document="Polls.Macros"/}}
+
+{{velocity}}
+$xwiki.jsx.use($pollScript)##
+$xwiki.ssx.use($pollStyle)##
+#poll_readPollData($doc)
+#if("$!{pollObj}" != '')
+##
+##
+##
+#set($choices = $pollObj.getProperty('optionsPerVoter').value)
+#if($pollType == 'multiple' || $pollType == 'weighted')
+  #if("$!{choices}" == '' || $choices &gt; $options.size())
+    #set($choices = $options.size())
+  #end
+#end
+#if($pollType == 'rating' &amp;&amp; ($choices &gt; $pollMaxRatingLevel || $choices &lt;= 0))
+  #set($choices = $pollMaxRatingLevel)
+#end
+#if($pollType == 'ranking' || $pollType == 'weighted')
+  $xwiki.jsfx.use('js/scriptaculous/scriptaculous.js')##
+#end
+#if("$!{request.xaction}" == 'vote')
+  #if ($pollType == 'single')
+    #poll_voteSingle()
+  #elseif($pollType == 'multiple')
+    #poll_voteMultiple($choices)
+  #elseif ($pollType == 'weighted')
+    #poll_voteWeighted($choices $options)
+  #elseif ($pollType == 'rating')
+    #poll_voteRating($choices $options)
+  #elseif ($pollType == 'ranking')
+    #poll_voteRanking($options)
+  #end
+#end## done processing the vote
+##
+##
+##
+  {{html clean="false" wiki="true"}}
+  &lt;div class="poll-question"&gt;$pollObj.question&lt;/div&gt;
+  ##
+  ## Can this user vote? Is the poll open?
+  ##
+  #set($canVote = (!$isGuest &amp;&amp; $hasEdit))
+  #if(!$canVote)
+
+
+{{warning}}$msg.get('polls.vote.warning.unauthorized'){{/warning}}
+
+  #end
+  #set($from = $pollObj.getProperty('from').value)
+  #set($to   = $pollObj.getProperty('to').value)
+  #if ($xwiki.jodatime)
+    ## getDateTimeFormatterForStyle("SS")
+    #set($prettyFrom = $xwiki.jodatime.getDateTimeFormatterForPattern("d MMMM YYYY, H:mm").print($from.getTime()))
+    #set($prettyTo = $xwiki.jodatime.getDateTimeFormatterForPattern("d MMMM YYYY, H:mm").print($to.getTime()))
+  #else
+    #set($prettyFrom = "$!{from}")
+    #set($prettyTo = "$!{to}")
+  #end
+  #if("$!{to}" != '' &amp;&amp; $util.date.after(${to}))
+    #set($when = 'after')
+    &lt;div class="box poll-calendar poll-closed"&gt;$msg.get('polls.vote.timeline.closed')&lt;/div&gt;
+  #elseif("$!{from}" != '' &amp;&amp;  $util.date.before(${from}))
+    #set($when = 'before')
+    &lt;div class="box poll-calendar poll-not-open"&gt;$msg.get('polls.vote.timeline.notOpen', ["//${prettyFrom}//", "//${prettyTo}//"])&lt;/div&gt;
+  #else
+    #set($when = 'during')
+    &lt;div class="box poll-calendar poll-open"&gt;$msg.get('polls.vote.timeline.ongoing', ["//${prettyFrom}//", "//${prettyTo}//"])&lt;/div&gt;
+  #end
+  #set($canVote = $canVote &amp;&amp; $when == 'during')
+  ##
+  ## Display the voting form if applicable
+  ##
+  #if ($canVote)
+    &lt;input type="hidden" id="polltype" value="${pollType}"/&gt;
+    &lt;div class="poll-instructions"&gt;
+      #if($pollType == 'ranking')
+        &lt;span id='ranking-instructions-no-script'&gt;$msg.get("polls.vote.instructions.${pollType}.noscript")&lt;/span&gt;&lt;span id='ranking-instructions-js-tool' class='hidden'&gt;$msg.get("polls.vote.instructions.${pollType}.script")&lt;/span&gt;
+      #else
+        $msg.get("polls.vote.instructions.${pollType}", ["$!{choices}"])
+      #end
+    &lt;/div&gt;
+    &lt;form action="" method="post"&gt;
+      &lt;div class="poll-options"&gt;
+        #set($userVotes = $doc.getObjects($pollVoteClass, 'voter', ${context.user}))
+        #if($userVotes.size() &gt; 0)
+          &lt;label class="poll-voted-label"&gt;$msg.get('polls.vote.label.voted')&lt;/label&gt;
+        #end
+        #poll_displayOptions($pollObj $options $userVotes)
+      &lt;/div&gt;
+      &lt;div class="buttons"&gt;
+        &lt;input type="hidden" name="xaction" value="vote"/&gt;
+        &lt;span class="buttonwrapper"&gt;&lt;input class="button" type="submit" value="#if($userVotes.size() &gt; 0) $msg.get('polls.vote.actions.updateVote') #else $msg.get('polls.vote.actions.vote') #end"/&gt;&lt;/span&gt;
+        &lt;a href="$xwiki.getURL(${pollsHome})" class="secondary button"&gt;$msg.get('polls.vote.actions.cancel')&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  #end
+  ##
+  ## Display the results
+  ##
+  #set($votes = $doc.getObjects($pollVoteClass))
+  #if ($votes.size() &gt; 0)
+== $msg.get("polls.vote.results.title.${when}") ==
+    #poll_results($pollObj $pollType $options $votes true true)
+  #end ## votes.size
+  ##
+  ## Results done
+  ##
+  {{/html}}##
+#end## poll object exists
+{{/velocity}}</content></xwikidoc>

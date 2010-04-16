@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>Polls</web>
+<name>PollEditSheet</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>Polls.PollSheet</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1270892056000</creationDate>
+<date>1270892056000</date>
+<contentUpdateDate>1270892056000</contentUpdateDate>
+<version>1.1</version>
+<title>Sheet for displaying polls in edit mode</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>true</hidden>
+<content>{{include document="Polls.Macros"/}}
+
+{{velocity output="false"}}
+$xwiki.jsx.use($pollScript)
+$xwiki.ssx.use($pollStyle)
+
+## Check if the poll exists and it's being edited,
+##  or it is just being created
+#set($pollExists = $doc.getObject($pollClass))
+
+## Get the poll object (a fake one, if missing)
+$doc.updateObjectsFromRequest($pollClass)
+#set($poll = $doc.getObject($pollClass, true))
+{{/velocity}}
+
+{{velocity}}
+#if("$!{request.xaction}" == 'addOption')
+  #set($optionObj = $doc.newObject($pollOptionClass))
+  #poll_getOptions($doc $options)
+  $!optionObj.set('position', $mathtool.add($options.size(), 1))##
+  $!optionObj.set('id', $util.generateRandomString(6))##
+  $!optionObj.set('text', '')##
+  $!doc.save($msg.get('polls.versionSummary.optionAdded'))##
+  {{html clean="false" wiki="true"}}
+    &lt;li class="poll-option" id="polloption_${options.size()}"&gt;
+      &lt;div&gt;
+        &lt;span class="hidden poll-option-id"&gt;$optionObj.display('id', 'edit')&lt;/span&gt;
+        &lt;span class="poll-option-position"&gt;$optionObj.display('position', 'edit')&lt;/span&gt;
+        &lt;span class="poll-option-text"&gt;$optionObj.display('text', 'edit')&lt;/span&gt;
+        &lt;span class="poll-option-tools tools"&gt;#poll_objectDeleteTool($optionObj $msg.get('polls.form.tools.delete') $msg.get('polls.form.tools.delete.tooltip'))&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+  {{/html}}##
+#else
+{{html clean="false" wiki="true"}}
+##
+## If this is the creation step, the context action is view,
+##  so the wrapping form must be manually declared 
+#if (!$pollExists)
+  &lt;form action="" method="post"&gt;
+  &lt;div class="poll-space"&gt;
+    &lt;label for="space"&gt;$msg.get('polls.form.label.space')&lt;/label&gt;
+    &lt;select name="space"&gt;
+      #foreach ($space in $xwiki.getSpaces())
+        ## select the spaces where the user has "create" rights
+        ## TODO: improve this condition
+        #if($xwiki.hasAccessLevel('edit', "${space}.DocumentReservedForInternalXWikiUsage${mathtool.random(0, 999)}")) 
+        &lt;option #if($space == $pollsSpace) selected="selected"#end&gt;$space&lt;/option&gt;
+        #end
+      #end
+    &lt;/select&gt;
+  &lt;/div&gt;
+#end
+  &lt;div class="poll"&gt;
+##
+##
+##
+## Part 1: Title, question
+##
+&lt;fieldset class="poll-section poll-general"&gt;
+  &lt;legend class="section-title"&gt;$msg.get('polls.form.section.general')&lt;/legend&gt; 
+  &lt;div class="poll-title"&gt;
+    &lt;label for="title"&gt;$msg.get('polls.form.label.title')&lt;/label&gt;
+    #if($pollExists)
+      #set($pollTitle = $!escapetool.xml($doc.title))
+    #else
+      #set($pollTitle = $!escapetool.xml($!request.title))
+    #end
+    &lt;input type="text" name="title" value="$!{pollTitle}" size="80"/&gt;
+  &lt;/div&gt;
+  &lt;div class="poll-desc"&gt;
+    #poll_label('question' $poll)
+    $poll.display('question', 'edit')
+  &lt;/div&gt;
+&lt;/fieldset&gt;
+##
+## Part 2: Options
+##
+&lt;fieldset class="poll-section poll-options"&gt;
+  &lt;legend class="section-title"&gt;$msg.get('polls.form.section.options')&lt;/legend&gt;
+  #if ($pollExists)
+    #poll_getOptions($doc $options)
+    &lt;ol class="poll-options-list" id="poll-options-list"&gt;
+    #foreach($optionObj in $options)
+      &lt;li class="poll-option" id="polloption_${velocityCount}"&gt;
+        &lt;div&gt;
+          &lt;span class="hidden poll-option-id"&gt;$optionObj.display('id', 'edit')&lt;/span&gt;
+          &lt;span class="poll-option-position"&gt;$optionObj.display('position', 'edit')&lt;/span&gt;
+          &lt;span class="poll-option-text"&gt;$optionObj.display('text', 'edit')&lt;/span&gt;
+          &lt;span class="poll-option-tools tools"&gt;#poll_objectDeleteTool($optionObj $msg.get('polls.form.tools.delete') $msg.get('polls.form.tools.delete.tooltip'))&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    #end
+    &lt;/ol&gt;
+    &lt;div class="poll-option-add"&gt;#poll_objectAddTool($pollOptionClass $msg.get('polls.form.tools.addOption'))&lt;/div&gt;
+    ##&lt;/fieldset&gt;
+  #else## !pollExists
+    &lt;label for="all-options"&gt;$msg.get('polls.form.label.allOptions')&lt;/label&gt;
+    &lt;textarea rows="5" cols="80" name="options"&gt;$!{escapetool.xml($!{request.options})}&lt;/textarea&gt;
+  #end
+&lt;/fieldset&gt;
+##
+## Part 3: Vote type
+##
+&lt;fieldset class="poll-section poll-type"&gt;
+  &lt;legend class="section-title"&gt;$msg.get('polls.form.section.voteType')&lt;/legend&gt;
+  &lt;div class="poll-type-options"&gt;
+    $poll.display('type', 'edit')
+  &lt;/div&gt;
+  &lt;div class="poll-max-votes" id="poll-maxvotes-elt"&gt;
+    &lt;label for="#poll_generateInputID('optionsPerVoter', $poll)"&gt;
+      &lt;span class="poll-label-nb-choices"&gt;
+        $msg.get('polls.form.label.optionCount.multiple')
+        &lt;span class="details"&gt; - $msg.get('polls.form.label.optionCount.multiple.details') - &lt;/span&gt;
+      &lt;/span&gt;
+      &lt;span class="option-separator"&gt;$msg.get('polls.form.label.optionCount.separator')&lt;/span&gt;
+      &lt;span class="poll-label-nb-levels"&gt;
+        $msg.get('polls.form.label.optionCount.rating')
+        &lt;span class="details"&gt; - $msg.get('polls.form.label.optionCount.rating.details')&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/label&gt;
+    ${poll.display('optionsPerVoter', 'edit')}
+  &lt;/div&gt;
+&lt;/fieldset&gt;
+##
+## Part 4: Timeline
+##
+&lt;fieldset class="poll-section poll-timeline"&gt;
+  &lt;legend class="section-title"&gt;$msg.get('polls.form.section.timeline')&lt;/legend&gt;
+  &lt;div&gt;
+    $msg.get('polls.form.label.timeline'): ##
+    #poll_label('from' $poll) ${poll.display('from', 'edit')} ##
+    #poll_label('to' $poll) ${poll.display('to', 'edit')}. ##
+    &lt;label&gt;&lt;span class="details"&gt;$msg.get('polls.form.label.timeline.dateFormat', [${pollDateFormat}])&lt;/span&gt;&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;
+##
+## Part 5: Existing votes
+##
+#set($voteObjs = $doc.getObjects($pollVoteClass))
+#if ($voteObjs.size() &gt; 0)
+&lt;fieldset class="poll-section poll-votes"&gt;
+  &lt;legend class="section-title"&gt;$msg.get('polls.form.section.votes')&lt;/legend&gt;
+  #foreach($voteObj in $voteObjs)
+    &lt;div class="poll-vote"&gt;$voteObj.voter &amp;#8594; $voteObj.optionID : $voteObj.value &lt;span class="poll-vote-tools tools"&gt;#poll_objectDeleteTool($voteObj $msg.get('polls.form.tools.delete') $msg.get('polls.form.tools.delete.tooltip'))&lt;/span&gt;&lt;/div&gt;
+  #end
+&lt;/fieldset&gt;
+#end
+&lt;/div&gt;## class="poll"
+##
+## If this is the creation step, the context action is view,
+##  so the wrapping form must be manually declared 
+#if (!$pollExists)
+    &lt;input type="hidden" name="xcreate" value="poll"/&gt;
+    &lt;div class="buttons"&gt;
+      &lt;span class="buttonwrapper"&gt;&lt;input class="button" type="submit" value="$msg.get('polls.form.actions.create')"/&gt;&lt;/span&gt;
+      &lt;a href="$xwiki.getURL(${pollsHome})" class="secondary button"&gt;$msg.get('polls.form.actions.cancel')&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+#end## poll exists
+{{/html}}
+
+#end
+{{/velocity}}</content></xwikidoc>
