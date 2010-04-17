@@ -118,6 +118,7 @@ polls.vote.results.chart.voteCount=Number of votes
 polls.vote.results.chart.columnsNumberWarning=Only the first {0} columns can be displayed in the chart.
 polls.vote.results.table.option=Option
 polls.vote.results.table.percentage=Percentage
+polls.vote.results.table.percentageVoters=Percentage of voters
 polls.vote.results.table.voteCount=Number of votes
 polls.vote.results.table.voters=Chosen by
 polls.vote.results.table.average=Average

@@ -1810,7 +1810,7 @@ ol.drag-n-drop {
         #foreach($i in [${minLevel}..${maxLevel}])
           &lt;td&gt;$row.get(${i})&lt;/td&gt;
         #end
-        &lt;td&gt;$mathtool.roundTo(2, $voteResults.get($option.id))&lt;/td&gt;
+        &lt;td&gt;$!mathtool.roundTo(2, $voteResults.get($option.id))&lt;/td&gt;
       &lt;/tr&gt;
     #end 
   &lt;/table&gt;
@@ -1870,13 +1870,21 @@ ol.drag-n-drop {
   #end## show chart
   #if ($showtable)
   &lt;table class="poll-results"&gt;
-    &lt;tr&gt;&lt;th&gt;$msg.get('polls.vote.results.table.option')&lt;/th&gt;&lt;th&gt;$msg.get('polls.vote.results.table.percentage')&lt;/th&gt;&lt;th&gt;$msg.get('polls.vote.results.table.voteCount')&lt;/th&gt;&lt;th&gt;$msg.get('polls.vote.results.table.voters')&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;$msg.get('polls.vote.results.table.option')&lt;/th&gt;&lt;th&gt;$msg.get('polls.vote.results.table.percentage')&lt;/th&gt;#if($type == 'multiple')&lt;th&gt;$msg.get('polls.vote.results.table.percentageVoters')&lt;/th&gt;#end&lt;th&gt;$msg.get('polls.vote.results.table.voteCount')&lt;/th&gt;&lt;th&gt;$msg.get('polls.vote.results.table.voters')&lt;/th&gt;&lt;/tr&gt;
     #foreach($option in $options)
       &lt;tr&gt;
         &lt;td&gt;$option.text&lt;/td&gt;
-        &lt;td&gt;
-           #set($percentage = $mathtool.roundTo(2, $mathtool.div($mathtool.mul($voteValues.get($option.id), 100.0), $voters.size())))
+        #if ($type == 'multiple')
+        &lt;td&gt;#if($votes.size() > 0)
+           #set($percentage = $!{mathtool.roundTo(2, $mathtool.div($mathtool.mul($!{voteValues.get($option.id)}, 100.0), $votes.size()))})
            ${percentage}%
+        #end&lt;/td&gt;
+        #end
+        &lt;td&gt;
+           #if($voters.size() > 0)
+             #set($percentage = $mathtool.roundTo(2, $mathtool.div($mathtool.mul($voteValues.get($option.id), 100.0), $voters.size())))
+             ${percentage}%
+           #end
         &lt;/td&gt;
         &lt;td&gt;$voteCounts.get($option.id)&lt;/td&gt;
         &lt;td&gt;
