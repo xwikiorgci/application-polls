@@ -426,6 +426,16 @@ XWiki.polls.Voter = Class.create({
           arrow.slider.setValue(arrow.slider.controlledOption.selectedIndex - 1);
         }
       });
+
+      // Prevent clicks on the arrows from changing the slider.
+      var stopEvents = function(event) {
+        event.stop();
+      };
+      ['mousedown', 'mouseup', 'mousemove'].each(function(eventName) {
+        incArrow.observe(eventName, stopEvents);
+        decArrow.observe(eventName, stopEvents);
+      });
+
       this.sliders.push(slider);
       slider.setValue(initialValue);
     }
