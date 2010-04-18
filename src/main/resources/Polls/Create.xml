@@ -48,11 +48,33 @@ $xwiki.ssfx.use('js/xwiki/editors/fullScreenEdit.css', true)
   #end
 #end
 #set($options = $cleanedOptions)
+## Date format validation
+#set($fieldNamePrefix = $pollClass.concat('_0_'))
+#set($pattern = $regextool.compile('^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)[0-9]{2}) ([01][0-9]|2[0-3]):([0-5][0-9])$'))
+#set($fieldToMessage = {'from' : 'polls.form.error.missingOpenDate', 'to' : 'polls.form.error.missingCloseDate'})
+#foreach($field in $fieldToMessage.keySet())
+  #set($value = "$!{request.getParameter($fieldNamePrefix.concat($field))}")
+  #set($matcher = $pattern.matcher($value))
+  #if($matcher.matches())
+    #set($day = $mathtool.toInteger($matcher.group(1)))
+    #set($month = $mathtool.toInteger($matcher.group(2)))
+    #set($year = $mathtool.toInteger($matcher.group(3)))
+    #if (($day == 31 &amp;&amp; ($month == 4 or $month == 6 or $month == 9 or $month == 11)) ||
+         ($day &gt;= 30 &amp;&amp; $month == 2) ||
+         ($month == 2 &amp;&amp; $day == 29 &amp;&amp; !($year % 4 == 0 &amp;&amp; ($year % 100 != 0 || $year % 400 == 0))))
+      #set($errorMessage = $msg.get($fieldToMessage.get($field), [${pollDateFormat}]))
+      #break
+    #end
+  #else
+    #set($errorMessage = $msg.get($fieldToMessage.get($field), [${pollDateFormat}]))
+    #break
+  #end
+#end
 #if($title == '')
   #set($errorMessage = $msg.get('polls.form.error.missingTitle'))
 #elseif($options.size() &lt; 2)
   #set($errorMessage = $msg.get('polls.form.error.missingOptions'))
-#else
+#elseif("$!{errorMessage}" == '')
   #set($pollName = $title.replaceAll('[:.#@^?]', '').trim())
   #set($pollDoc = $xwiki.getDocument($xwiki.getUniquePageName($space, $pollName)))
   #if($pollDoc.isNew())
