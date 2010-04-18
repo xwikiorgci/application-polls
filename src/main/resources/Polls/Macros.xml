@@ -1798,7 +1798,7 @@ ol.drag-n-drop {
 
   #foreach($option in $options)
     #set($row = $voteCounts.get($option.id))
-|${option.getProperty('text').value.replaceAll('\r?\n|\r', ' ').trim()}#foreach($i in [${minLevel}..${maxLevel}])|$row.get(${i})#end
+|${option.getProperty('text').value.replaceAll('\r?\n|\r', ' ').trim().replaceAll('[!|]', '~$0')}#foreach($i in [${minLevel}..${maxLevel}])|$row.get(${i})#end
 
     #end
 {{/chart}}
@@ -1867,7 +1867,7 @@ ol.drag-n-drop {
 #if($type == 'single' || $type == 'multiple')
 | |$msg.get('polls.vote.results.chart.voteCount')
 #foreach($option in $options)
-|${option.getProperty('text').value.replaceAll('\r?\n|\r', ' ').trim()}|$voteCounts.get($option.id)
+|${option.getProperty('text').value.replaceAll('\r?\n|\r', ' ').trim().replaceAll('[!|]', '~$0')}|$voteCounts.get($option.id)
 #end
 #elseif($type == 'weighted')
 | |$msg.get('polls.vote.results.chart.percentage')
