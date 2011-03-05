@@ -443,12 +443,15 @@ XWiki.polls.Voter = Class.create({
         arrow._disabled = false;
         arrow.removeClassName('arrow-disabled');
         arrow.setStyle({opacity : 1});
+        arrow.title = arrow._title || arrow.title;
       }
     } else {
       if (!arrow._disabled) {
         arrow._disabled = true;
         arrow.addClassName('arrow-disabled');
         arrow.setStyle({opacity : 0.1});
+        arrow._title = arrow.title;
+        arrow.title = "";
       }
     }
   },
