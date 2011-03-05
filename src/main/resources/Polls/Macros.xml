@@ -1877,17 +1877,15 @@ ol.drag-n-drop {
       &lt;tr&gt;
         &lt;td&gt;$option.text&lt;/td&gt;
         #if ($type == 'multiple')
-        &lt;td&gt;#if($votes.size() > 0)
+        &lt;td&gt;#if($votes.size() &gt; 0)
            #set($percentage = $!{mathtool.roundTo(2, $mathtool.div($mathtool.mul($!{voteValues.get($option.id)}, 100.0), $votes.size()))})
            ${percentage}%
         #end&lt;/td&gt;
         #end
-        &lt;td&gt;
-           #if($voters.size() > 0)
-             #set($percentage = $mathtool.roundTo(2, $mathtool.div($mathtool.mul($voteValues.get($option.id), 100.0), $voters.size())))
-             ${percentage}%
-           #end
-        &lt;/td&gt;
+        &lt;td&gt;#if($voters.size() &gt; 0)
+           #set($percentage = $!{mathtool.roundTo(2, $mathtool.div($mathtool.mul($!{voteValues.get($option.id)}, 100.0), $voters.size()))})
+           ${percentage}%
+        #end&lt;/td&gt;
         &lt;td&gt;$voteCounts.get($option.id)&lt;/td&gt;
         &lt;td&gt;
           #foreach($voter in $voteVoters.get($option.id))#if($velocityCount != 1), #end${xwiki.getUserName($voter, false)}#end
