@@ -1331,23 +1331,23 @@ ol.drag-n-drop {
   #set($sep = ',')
   ## Arrange the options according to the permutation given as a parameter
   ## If the permutation is invalid, keep the original order
-  #poll_internal_RankingOrderFromRequest($options $sep $sortedOptions)
-  #if ($sortedOptions == $options)
-    #poll_internal_RankingOrderFromUserVotes($options $myVotes $sortedOptions)
+  #poll_internal_RankingOrderFromRequest($options $sep $orderedOptions)
+  #if ($orderedOptions == $options)
+    #poll_internal_RankingOrderFromUserVotes($options $myVotes $orderedOptions)
   #end
   ## Do not rely on the $order array, it may be missing or wrong
   #set($newOrder = [])
-  #foreach($option in $sortedOptions)
+  #foreach($option in $orderedOptions)
     #set($discard = $newOrder.add($option.id))
   #end
-  &lt;div class="hidden"&gt;&lt;input type="hidden" name="order" value="#poll_internal_join($newOrder, $sep)" id="ranking-order"/&gt;&lt;/div&gt;
+  &lt;div class="hidden"&gt;&lt;input type="hidden" name="order" value="$escapetool.xml("#poll_internal_join($newOrder, $sep)")" id="ranking-order"/&gt;&lt;/div&gt;
   &lt;ol id='poll-ranking-tool'&gt;
-  #foreach($option in $sortedOptions)
+  #foreach($option in $orderedOptions)
     &lt;li id="ranking-order_$velocityCount" class="#if($velocityCount % 2 == 1)odd #else even #end"&gt;
       &lt;span class="reordering-tools tools"&gt;
         #if($velocityCount != 1)
           ## the same order as for the 'move down' link of the previous option
-          &lt;a href="?order=#poll_internal_join($!{newOrder}, $sep)" class="tool moveup" title="$msg.get('polls.vote.tools.moveup.tooltip')"&gt;$msg.get('polls.vote.tools.moveup')&lt;/a&gt;
+          &lt;a href="?order=$escapetool.url("#poll_internal_join($!{newOrder}, $sep)")" class="tool moveup" title="$msg.get('polls.vote.tools.moveup.tooltip')"&gt;$msg.get('polls.vote.tools.moveup')&lt;/a&gt;
           ## swap back, to obtain the initial order again; $i and $j were also set in the previous step of the loop
           #poll_internal_swap($newOrder $i $j)
         #else
@@ -1357,7 +1357,7 @@ ol.drag-n-drop {
           #set($i = $velocityCount)
           #set($j = $velocityCount - 1)
           #poll_internal_swap($newOrder $i $j)
-          &lt;a href="?order=#poll_internal_join($!{newOrder}, $sep)" class="tool movedown" title="$msg.get('polls.vote.tools.movedown.tooltip')"&gt;$msg.get('polls.vote.tools.movedown')&lt;/a&gt;
+          &lt;a href="?order=$escapetool.url("#poll_internal_join($!{newOrder}, $sep)")" class="tool movedown" title="$msg.get('polls.vote.tools.movedown.tooltip')"&gt;$msg.get('polls.vote.tools.movedown')&lt;/a&gt;
         #else
           &lt;span class="tool movedown disabled"&gt;$msg.get('polls.vote.tools.movedown')&lt;/span&gt;
         #end
