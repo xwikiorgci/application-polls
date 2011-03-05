@@ -3,13 +3,13 @@
 <web>Polls</web>
 <name>PollMacro</name>
 <language></language>
-<defaultLanguage></defaultLanguage>
+<defaultLanguage>en</defaultLanguage>
 <translation>0</translation>
 <parent>Polls.WebHome</parent>
-<creator>XWiki.Admin</creator>
-<author>XWiki.Admin</author>
+<creator>xwiki:XWiki.Admin</creator>
+<author>xwiki:XWiki.Admin</author>
 <customClass></customClass>
-<contentAuthor>XWiki.Admin</contentAuthor>
+<contentAuthor>xwiki:XWiki.Admin</contentAuthor>
 <creationDate>1270892056000</creationDate>
 <date>1270892056000</date>
 <contentUpdateDate>1270892056000</contentUpdateDate>
@@ -33,6 +33,7 @@
 <nameField></nameField>
 <validationScript></validationScript>
 <code>
+<disabled>0</disabled>
 <name>code</name>
 <number>8</number>
 <prettyName>Macro code</prettyName>
@@ -42,6 +43,7 @@
 <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
 </code>
 <contentDescription>
+<disabled>0</disabled>
 <name>contentDescription</name>
 <number>7</number>
 <prettyName>Content description (Not applicable for "No content" type)</prettyName>
@@ -52,6 +54,7 @@
 </contentDescription>
 <contentType>
 <cache>0</cache>
+<disabled>0</disabled>
 <displayType>select</displayType>
 <multiSelect>0</multiSelect>
 <name>contentType</name>
@@ -66,6 +69,7 @@
 <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
 </contentType>
 <defaultCategory>
+<disabled>0</disabled>
 <name>defaultCategory</name>
 <number>4</number>
 <prettyName>Default category</prettyName>
@@ -74,6 +78,7 @@
 <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 </defaultCategory>
 <description>
+<disabled>0</disabled>
 <name>description</name>
 <number>3</number>
 <prettyName>Macro description</prettyName>
@@ -83,6 +88,7 @@
 <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
 </description>
 <id>
+<disabled>0</disabled>
 <name>id</name>
 <number>1</number>
 <prettyName>Macro id</prettyName>
@@ -91,6 +97,7 @@
 <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 </id>
 <name>
+<disabled>0</disabled>
 <name>name</name>
 <number>2</number>
 <prettyName>Macro name</prettyName>
@@ -99,6 +106,7 @@
 <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 </name>
 <supportsInlineMode>
+<disabled>0</disabled>
 <displayFormType>select</displayFormType>
 <displayType>yesno</displayType>
 <name>supportsInlineMode</name>
@@ -109,6 +117,7 @@
 </supportsInlineMode>
 <visibility>
 <cache>0</cache>
+<disabled>0</disabled>
 <displayType>select</displayType>
 <multiSelect>0</multiSelect>
 <name>visibility</name>
@@ -159,7 +168,7 @@ $xwiki.ssx.use($pollStyle)##
 {{/html}}
 
 (% class="poll-link" %)
-[[View poll &#187;&gt;&gt;$pollDoc]]
+[[View poll »&gt;&gt;$pollDoc]]
 
 )))
 #end
@@ -201,6 +210,7 @@ $xwiki.ssx.use($pollStyle)##
 <nameField></nameField>
 <validationScript></validationScript>
 <defaultValue>
+<disabled>0</disabled>
 <name>defaultValue</name>
 <number>4</number>
 <prettyName>Parameter default value</prettyName>
@@ -209,6 +219,7 @@ $xwiki.ssx.use($pollStyle)##
 <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 </defaultValue>
 <description>
+<disabled>0</disabled>
 <name>description</name>
 <number>2</number>
 <prettyName>Parameter description</prettyName>
@@ -218,6 +229,7 @@ $xwiki.ssx.use($pollStyle)##
 <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
 </description>
 <mandatory>
+<disabled>0</disabled>
 <displayFormType>select</displayFormType>
 <displayType>yesno</displayType>
 <name>mandatory</name>
@@ -227,6 +239,7 @@ $xwiki.ssx.use($pollStyle)##
 <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
 </mandatory>
 <name>
+<disabled>0</disabled>
 <name>name</name>
 <number>1</number>
 <prettyName>Parameter name</prettyName>
@@ -263,6 +276,7 @@ $xwiki.ssx.use($pollStyle)##
 <nameField></nameField>
 <validationScript></validationScript>
 <defaultValue>
+<disabled>0</disabled>
 <name>defaultValue</name>
 <number>4</number>
 <prettyName>Parameter default value</prettyName>
@@ -271,6 +285,7 @@ $xwiki.ssx.use($pollStyle)##
 <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 </defaultValue>
 <description>
+<disabled>0</disabled>
 <name>description</name>
 <number>2</number>
 <prettyName>Parameter description</prettyName>
@@ -280,6 +295,7 @@ $xwiki.ssx.use($pollStyle)##
 <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
 </description>
 <mandatory>
+<disabled>0</disabled>
 <displayFormType>select</displayFormType>
 <displayType>yesno</displayType>
 <name>mandatory</name>
@@ -289,6 +305,7 @@ $xwiki.ssx.use($pollStyle)##
 <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
 </mandatory>
 <name>
+<disabled>0</disabled>
 <name>name</name>
 <number>1</number>
 <prettyName>Parameter name</prettyName>
