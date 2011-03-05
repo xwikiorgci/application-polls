@@ -27,13 +27,13 @@
   <parent>
     <groupId>org.xwiki.platform.applications</groupId>
     <artifactId>xwiki-applications</artifactId>
-    <version>29-SNAPSHOT</version>
+    <version>35</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>xwiki-application-polls</artifactId>
   <packaging>xar</packaging>
   <name>Contrib - Applications - Polls</name>
-  <version>2.0-SNAPSHOT</version>
+  <version>1.0-SNAPSHOT</version>
   <description>Polls Application for XWiki</description>
   <scm>
     <connection>scm:svn:http://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-polls/trunk/</connection>
@@ -48,4 +48,3 @@
     </repository>
   </distributionManagement>
 </project>
-
