@@ -397,8 +397,7 @@ XWiki.polls.Voter = Class.create({
       slider.valueLabel = valueLabel;
       slider.incArrow = incArrow;
       incArrow.slider = slider;
-      incArrow.observe('click', function(event){
-        event.stop();
+      incArrow.observe('click', function(event) {
         var arrow = event.element()
         if (!arrow._disabled) {
           arrow.slider.setValue(arrow.slider.controlledOption.selectedIndex + 1);
@@ -407,22 +406,11 @@ XWiki.polls.Voter = Class.create({
       slider.decArrow = decArrow;
       decArrow.slider = slider;
       decArrow.observe('click', function(event){
-        event.stop();
         var arrow = event.element()
         if (!arrow._disabled) {
           arrow.slider.setValue(arrow.slider.controlledOption.selectedIndex - 1);
         }
       });
-
-      // Prevent clicks on the arrows from changing the slider.
-      var stopEvents = function(event) {
-        event.stop();
-      };
-      ['mousedown', 'mouseup', 'mousemove'].each(function(eventName) {
-        incArrow.observe(eventName, stopEvents);
-        decArrow.observe(eventName, stopEvents);
-      });
-
       this.sliders.push(slider);
       slider.setValue(initialValue);
     }
