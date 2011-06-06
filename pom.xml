@@ -36,9 +36,9 @@
   <version>1.0-SNAPSHOT</version>
   <description>Polls Application for XWiki</description>
   <scm>
-    <connection>scm:svn:http://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-polls/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-polls/trunk/</developerConnection>
-    <url>http://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-polls/trunk/</url>
+    <connection>scm:git:git://github.com/xwiki-contrib/application-polls.git</connection>
+    <developerConnection>scm:git:git@github.com:xwiki-contrib/application-polls.git</developerConnection>
+    <url>https://github.com/xwiki-contrib/application-polls</url>
   </scm>
   <distributionManagement>
     <repository>
