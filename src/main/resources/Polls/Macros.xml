@@ -1881,7 +1881,7 @@ ol.drag-n-drop {
         #end&lt;/td&gt;
         &lt;td&gt;$voteCounts.get($option.id)&lt;/td&gt;
         &lt;td&gt;
-          #foreach($voter in $voteVoters.get($option.id))#if($velocityCount != 1), #end${xwiki.getUserName($voter, false)}#end
+          #foreach($voter in $voteVoters.get($option.id)) $voter #end
         &lt;/td&gt;
       &lt;/tr&gt;
     #end 
