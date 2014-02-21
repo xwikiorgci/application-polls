@@ -22,7 +22,8 @@
 <minorEdit>false</minorEdit>
 <syntaxId>xwiki/2.0</syntaxId>
 <hidden>true</hidden>
-<content>##
+<content>
+##
 ## Home page
 ##
 polls.home.title=Polls
@@ -135,4 +136,41 @@ Polls.PollClass_type_single=Single choice
 Polls.PollClass_type_multiple=Multiple choice
 Polls.PollClass_type_weighted=Weighted multiple choice
 Polls.PollClass_type_rating=Rating
-Polls.PollClass_type_ranking=Ranking</content></xwikidoc>
+Polls.PollClass_type_ranking=Ranking
+</content>
+  <object>
+    <name>Polls.PollL10n</name>
+    <number>0</number>
+    <className>XWiki.TranslationDocumentClass</className>
+    <guid>bd0ce7cf-a140-4a77-a4fa-c8f3e18d0717</guid>
+    <class>
+      <name>XWiki.TranslationDocumentClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <scope>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>scope</name>
+        <number>1</number>
+        <prettyName>Scope</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>GLOBAL|WIKI|USER|ON_DEMAND</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </scope>
+    </class>
+    <property>
+      <scope>GLOBAL</scope>
+    </property>
+  </object>
+</xwikidoc>
