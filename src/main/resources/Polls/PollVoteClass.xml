@@ -21,7 +21,7 @@
 <comment></comment>
 <minorEdit>false</minorEdit>
 <syntaxId>xwiki/1.0</syntaxId>
-<hidden>false</hidden>
+<hidden>true</hidden>
 <class>
 <name>Polls.PollVoteClass</name>
 <customClass></customClass>
