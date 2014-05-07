@@ -156,13 +156,14 @@
   'tagCloud'  : true,
   'translationPrefix' : 'polls.index.'
 })
-#set($columns = ['doc.title', 'type', 'from', 'to', 'doc.creator'])
+#set($columns = ['doc.title', 'type', 'from', 'to', 'doc.creator', '_actions'])
 #set($columnProperties = {
   'doc.title' : { 'type' : 'text', 'link' : 'view', 'filterable' : true},
   'type' : { 'type' : 'list' },
   'from' : { 'type' : 'date' },
   'to' : { 'type' : 'date' },
-  'doc.creator' : { 'type' : 'text', 'filterable' : true}
+  'doc.creator' : { 'type' : 'text', 'filterable' : true},
+  '_actions': {'html': true, 'sortable': false, 'actions': ['edit', 'delete']}
 })
 #livetable('polls', $columns, $columnProperties, $tableOptions)
 {{/velocity}}</content>
