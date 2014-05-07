@@ -171,7 +171,7 @@ Polls.PollClass_type_ranking=Ranking
       </scope>
     </class>
     <property>
-      <scope>GLOBAL</scope>
+      <scope>WIKI</scope>
     </property>
   </object>
 </xwikidoc>
