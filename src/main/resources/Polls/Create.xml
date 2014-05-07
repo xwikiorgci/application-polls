@@ -23,7 +23,7 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
-  <content>{{include document="Polls.Macros"/}}
+  <content>{{include reference="Polls.Macros"/}}
 
 {{velocity output="false"}}
 $xwiki.jsfx.use('js/xwiki/editors/fullScreenEdit.js', {'forceSkinAction': true, 'language': ${context.language}})
@@ -115,7 +115,7 @@ $xwiki.ssfx.use('js/xwiki/editors/fullScreenEdit.css', true)
       ## Title, parent, content 
       $pollDoc.setTitle($title)
       $pollDoc.setParent($pollsHome)
-      $pollDoc.setContent("{{include document=${pollSheet}/}}"))
+      $pollDoc.setContent("{{include reference=${pollSheet}/}}"))
       ## Option objects
       #set($optionPosition = 1)
       #foreach($option in $options)
@@ -151,5 +151,5 @@ $xwiki.ssfx.use('js/xwiki/editors/fullScreenEdit.css', true)
 #end
 {{/velocity}}
 
-{{include document="Polls.PollEditSheet"/}}</content>
+{{include reference="Polls.PollEditSheet"/}}</content>
 </xwikidoc>

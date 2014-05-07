@@ -53,10 +53,10 @@
   </object>
   <content>{{velocity}}
 #if($context.action == 'inline')
-{{include document="Polls.PollEditSheet"/}}
+{{include reference="Polls.PollEditSheet"/}}
 
 #else
-{{include document="Polls.PollViewSheet"/}}
+{{include reference="Polls.PollViewSheet"/}}
 
 #end
 {{/velocity}}</content>

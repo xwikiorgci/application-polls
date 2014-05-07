@@ -19,7 +19,7 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
-  <content>{{include document="XWiki.UIExtensionSheet"/}}</content>
+  <content>{{include reference="XWiki.UIExtensionSheet"/}}</content>
   <object>
     <name>Polls.ApplicationPanelEntry</name>
     <number>0</number>

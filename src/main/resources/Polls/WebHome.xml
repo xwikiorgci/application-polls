@@ -121,7 +121,7 @@
       <use>currentPage</use>
     </property>
   </object>
-  <content>{{include document="Polls.Parameters"/}}
+  <content>{{include reference="Polls.Parameters"/}}
 
 {{velocity filter="none"}}
 #if($hasCreatePage)

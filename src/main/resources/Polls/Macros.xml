@@ -1031,7 +1031,7 @@ ol.drag-n-drop {
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{include document="Polls.Parameters"/}}
+  <content>{{include reference="Polls.Parameters"/}}
 
 {{velocity output=false}}
 #**

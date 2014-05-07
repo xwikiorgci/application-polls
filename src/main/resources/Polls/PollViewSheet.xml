@@ -23,7 +23,7 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
-  <content>{{include document="Polls.Macros"/}}
+  <content>{{include reference="Polls.Macros"/}}
 
 {{velocity}}
 $xwiki.jsx.use($pollScript)##
