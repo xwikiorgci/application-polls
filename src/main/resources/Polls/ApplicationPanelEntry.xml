@@ -101,7 +101,7 @@
     <property>
       <parameters>label=Polls
 target=Polls.WebHome
-icon=icon:chart_bar</parameters>
+icon=icon:chart_pie</parameters>
     </property>
     <property>
       <scope>wiki</scope>

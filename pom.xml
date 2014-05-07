@@ -49,6 +49,10 @@
       <id>marta</id>
       <name>Marta Girdea</name>
     </developer>
+    <developer>
+      <id>vmassol</id>
+      <name>Vincent Massol</name>
+    </developer>
   </developers>
   <properties>
     <!-- Don't run CLIRR here since there's no Java code. -->
