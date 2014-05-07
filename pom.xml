@@ -31,7 +31,7 @@
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>application-polls</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-rc-2</version>
   <name>Polls Application</name>
   <packaging>xar</packaging>
   <description>An application allowing the creation of Polls in XWiki</description>
@@ -39,7 +39,7 @@
     <connection>scm:git:git://github.com/xwiki-contrib/application-polls.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/application-polls.git</developerConnection>
     <url>https://github.com/xwiki-contrib/application-polls.git</url>
-    <tag>HEAD</tag>
+    <tag>application-polls-1.0-rc-2</tag>
   </scm>
   <developers>
     <developer>
