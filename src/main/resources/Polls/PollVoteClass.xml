@@ -1,94 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <xwikidoc>
-<web>Polls</web>
-<name>PollVoteClass</name>
-<language></language>
-<defaultLanguage>en</defaultLanguage>
-<translation>0</translation>
-<parent>Polls.PollClass</parent>
-<creator>xwiki:XWiki.Admin</creator>
-<author>xwiki:XWiki.Admin</author>
-<customClass></customClass>
-<contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-<creationDate>1270892056000</creationDate>
-<date>1270892056000</date>
-<contentUpdateDate>1270892056000</contentUpdateDate>
-<version>1.1</version>
-<title>Poll Vote Class</title>
-<template></template>
-<defaultTemplate></defaultTemplate>
-<validationScript></validationScript>
-<comment></comment>
-<minorEdit>false</minorEdit>
-<syntaxId>xwiki/1.0</syntaxId>
-<hidden>true</hidden>
-<class>
-<name>Polls.PollVoteClass</name>
-<customClass></customClass>
-<customMapping></customMapping>
-<defaultViewSheet></defaultViewSheet>
-<defaultEditSheet></defaultEditSheet>
-<defaultWeb></defaultWeb>
-<nameField></nameField>
-<validationScript></validationScript>
-<optionID>
-<cache>0</cache>
-<classname></classname>
-<customDisplay></customDisplay>
-<disabled>0</disabled>
-<displayType>select</displayType>
-<idField></idField>
-<multiSelect>0</multiSelect>
-<name>optionID</name>
-<number>2</number>
-<picker>0</picker>
-<prettyName>Option</prettyName>
-<relationalStorage>0</relationalStorage>
-<separator> </separator>
-<separators></separators>
-<size>1</size>
-<sort>none</sort>
-<sql>select idprop.value, descprop.value from BaseObject obj, LargeStringProperty descprop, StringProperty idprop where obj.name = '${doc.fullName}' and descprop.id.id=obj.id and descprop.id.name = 'text' and idprop.id.id = obj.id and idprop.id.name = 'id'</sql>
-<tooltip></tooltip>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<valueField></valueField>
-<classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
-</optionID>
-<value>
-<disabled>0</disabled>
-<name>value</name>
-<number>3</number>
-<numberType>integer</numberType>
-<prettyName>Value</prettyName>
-<size>5</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.NumberClass</classType>
-</value>
-<voter>
-<cache>0</cache>
-<customDisplay></customDisplay>
-<disabled>0</disabled>
-<displayType>select</displayType>
-<multiSelect>0</multiSelect>
-<name>voter</name>
-<number>1</number>
-<picker>0</picker>
-<prettyName>Voter</prettyName>
-<relationalStorage>0</relationalStorage>
-<separator> </separator>
-<separators></separators>
-<size>1</size>
-<sort>none</sort>
-<tooltip></tooltip>
-<unmodifiable>0</unmodifiable>
-<usesList>1</usesList>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.UsersClass</classType>
-</voter>
-</class>
-<content></content></xwikidoc>
+  <web>Polls</web>
+  <name>PollVoteClass</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>Polls.PollClass</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1270892056000</creationDate>
+  <date>1270892056000</date>
+  <contentUpdateDate>1270892056000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Poll Vote Class</title>
+  <template/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/1.0</syntaxId>
+  <hidden>true</hidden>
+  <class>
+    <name>Polls.PollVoteClass</name>
+    <customClass/>
+    <customMapping/>
+    <defaultViewSheet/>
+    <defaultEditSheet/>
+    <defaultWeb/>
+    <nameField/>
+    <validationScript/>
+    <optionID>
+      <cache>0</cache>
+      <classname/>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <displayType>select</displayType>
+      <idField/>
+      <multiSelect>0</multiSelect>
+      <name>optionID</name>
+      <number>2</number>
+      <picker>0</picker>
+      <prettyName>Option</prettyName>
+      <relationalStorage>0</relationalStorage>
+      <separator> </separator>
+      <separators/>
+      <size>1</size>
+      <sort>none</sort>
+      <sql>select idprop.value, descprop.value from BaseObject obj, LargeStringProperty descprop, StringProperty idprop where obj.name = '${doc.fullName}' and descprop.id.id=obj.id and descprop.id.name = 'text' and idprop.id.id = obj.id and idprop.id.name = 'id'</sql>
+      <tooltip/>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <valueField/>
+      <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
+    </optionID>
+    <value>
+      <disabled>0</disabled>
+      <name>value</name>
+      <number>3</number>
+      <numberType>integer</numberType>
+      <prettyName>Value</prettyName>
+      <size>5</size>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.NumberClass</classType>
+    </value>
+    <voter>
+      <cache>0</cache>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <displayType>select</displayType>
+      <multiSelect>0</multiSelect>
+      <name>voter</name>
+      <number>1</number>
+      <picker>0</picker>
+      <prettyName>Voter</prettyName>
+      <relationalStorage>0</relationalStorage>
+      <separator> </separator>
+      <separators/>
+      <size>1</size>
+      <sort>none</sort>
+      <tooltip/>
+      <unmodifiable>0</unmodifiable>
+      <usesList>1</usesList>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.UsersClass</classType>
+    </voter>
+  </class>
+  <content/>
+</xwikidoc>

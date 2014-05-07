@@ -1,73 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <xwikidoc>
-<web>Polls</web>
-<name>PollOptionClass</name>
-<language></language>
-<defaultLanguage>en</defaultLanguage>
-<translation>0</translation>
-<parent>Polls.PollClass</parent>
-<creator>xwiki:XWiki.Admin</creator>
-<author>xwiki:XWiki.Admin</author>
-<customClass></customClass>
-<contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-<creationDate>1270892056000</creationDate>
-<date>1271665092000</date>
-<contentUpdateDate>1271665092000</contentUpdateDate>
-<version>1.1</version>
-<title>Poll Option Class</title>
-<template></template>
-<defaultTemplate></defaultTemplate>
-<validationScript></validationScript>
-<comment></comment>
-<minorEdit>false</minorEdit>
-<syntaxId>xwiki/2.0</syntaxId>
-<hidden>true</hidden>
-<class>
-<name>Polls.PollOptionClass</name>
-<customClass></customClass>
-<customMapping></customMapping>
-<defaultViewSheet></defaultViewSheet>
-<defaultEditSheet></defaultEditSheet>
-<defaultWeb></defaultWeb>
-<nameField></nameField>
-<validationScript></validationScript>
-<id>
-<disabled>0</disabled>
-<name>id</name>
-<number>1</number>
-<picker>0</picker>
-<prettyName>Option identifier</prettyName>
-<size>30</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-</id>
-<position>
-<disabled>0</disabled>
-<name>position</name>
-<number>3</number>
-<numberType>integer</numberType>
-<prettyName>Position</prettyName>
-<size>2</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.NumberClass</classType>
-</position>
-<text>
-<editor>Text</editor>
-<disabled>0</disabled>
-<name>text</name>
-<number>2</number>
-<picker>0</picker>
-<prettyName>Option text</prettyName>
-<rows>1</rows>
-<size>40</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
-</text>
-</class>
-<content></content></xwikidoc>
+  <web>Polls</web>
+  <name>PollOptionClass</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>Polls.PollClass</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1270892056000</creationDate>
+  <date>1271665092000</date>
+  <contentUpdateDate>1271665092000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Poll Option Class</title>
+  <template/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <class>
+    <name>Polls.PollOptionClass</name>
+    <customClass/>
+    <customMapping/>
+    <defaultViewSheet/>
+    <defaultEditSheet/>
+    <defaultWeb/>
+    <nameField/>
+    <validationScript/>
+    <id>
+      <disabled>0</disabled>
+      <name>id</name>
+      <number>1</number>
+      <picker>0</picker>
+      <prettyName>Option identifier</prettyName>
+      <size>30</size>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+    </id>
+    <position>
+      <disabled>0</disabled>
+      <name>position</name>
+      <number>3</number>
+      <numberType>integer</numberType>
+      <prettyName>Position</prettyName>
+      <size>2</size>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.NumberClass</classType>
+    </position>
+    <text>
+      <editor>Text</editor>
+      <disabled>0</disabled>
+      <name>text</name>
+      <number>2</number>
+      <picker>0</picker>
+      <prettyName>Option text</prettyName>
+      <rows>1</rows>
+      <size>40</size>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+    </text>
+  </class>
+  <content/>
+</xwikidoc>

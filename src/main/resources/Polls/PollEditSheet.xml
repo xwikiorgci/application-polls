@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <xwikidoc>
-<web>Polls</web>
-<name>PollEditSheet</name>
-<language></language>
-<defaultLanguage>en</defaultLanguage>
-<translation>0</translation>
-<parent>Polls.PollSheet</parent>
-<creator>xwiki:XWiki.Admin</creator>
-<author>xwiki:XWiki.Admin</author>
-<customClass></customClass>
-<contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-<creationDate>1270892056000</creationDate>
-<date>1271763776000</date>
-<contentUpdateDate>1271763776000</contentUpdateDate>
-<version>1.1</version>
-<title>Sheet for displaying polls in edit mode</title>
-<template></template>
-<defaultTemplate></defaultTemplate>
-<validationScript></validationScript>
-<comment></comment>
-<minorEdit>false</minorEdit>
-<syntaxId>xwiki/2.0</syntaxId>
-<hidden>true</hidden>
-<content>{{include document="Polls.Macros"/}}
+  <web>Polls</web>
+  <name>PollEditSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>Polls.PollSheet</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1270892056000</creationDate>
+  <date>1271763776000</date>
+  <contentUpdateDate>1271763776000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Sheet for displaying polls in edit mode</title>
+  <template/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>{{include document="Polls.Macros"/}}
 
 {{velocity output="false"}}
 $xwiki.jsx.use($pollScript)
@@ -185,4 +186,5 @@ $doc.updateObjectsFromRequest($pollClass)
 {{/html}}
 
 #end
-{{/velocity}}</content></xwikidoc>
+{{/velocity}}</content>
+</xwikidoc>

@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <xwikidoc>
-<web>Polls</web>
-<name>Parameters</name>
-<language></language>
-<defaultLanguage>en</defaultLanguage>
-<translation>0</translation>
-<parent>Polls.WebHome</parent>
-<creator>xwiki:XWiki.Admin</creator>
-<author>xwiki:XWiki.Admin</author>
-<customClass></customClass>
-<contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-<creationDate>1270892056000</creationDate>
-<date>1270892056000</date>
-<contentUpdateDate>1270892056000</contentUpdateDate>
-<version>1.1</version>
-<title>Poll application parameters</title>
-<template></template>
-<defaultTemplate></defaultTemplate>
-<validationScript></validationScript>
-<comment></comment>
-<minorEdit>false</minorEdit>
-<syntaxId>xwiki/2.0</syntaxId>
-<hidden>true</hidden>
-<content>{{velocity output=false}}
+  <web>Polls</web>
+  <name>Parameters</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>Polls.WebHome</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1270892056000</creationDate>
+  <date>1270892056000</date>
+  <contentUpdateDate>1270892056000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Poll application parameters</title>
+  <template/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>{{velocity output=false}}
 #*----------------------------------------------
  * Initial setup: datatypes and default values
  *----------------------------------------------*#
@@ -41,4 +42,5 @@
 
 #set($pollDateFormat = 'dd/MM/yyyy HH:mm')
 #set($pollMaxRatingLevel = 10)
-{{/velocity}}</content></xwikidoc>
+{{/velocity}}</content>
+</xwikidoc>
