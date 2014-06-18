@@ -53,7 +53,8 @@ polls.index.doc.title=Poll name
 polls.index.type=Type
 polls.index.from=Starts
 polls.index.to=Ends
-polls.index.doc.creator=Launched by 
+polls.index.doc.creator=Launched by
+polls.index._actions=Actions
 ##
 ## Creation/editing
 ##
