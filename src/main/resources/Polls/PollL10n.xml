@@ -112,7 +112,7 @@ polls.vote.timeline.closed=This poll is now closed.
 polls.vote.label.voted=You answered:
 polls.vote.actions.vote=Submit
 polls.vote.actions.updateVote=Update answer
-polls.vote.actions.cancel=Go to the Polls home page &amp;raquo;
+polls.vote.actions.cancel=Go to the Polls home page
 ## Tools
 polls.vote.tools.moveup=[move up]
 polls.vote.tools.moveup.tooltip=Move up
