@@ -159,6 +159,11 @@ Polls.PollClass_type_multiple=Multiple choice
 Polls.PollClass_type_weighted=Weighted multiple choice
 Polls.PollClass_type_rating=Rating
 Polls.PollClass_type_ranking=Ranking
+Polls.PollClass_question=Question
+Polls.PollClass_optionsPerVoter=Maximum number of options per voter
+Polls.PollClass_type=Choice type
+Polls.PollClass_from=from
+Polls.PollClass_to=to
 </content>
   <object>
     <name>Polls.PollL10n</name>
