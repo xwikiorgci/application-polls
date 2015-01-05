@@ -166,5 +166,6 @@
   '_actions': {'html': true, 'sortable': false, 'actions': ['edit', 'delete']}
 })
 #livetable('polls', $columns, $columnProperties, $tableOptions)
+#set($docextras = [])
 {{/velocity}}</content>
 </xwikidoc>
