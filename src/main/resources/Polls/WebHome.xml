@@ -24,8 +24,10 @@
 {{velocity filter="none"}}
 #if($hasCreatePage)
 
-(% class="poll-create" %)
-[[**$msg.get('polls.home.create') »**&gt;&gt;$pollCreateForm]]
+(% class="pull-right buttonwrapper" %)
+(((
+  [[$services.icon.render('add') $services.localization.render('polls.home.create')&gt;&gt;Polls.Create||class='btn btn-success button']]
+)))
 
 #end
 #set($tableOptions = {

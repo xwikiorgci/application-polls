@@ -48,7 +48,7 @@
 ## Home page
 ##
 polls.home.title=Polls
-polls.home.create=Create a new poll
+polls.home.create=Add poll
 polls.index.doc.title=Poll name
 polls.index.type=Type
 polls.index.from=Starts
