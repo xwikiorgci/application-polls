@@ -169,6 +169,8 @@ $xwiki.ssfx.use('js/xwiki/editors/fullScreenEdit.css', true)
 {{error}}$errorMessage{{/error}}
 
 #end
+
+#set($docextras = [])
 {{/velocity}}
 
 {{include reference="Polls.PollEditSheet"/}}</content>
