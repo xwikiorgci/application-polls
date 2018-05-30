@@ -39,61 +39,125 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
-  <content>## XWiki Translation for language zh generated from http://www.l10n.xwiki.org
-Polls.PollClass_from=来自
-Polls.PollClass_optionsPerVoter=每个投票者的最多选项数量
-Polls.PollClass_question=问题
-Polls.PollClass_type=选择类型
-Polls.PollClass_type_multiple=多选
-Polls.PollClass_type_ranking=排行
-Polls.PollClass_type_rating=评分
-Polls.PollClass_type_single=单选
-Polls.PollClass_type_weighted=加权多项选择
+  <content>##
+## Home page
+##
+polls.home.title=投票
+polls.home.create=新增投票
+polls.index.doc.title=投票名
+polls.index.type=类型
+polls.index.from=开始
+polls.index.to=结束
+polls.index.doc.creator=发起者
+polls.index._actions=操作
+##
+## Creation/editing
+##
 polls.create.title=发起新投票
-polls.form.actions.cancel=取消
-polls.form.actions.create=创建投票
-polls.form.error.missingCloseDate=投票截止日期是强制性的，必须具有格式{0}。
-polls.form.error.missingOpenDate=投票开始日期是强制性的，必须具有格式{0}。
+## Error messages
+polls.form.error.missingTitle=标题为强制项
 polls.form.error.missingOptions=请至少选择两项
 polls.form.error.missingQuestion=投票问题为强制项
-polls.form.error.missingRatingLevel=评分投票的最大评分等级是必须的，并必须大于0且最多为{0}。
-polls.form.error.missingTitle=标题为强制项
 polls.form.error.missingVoteType=投票类型为强制项
+polls.form.error.missingRatingLevel=评分投票的最大评分等级是必须的，并必须大于0且最多为{0}。
+polls.form.error.missingOpenDate=投票开始日期是强制性的，必须具有格式{0}。
+polls.form.error.missingCloseDate=投票截止日期是强制性的，必须具有格式{0}。
 polls.form.error.wrongDateOrder=投票截止日期必须在开启日期之后。
+## Section titles
+polls.form.section.general=你的投票
+polls.form.section.options=选项
+polls.form.section.voteType=投票类型
+polls.form.section.timeline=时间线
+polls.form.section.votes=投票
+## Fiels labels
+polls.form.label.space=哪里：
+polls.form.label.title=标题
 polls.form.label.allOptions=每行一个，输入所有选项
 polls.form.label.optionCount.multiple=最多选项次数
 polls.form.label.optionCount.multiple.details=只允许多重选择与加权多重选择
+polls.form.label.optionCount.separator=或者
 polls.form.label.optionCount.rating=最大额定值（最小值为0，额定值可以从0 \= 最低，到最大值）
 polls.form.label.optionCount.rating.details=只能评分
-polls.form.label.optionCount.separator=或者
-polls.form.label.space=哪里：
 polls.form.label.timeline=投票期
 polls.form.label.timeline.dateFormat=(日期格式：{0})
-polls.form.label.title=标题
-polls.form.section.general=你的投票
-polls.form.section.options=选项
-polls.form.section.timeline=时间线
-polls.form.section.voteType=投票类型
-polls.form.section.votes=投票
-polls.form.tools.addOption=新增一个选项
+## Tools
 polls.form.tools.delete=[删除]
 polls.form.tools.delete.tooltip=删除
 polls.form.tools.move=[移动]
 polls.form.tools.move.tooltip=拖放以更改顺序
-polls.home.create=新增投票
-polls.home.title=投票
-polls.index._actions=操作
-polls.index.doc.creator=发起者
-polls.index.doc.title=投票名
-polls.index.from=开始
-polls.index.to=结束
-polls.index.type=类型
-polls.versionSummary.optionAdded=投票选项成功添加
-polls.versionSummary.pollCreated=投票创建
-polls.versionSummary.userVoted={0} 投票
-polls.vote.actions.cancel=前往投票主页
-polls.vote.actions.updateVote=更新答案
+polls.form.tools.addOption=新增一个选项
+## Form actions
+polls.form.actions.create=创建投票
+polls.form.actions.cancel=取消
+##
+## Viewing/voting
+##
+## Voting instructions
+### Missing: polls.vote.instructions.single=Choose one of the options below.
+### Missing: polls.vote.instructions.multiple=Choose at least 1 and at most {0} of the options below.
+### Missing: polls.vote.instructions.weighted=Assign non-zero percentages to at least 1 and at most {0} of the options below. The sum must be 100%.
+### Missing: polls.vote.instructions.rating=Rate from 0 (least favorable) to {0} (most favorable) each one of the options.
+### Missing: polls.vote.instructions.ranking.noscript=Use the "move up/move down" tools to reorder the items according to your preference (higher is better).
+### Missing: polls.vote.instructions.ranking.script=Drag and drop the items to reorder them according to your preference (higher is better).
+## Timeline
+### Missing: polls.vote.timeline.notOpen=This poll is not open yet. It will be available from {0} to {1}.
+### Missing: polls.vote.timeline.ongoing=This poll is open from {0} to {1}.
+### Missing: polls.vote.timeline.closed=This poll is now closed.
+## Voting form
+### Missing: polls.vote.label.voted=You answered:
 polls.vote.actions.vote=提交
+polls.vote.actions.updateVote=更新答案
+polls.vote.actions.cancel=前往投票主页
+## Tools
+### Missing: polls.vote.tools.moveup=[move up]
+### Missing: polls.vote.tools.moveup.tooltip=Move up
+### Missing: polls.vote.tools.movedown=[move down]
+### Missing: polls.vote.tools.movedown.tooltip=Move down
+### Missing: polls.vote.tools.incValue=Increase value by 1
+### Missing: polls.vote.tools.decValue=Decrease value by 1
+## Error messages
+### Missing: polls.vote.warning.unauthorized=You must be logged-in and have proper rights on this document in order to vote.
+### Missing: polls.vote.error.single.noneSelected=Please choose one of the options below.
 polls.vote.error.multiple.noneSelected=请至少选择一个选项
+### Missing: polls.vote.error.multiple.wrongSelectedNumber=Please choose at least one and at most {0} of the options below.
+### Missing: polls.vote.error.weighted.wrongSelectedNumber=Please assign non-zero weights to at most {0} of the options.
+### Missing: polls.vote.error.weighted.wrongTotalWeight=Please assign weights that sum up to 100. The sum of your current weight assignments is {0}.
+### Missing: polls.vote.error.rating.optionMissing=Please select a rating for each option.
+### Missing: polls.vote.error.rating.ratingOutOfRange=Rating out of range for option {0}.
+### Missing: polls.vote.error.ranking.unknownElement=Invalid order: unknown element {0}.
+### Missing: polls.vote.error.ranking.duplicateElement=Invalid order: duplicate element {0}.
+## Results
+polls.vote.results.title.before=
+### Missing: polls.vote.results.title.during=Intermediate results
+### Missing: polls.vote.results.title.after=Results
+### Missing: polls.vote.results.participants={0} participant{0,choice,0#s|1#|1&lt;s}
+### Missing: polls.vote.results.chart.percentage=Percentage
+### Missing: polls.vote.results.chart.voteCount=Number of votes
+### Missing: polls.vote.results.chart.columnsNumberWarning=Only the first {0} columns can be displayed in the chart.
+### Missing: polls.vote.results.table.option=Option
+### Missing: polls.vote.results.table.percentage=Percentage
+### Missing: polls.vote.results.table.percentageVoters=Percentage of voters
+### Missing: polls.vote.results.table.voteCount=Number of votes
+### Missing: polls.vote.results.table.voters=Chosen by
+### Missing: polls.vote.results.table.average=Average
+##
+## Document version log
+##
+polls.versionSummary.pollCreated=投票创建
+polls.versionSummary.optionAdded=投票选项成功添加
+polls.versionSummary.userVoted={0} 投票
+##
+## Class translations
+##
+Polls.PollClass_type_single=单选
+Polls.PollClass_type_multiple=多选
+Polls.PollClass_type_weighted=加权多项选择
+Polls.PollClass_type_rating=评分
+Polls.PollClass_type_ranking=排行
+Polls.PollClass_question=问题
+Polls.PollClass_optionsPerVoter=每个投票者的最多选项数量
+Polls.PollClass_type=选择类型
+Polls.PollClass_from=来自
+### Missing: Polls.PollClass_to=to
 </content>
 </xwikidoc>

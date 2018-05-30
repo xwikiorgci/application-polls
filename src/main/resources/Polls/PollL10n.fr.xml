@@ -38,100 +38,125 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
-  <content>## XWiki Translation for language fr generated from http://www.l10n.xwiki.org
-Polls.PollClass_from=de
-Polls.PollClass_optionsPerVoter=Nombre maximum de réponses par votant
-Polls.PollClass_question=Question
-Polls.PollClass_to=pour
-Polls.PollClass_type=Type de réponse
-Polls.PollClass_type_multiple=Choix multiple
-Polls.PollClass_type_ranking=Classement
-Polls.PollClass_type_rating=Note
-Polls.PollClass_type_single=Choix unique
-Polls.PollClass_type_weighted=Réponses multiples pondérées
+  <content>##
+## Home page
+##
+polls.home.title=Sondages
+polls.home.create=Ajouter un sondage
+polls.index.doc.title=Nom du sondage
+polls.index.type=Type
+polls.index.from=Débute
+polls.index.to=Se termine
+polls.index.doc.creator=Lancé par
+polls.index._actions=Action
+##
+## Creation/editing
+##
 polls.create.title=Lancer un nouveau sondage
-polls.form.actions.cancel=Annuler
-polls.form.actions.create=Créer un sondage
-polls.form.error.missingCloseDate=La date de fin du sondage est obligatoire et doit être au format {0}.
-polls.form.error.missingOpenDate=La date de début du sondage est obligatoire et doit être au format {0}.
+## Error messages
+polls.form.error.missingTitle=Le titre est obligatoire
 polls.form.error.missingOptions=Merci de proposer au moins 2 choix
 polls.form.error.missingQuestion=La question est obligatoire
-polls.form.error.missingRatingLevel=Une note maximale doit être enregistrée. Elle doit être supérieure à 0 et inférieure à {0}.
-polls.form.error.missingTitle=Le titre est obligatoire
 polls.form.error.missingVoteType=Le type de vote est obligatoire
+polls.form.error.missingRatingLevel=Une note maximale doit être enregistrée. Elle doit être supérieure à 0 et inférieure à {0}.
+polls.form.error.missingOpenDate=La date de début du sondage est obligatoire et doit être au format {0}.
+polls.form.error.missingCloseDate=La date de fin du sondage est obligatoire et doit être au format {0}.
 polls.form.error.wrongDateOrder=La date de fin du sondage doit être postérieure à sa date de début.
+## Section titles
+polls.form.section.general=Quel est l'objet du sondage ?
+polls.form.section.options=Options
+polls.form.section.voteType=Type de vote
+polls.form.section.timeline=Historique
+polls.form.section.votes=Votes
+## Fiels labels
+polls.form.label.space=où \:
+polls.form.label.title=Titre
 polls.form.label.allOptions=Saisissez les différentes réponses, une réponse par ligne
 polls.form.label.optionCount.multiple=Nombre maximum de choix
 polls.form.label.optionCount.multiple.details=uniquement réponses multiples ou réponses multiples pondérées
+polls.form.label.optionCount.separator=ou
 polls.form.label.optionCount.rating=Note maximale
 polls.form.label.optionCount.rating.details=Note
-polls.form.label.optionCount.separator=ou
-polls.form.label.space=où \:
 polls.form.label.timeline=Période du sondage
 polls.form.label.timeline.dateFormat=(format de la date \: {0})
-polls.form.label.title=Titre
-polls.form.section.general=Quel est l'objet du sondage ?
-polls.form.section.options=Options
-polls.form.section.timeline=Historique
-polls.form.section.voteType=Type de vote
-polls.form.section.votes=Votes
-polls.form.tools.addOption=Ajouter une autre réponse
+## Tools
 polls.form.tools.delete=[supprimer]
 polls.form.tools.delete.tooltip=Supprimer
 polls.form.tools.move=[déplacer]
 polls.form.tools.move.tooltip=Glisser et déposer pour changer l'ordre
-polls.home.create=Ajouter un sondage
-polls.home.title=Sondages
-polls.index._actions=Action
-polls.index.doc.creator=Lancé par
-polls.index.doc.title=Nom du sondage
-polls.index.from=Débute
-polls.index.to=Se termine
-polls.index.type=Type
-polls.versionSummary.optionAdded=Réponse ajoutée
-polls.versionSummary.pollCreated=Sondage créé
-polls.versionSummary.userVoted={0} votes
-polls.vote.actions.cancel=Accéder à la page d’accueil du sondage
-polls.vote.actions.updateVote=Mettre à jour la réponse
-polls.vote.actions.vote=Envoyer
-polls.vote.error.multiple.noneSelected=Merci de sélectionner au moins une option.
-polls.vote.error.multiple.wrongSelectedNumber=Merci de répondre en sélectionnant au moins une et jusqu''à {0} réponses parmi les choix proposés ci-dessous.
-polls.vote.error.ranking.duplicateElement=Ordre non valide \: l''élément {0} est en double.
-polls.vote.error.ranking.unknownElement=Ordre non valide \: l''élément {0} est inconnu.
-polls.vote.error.rating.optionMissing=Merci de choisir une note pour chaque option.
-polls.vote.error.rating.ratingOutOfRange=La note choisie pour l''option {0} est incorrecte
-polls.vote.error.single.noneSelected=Merci de sélectionner l'une des options ci-dessous.
-polls.vote.error.weighted.wrongSelectedNumber=Merci de voter pour au moins {0} option(s).
-polls.vote.error.weighted.wrongTotalWeight=Le total de vos votes doit être égal à 100. Actuellement le total est égal à {0}.
+polls.form.tools.addOption=Ajouter une autre réponse
+## Form actions
+polls.form.actions.create=Créer un sondage
+polls.form.actions.cancel=Annuler
+##
+## Viewing/voting
+##
+## Voting instructions
+polls.vote.instructions.single=Sélectionnez une des réponses ci-dessous.
 polls.vote.instructions.multiple=Répondez en sélectionnant au moins 1 et jusqu''à {0} réponses parmi les choix proposés ci-dessous.
+polls.vote.instructions.weighted=Saisissez une note différente de 0 pour 1 à {0} options. La somme totale de vos notes doit être égale à 100.
+polls.vote.instructions.rating=Note de 0 (non favorable) à {0} (très favorable) pour chacune des options.
 polls.vote.instructions.ranking.noscript=Utilisez la fonctionnalité de déplacement vers le haut ou vers le bas pour ordonner les options selon votre préférence.
 polls.vote.instructions.ranking.script=Glissez et déposez les options pour ordonner les options selon votre préférence.
-polls.vote.instructions.rating=Note de 0 (non favorable) à {0} (très favorable) pour chacune des options.
-polls.vote.instructions.single=Sélectionnez une des réponses ci-dessous.
-polls.vote.instructions.weighted=Saisissez une note différente de 0 pour 1 à {0} options. La somme totale de vos notes doit être égale à 100.
+## Timeline
+polls.vote.timeline.notOpen=Ce sondage n''est pas encore ouvert, il le sera du {0} au {1}. 
+polls.vote.timeline.ongoing=Ce sondage est ouvert du {0} au {1}. 
+polls.vote.timeline.closed=Ce sondage est clos.
+## Voting form
 polls.vote.label.voted=Vous avez répondu \:
-polls.vote.results.chart.columnsNumberWarning=Seules les premières {0} colonnes sont affichées dans le graphique
+polls.vote.actions.vote=Envoyer
+polls.vote.actions.updateVote=Mettre à jour la réponse
+polls.vote.actions.cancel=Accéder à la page d’accueil du sondage
+## Tools
+polls.vote.tools.moveup=[monter]
+polls.vote.tools.moveup.tooltip=Monter
+polls.vote.tools.movedown=[descendre]
+polls.vote.tools.movedown.tooltip=Descendre
+polls.vote.tools.incValue=Augmenter la valeur de 1
+polls.vote.tools.decValue=Diminuer la valeur de 1
+## Error messages
+polls.vote.warning.unauthorized=Vous devez être connecté et disposer des droits sur ce document pour voter.
+polls.vote.error.single.noneSelected=Merci de sélectionner l'une des options ci-dessous.
+polls.vote.error.multiple.noneSelected=Merci de sélectionner au moins une option.
+polls.vote.error.multiple.wrongSelectedNumber=Merci de répondre en sélectionnant au moins une et jusqu''à {0} réponses parmi les choix proposés ci-dessous.
+polls.vote.error.weighted.wrongSelectedNumber=Merci de voter pour au moins {0} option(s).
+polls.vote.error.weighted.wrongTotalWeight=Le total de vos votes doit être égal à 100. Actuellement le total est égal à {0}.
+polls.vote.error.rating.optionMissing=Merci de choisir une note pour chaque option.
+polls.vote.error.rating.ratingOutOfRange=La note choisie pour l''option {0} est incorrecte
+polls.vote.error.ranking.unknownElement=Ordre non valide \: l''élément {0} est inconnu.
+polls.vote.error.ranking.duplicateElement=Ordre non valide \: l''élément {0} est en double.
+## Results
+polls.vote.results.title.before=
+polls.vote.results.title.during=Résultats intermédiaires
+polls.vote.results.title.after=Résultats
+polls.vote.results.participants={0} participant{0,réponse,0\#s|1\#|1&lt;s}
 polls.vote.results.chart.percentage=Pourcentage
 polls.vote.results.chart.voteCount=Nombre de votes
-polls.vote.results.participants={0} participant{0,réponse,0\#s|1\#|1&lt;s} 
-polls.vote.results.table.average=Moyenne
+polls.vote.results.chart.columnsNumberWarning=Seules les premières {0} colonnes sont affichées dans le graphique
 polls.vote.results.table.option=Option
 polls.vote.results.table.percentage=Pourcentage
 polls.vote.results.table.percentageVoters=Pourcentage de votants
 polls.vote.results.table.voteCount=Nombre de votes
 polls.vote.results.table.voters=Choisit par
-polls.vote.results.title.after=Résultats
-polls.vote.results.title.before=Retour
-polls.vote.results.title.during=Résultats intermédiaires
-polls.vote.timeline.closed=Ce sondage est clos.
-polls.vote.timeline.notOpen=Ce sondage n''est pas encore ouvert, il le sera du {0} au {1}. 
-polls.vote.timeline.ongoing=Ce sondage est ouvert du {0} au {1}. 
-polls.vote.tools.decValue=Diminuer la valeur de 1
-polls.vote.tools.incValue=Augmenter la valeur de 1
-polls.vote.tools.movedown=[descendre]
-polls.vote.tools.movedown.tooltip=Descendre
-polls.vote.tools.moveup=[monter]
-polls.vote.tools.moveup.tooltip=Monter
-polls.vote.warning.unauthorized=Vous devez être connecté et disposer des droits sur ce document pour voter.
+polls.vote.results.table.average=Moyenne
+##
+## Document version log
+##
+polls.versionSummary.pollCreated=Sondage créé
+polls.versionSummary.optionAdded=Réponse ajoutée
+polls.versionSummary.userVoted={0} votes
+##
+## Class translations
+##
+Polls.PollClass_type_single=Choix unique
+Polls.PollClass_type_multiple=Choix multiple
+Polls.PollClass_type_weighted=Réponses multiples pondérées
+Polls.PollClass_type_rating=Note
+Polls.PollClass_type_ranking=Classement
+Polls.PollClass_question=Question
+Polls.PollClass_optionsPerVoter=Nombre maximum de réponses par votant
+Polls.PollClass_type=Type de réponse
+Polls.PollClass_from=de
+Polls.PollClass_to=pour
 </content>
 </xwikidoc>

@@ -38,54 +38,125 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
-  <content>## XWiki Translation for language sk generated from http://www.l10n.xwiki.org
-Polls.PollClass_from=od
-Polls.PollClass_question=Otázka
-Polls.PollClass_to=pre
-Polls.PollClass_type_multiple=Viacero možností
-Polls.PollClass_type_ranking=Rebríček
-Polls.PollClass_type_rating=Hodnotenie
+  <content>##
+## Home page
+##
+### Missing: polls.home.title=Polls
+polls.home.create=Pridať hlasovanie
+polls.index.doc.title=Názov hlasovania
+polls.index.type=Typ
+polls.index.from=Začína
+### Missing: polls.index.to=Ends
+### Missing: polls.index.doc.creator=Launched by
+polls.index._actions=Akcie
+##
+## Creation/editing
+##
 polls.create.title=Spustiť nové hlasovanie
-polls.form.actions.cancel=Zrušiť
-polls.form.actions.create=Vytvoriť hlasovanie
+## Error messages
+### Missing: polls.form.error.missingTitle=The title field is mandatory.
 polls.form.error.missingOptions=Uveďte prosím aspoň 2 možnosti.
-polls.form.label.optionCount.rating.details=Len hodnotenie
-polls.form.label.optionCount.separator=alebo
-polls.form.label.space=Kde\:
-polls.form.label.timeline.dateFormat=(formát dátumu\: {0})
-polls.form.label.title=Názov
+### Missing: polls.form.error.missingQuestion=The poll question is mandatory.
+### Missing: polls.form.error.missingVoteType=The vote type is mandatory.
+### Missing: polls.form.error.missingRatingLevel=The maximum rating level is mandatory for rating polls, and must be greater than 0 and at most {0}.
+### Missing: polls.form.error.missingOpenDate=The poll opening date is mandatory and must have the format {0}.
+### Missing: polls.form.error.missingCloseDate=The poll closing date is mandatory and must have the format {0}.
+### Missing: polls.form.error.wrongDateOrder=The poll closing date must be after the opening date.
+## Section titles
+### Missing: polls.form.section.general=What are you polling?
 polls.form.section.options=Nastavenia
-polls.form.tools.addOption=Pridať ďalšie možnosti
+### Missing: polls.form.section.voteType=Vote type
+### Missing: polls.form.section.timeline=Timeline
+### Missing: polls.form.section.votes=Votes
+## Fiels labels
+polls.form.label.space=Kde\:
+polls.form.label.title=Názov
+### Missing: polls.form.label.allOptions=Enter all options, one on each line
+### Missing: polls.form.label.optionCount.multiple=Maximum number of choices
+### Missing: polls.form.label.optionCount.multiple.details=multiple choice and weighted multiple choice only
+polls.form.label.optionCount.separator=alebo
+### Missing: polls.form.label.optionCount.rating=Maximum rating level (minimum is 0, the ratings can be from 0 = lowest to this maximum inclusive)
+polls.form.label.optionCount.rating.details=Len hodnotenie
+### Missing: polls.form.label.timeline=Polling period
+polls.form.label.timeline.dateFormat=(formát dátumu\: {0})
+## Tools
 polls.form.tools.delete=[odstrániť]
 polls.form.tools.delete.tooltip=Odstrániť
 polls.form.tools.move=[posúvať]
-polls.home.create=Pridať hlasovanie
-polls.index._actions=Akcie
-polls.index.doc.title=Názov hlasovania
-polls.index.from=Začína
-polls.index.type=Typ
-polls.versionSummary.userVoted={0} hlasoval
-polls.vote.actions.updateVote=Aktualizovať odpoveď
-polls.vote.actions.vote=Odoslať
+### Missing: polls.form.tools.move.tooltip=Drag and drop to change the order
+polls.form.tools.addOption=Pridať ďalšie možnosti
+## Form actions
+polls.form.actions.create=Vytvoriť hlasovanie
+polls.form.actions.cancel=Zrušiť
+##
+## Viewing/voting
+##
+## Voting instructions
 polls.vote.instructions.single=Vyberte jednu z možností.
+### Missing: polls.vote.instructions.multiple=Choose at least 1 and at most {0} of the options below.
+### Missing: polls.vote.instructions.weighted=Assign non-zero percentages to at least 1 and at most {0} of the options below. The sum must be 100%.
+### Missing: polls.vote.instructions.rating=Rate from 0 (least favorable) to {0} (most favorable) each one of the options.
+### Missing: polls.vote.instructions.ranking.noscript=Use the "move up/move down" tools to reorder the items according to your preference (higher is better).
+### Missing: polls.vote.instructions.ranking.script=Drag and drop the items to reorder them according to your preference (higher is better).
+## Timeline
+### Missing: polls.vote.timeline.notOpen=This poll is not open yet. It will be available from {0} to {1}.
+polls.vote.timeline.ongoing=Hlasovanie je otvorené od {0} do {1}.
+polls.vote.timeline.closed=Hlasovanie uzavreté.
+## Voting form
 polls.vote.label.voted=Odpovedali ste\:
+polls.vote.actions.vote=Odoslať
+polls.vote.actions.updateVote=Aktualizovať odpoveď
+### Missing: polls.vote.actions.cancel=Go to the Polls home page
+## Tools
+polls.vote.tools.moveup=[presunúť hore]
+polls.vote.tools.moveup.tooltip=Presunúť hore
+polls.vote.tools.movedown=[posunúť nadol]
+polls.vote.tools.movedown.tooltip=Posunúť nadol
+polls.vote.tools.incValue=Zvýšiť hodnotu o 1
+polls.vote.tools.decValue=Znižovať hodnotu o 1
+## Error messages
+### Missing: polls.vote.warning.unauthorized=You must be logged-in and have proper rights on this document in order to vote.
+### Missing: polls.vote.error.single.noneSelected=Please choose one of the options below.
+### Missing: polls.vote.error.multiple.noneSelected=Please select at least one option.
+### Missing: polls.vote.error.multiple.wrongSelectedNumber=Please choose at least one and at most {0} of the options below.
+### Missing: polls.vote.error.weighted.wrongSelectedNumber=Please assign non-zero weights to at most {0} of the options.
+### Missing: polls.vote.error.weighted.wrongTotalWeight=Please assign weights that sum up to 100. The sum of your current weight assignments is {0}.
+### Missing: polls.vote.error.rating.optionMissing=Please select a rating for each option.
+### Missing: polls.vote.error.rating.ratingOutOfRange=Rating out of range for option {0}.
+### Missing: polls.vote.error.ranking.unknownElement=Invalid order: unknown element {0}.
+### Missing: polls.vote.error.ranking.duplicateElement=Invalid order: duplicate element {0}.
+## Results
+polls.vote.results.title.before=
+### Missing: polls.vote.results.title.during=Intermediate results
+polls.vote.results.title.after=Výsledky
+### Missing: polls.vote.results.participants={0} participant{0,choice,0#s|1#|1&lt;s}
 polls.vote.results.chart.percentage=Percentuálny podiel
 polls.vote.results.chart.voteCount=Počet hlasov
-polls.vote.results.table.average=Priemer
+### Missing: polls.vote.results.chart.columnsNumberWarning=Only the first {0} columns can be displayed in the chart.
 polls.vote.results.table.option=Možnosť
 polls.vote.results.table.percentage=Percentuálny podiel
 polls.vote.results.table.percentageVoters=Percentuálny podiel hlasujúcich
 polls.vote.results.table.voteCount=Počet hlasov
-polls.vote.results.title.after=Výsledky
-polls.vote.results.title.before=\
-polls.vote.results.title.during=Priebežné výsledky
-polls.vote.timeline.closed=Hlasovanie uzavreté.
-polls.vote.timeline.ongoing=Hlasovanie je otvorené od {0} do {1}.
-polls.vote.tools.decValue=Znižovať hodnotu o 1
-polls.vote.tools.incValue=Zvýšiť hodnotu o 1
-polls.vote.tools.movedown=[posunúť nadol]
-polls.vote.tools.movedown.tooltip=Posunúť nadol
-polls.vote.tools.moveup=[presunúť hore]
-polls.vote.tools.moveup.tooltip=Presunúť hore
+### Missing: polls.vote.results.table.voters=Chosen by
+polls.vote.results.table.average=Priemer
+##
+## Document version log
+##
+### Missing: polls.versionSummary.pollCreated=Poll created
+### Missing: polls.versionSummary.optionAdded=Poll option added
+polls.versionSummary.userVoted={0} hlasoval
+##
+## Class translations
+##
+### Missing: Polls.PollClass_type_single=Single choice
+Polls.PollClass_type_multiple=Viacero možností
+### Missing: Polls.PollClass_type_weighted=Weighted multiple choice
+Polls.PollClass_type_rating=Hodnotenie
+Polls.PollClass_type_ranking=Rebríček
+Polls.PollClass_question=Otázka
+### Missing: Polls.PollClass_optionsPerVoter=Maximum number of options per voter
+### Missing: Polls.PollClass_type=Choice type
+Polls.PollClass_from=od
+Polls.PollClass_to=pre
 </content>
 </xwikidoc>

@@ -38,99 +38,125 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
-  <content>## XWiki Translation for language ru generated from http://www.l10n.xwiki.org
-Polls.PollClass_from=с
-Polls.PollClass_optionsPerVoter=Ответов на голосовавшего
-Polls.PollClass_question=Вопрос
-Polls.PollClass_to=до
-Polls.PollClass_type=Тип
-Polls.PollClass_type_multiple=Множественный выбор
-Polls.PollClass_type_ranking=Ранжирование
-Polls.PollClass_type_rating=Рейтинг
-Polls.PollClass_type_single=Один из нескольких
-Polls.PollClass_type_weighted=Взвешенный множественный выбор
+  <content>##
+## Home page
+##
+polls.home.title=Опросы
+polls.home.create=Создать новый опрос
+polls.index.doc.title=Тема опроса
+polls.index.type=Тип
+polls.index.from=Начало
+polls.index.to=Окончание
+polls.index.doc.creator=Инициатор
+polls.index._actions=Действия
+##
+## Creation/editing
+##
 polls.create.title=Запустить новый опрос
-polls.form.actions.cancel=Отмена
-polls.form.actions.create=Создать опрос
-polls.form.error.missingCloseDate=Дата окончания опроса обязательна для заполнения. Должна быть в формате {0}.
-polls.form.error.missingOpenDate=Дата начала опроса обязательна для заполнения. Должна быть в формате {0}.
+## Error messages
+polls.form.error.missingTitle=Поле "Тема Опроса" обязательно для заполнения.
 polls.form.error.missingOptions=Пожалуйста, укажите как минимум два варианта ответов.
 polls.form.error.missingQuestion=Пожалуйста, укажите вопрос для голосования.
-polls.form.error.missingRatingLevel=Максимальный уровень рейтинга обязателен для рейтинговых опросов, должен быть от 1 до {0}.
-polls.form.error.missingTitle=Поле "Тема Опроса" обязательно для заполнения.
 polls.form.error.missingVoteType=Пожалуйста, укажите тип опроса.
+polls.form.error.missingRatingLevel=Максимальный уровень рейтинга обязателен для рейтинговых опросов, должен быть от 1 до {0}.
+polls.form.error.missingOpenDate=Дата начала опроса обязательна для заполнения. Должна быть в формате {0}.
+polls.form.error.missingCloseDate=Дата окончания опроса обязательна для заполнения. Должна быть в формате {0}.
 polls.form.error.wrongDateOrder=Дата окончания опроса должна быть после даты начала опроса.
+## Section titles
+polls.form.section.general=Тема опроса
+polls.form.section.options=Варианты ответов
+polls.form.section.voteType=Тип голосования
+polls.form.section.timeline=Временной промежуток
+polls.form.section.votes=Голоса
+## Fiels labels
+polls.form.label.space=Раздел\:
+polls.form.label.title=Тема
 polls.form.label.allOptions=Введите все варианты ответов, по одному в строке
 polls.form.label.optionCount.multiple=Максимальное количество вариантов ответа, которые можно выбрать
 polls.form.label.optionCount.multiple.details=только для типов опроса "Множественный выбор" и "Взвешенный множественный выбор"
+polls.form.label.optionCount.separator=или
 polls.form.label.optionCount.rating=Максимальный уровень рейтинга (может принимать значения от 0 \= самый низкий, до этого значения включительно)
 polls.form.label.optionCount.rating.details=Только рейтинг
-polls.form.label.optionCount.separator=или
-polls.form.label.space=Раздел\:
 polls.form.label.timeline=Период опроса
 polls.form.label.timeline.dateFormat=(формат даты\: {0})
-polls.form.label.title=Тема
-polls.form.section.general=Тема опроса
-polls.form.section.options=Варианты ответов
-polls.form.section.timeline=Временной промежуток
-polls.form.section.voteType=Тип голосования
-polls.form.section.votes=Голоса
-polls.form.tools.addOption=Добавить ответ
+## Tools
 polls.form.tools.delete=[удалить]
 polls.form.tools.delete.tooltip=Удалить
 polls.form.tools.move=[переместить]
 polls.form.tools.move.tooltip=Перетаскивайте элементы, чтобы изменить их порядок
-polls.home.create=Создать новый опрос
-polls.home.title=Опросы
-polls.index._actions=Действия
-polls.index.doc.creator=Инициатор
-polls.index.doc.title=Тема опроса
-polls.index.from=Начало
-polls.index.to=Окончание
-polls.index.type=Тип
-polls.versionSummary.optionAdded=Ответ добавлен
-polls.versionSummary.pollCreated=Опрос создан
-polls.versionSummary.userVoted={0} проголосовало
-polls.vote.actions.cancel=Перейти к домашней странице Опросов
-polls.vote.actions.updateVote=Обновить ответ
-polls.vote.actions.vote=Отправить
-polls.vote.error.multiple.noneSelected=Пожалуйста, выберите как минимум один из ответов.
-polls.vote.error.multiple.wrongSelectedNumber=Пожалуйста, выберите как минимум один, максимум {0} вариантов ответов.
-polls.vote.error.ranking.duplicateElement=Неправильный порядок\: дублирующий элемент {0}.
-polls.vote.error.ranking.unknownElement=Неправильный порядок\: неизвестный элемент {0}.
-polls.vote.error.rating.optionMissing=Пожалуйста, укажите рейтинг каждого варианта ответа.
-polls.vote.error.rating.ratingOutOfRange=Для данного ответа рейтинг находится вне допустимого диапазона {0}.
-polls.vote.error.single.noneSelected=Пожалуйста, выберите один из ответов.
-polls.vote.error.weighted.wrongSelectedNumber=Пожалуйста, укажите значение от 1 до {0}.
-polls.vote.error.weighted.wrongTotalWeight=Пожалуйста, укажите значения, чтобы в сумме они составляли 100. Сумма текущих значений {0}.
+polls.form.tools.addOption=Добавить ответ
+## Form actions
+polls.form.actions.create=Создать опрос
+polls.form.actions.cancel=Отмена
+##
+## Viewing/voting
+##
+## Voting instructions
+polls.vote.instructions.single=Выберите один из вариантов ответа.
 polls.vote.instructions.multiple=Выберите от 1 до {0} ответов.
+polls.vote.instructions.weighted=Укажите на каждый вариант ответа значение в процентах. В сумме должно быть 100%.
+polls.vote.instructions.rating=Укажите на каждый вариант ответа рейтинг от 0 (самый низкий) до {0} (самый высокий).
 polls.vote.instructions.ranking.noscript=Измените порядок ответов в зависимости от ваших предпочтений (выше - лучше).
 polls.vote.instructions.ranking.script=Перетаскивайте варианты ответов, чтобы расположить их в нужном порядке в зависимости от ваших предпочтений (выше - лучше).
-polls.vote.instructions.rating=Укажите на каждый вариант ответа рейтинг от 0 (самый низкий) до {0} (самый высокий).
-polls.vote.instructions.single=Выберите один из вариантов ответа.
-polls.vote.instructions.weighted=Укажите на каждый вариант ответа значение в процентах. В сумме должно быть 100%.
+## Timeline
+polls.vote.timeline.notOpen=Опрос пока не открыт для голосования. Он будет открыт с {0} до {1}.
+polls.vote.timeline.ongoing=Опрос открыт с {0} до {1}.
+polls.vote.timeline.closed=Опроc закрыт для голосования.
+## Voting form
 polls.vote.label.voted=Ваш ответ\:
-polls.vote.results.chart.columnsNumberWarning=Только первая {0} колонка может быть показана на графике.
+polls.vote.actions.vote=Отправить
+polls.vote.actions.updateVote=Обновить ответ
+polls.vote.actions.cancel=Перейти к домашней странице Опросов
+## Tools
+polls.vote.tools.moveup=[вверх]
+polls.vote.tools.moveup.tooltip=Передвинуть вверх
+polls.vote.tools.movedown=[вниз]
+polls.vote.tools.movedown.tooltip=Передвинуть вниз
+polls.vote.tools.incValue=Увеличить значение на 1
+polls.vote.tools.decValue=Уменьшить значение на 1
+## Error messages
+polls.vote.warning.unauthorized=Чтобы проголосовать, вы должны зайти под своей учетной записью и обладать соответствующими правами на эту страницу.
+polls.vote.error.single.noneSelected=Пожалуйста, выберите один из ответов.
+polls.vote.error.multiple.noneSelected=Пожалуйста, выберите как минимум один из ответов.
+polls.vote.error.multiple.wrongSelectedNumber=Пожалуйста, выберите как минимум один, максимум {0} вариантов ответов.
+polls.vote.error.weighted.wrongSelectedNumber=Пожалуйста, укажите значение от 1 до {0}.
+polls.vote.error.weighted.wrongTotalWeight=Пожалуйста, укажите значения, чтобы в сумме они составляли 100. Сумма текущих значений {0}.
+polls.vote.error.rating.optionMissing=Пожалуйста, укажите рейтинг каждого варианта ответа.
+polls.vote.error.rating.ratingOutOfRange=Для данного ответа рейтинг находится вне допустимого диапазона {0}.
+polls.vote.error.ranking.unknownElement=Неправильный порядок\: неизвестный элемент {0}.
+polls.vote.error.ranking.duplicateElement=Неправильный порядок\: дублирующий элемент {0}.
+## Results
+polls.vote.results.title.before=
+polls.vote.results.title.during=Промежуточные результаты
+polls.vote.results.title.after=Результаты
+polls.vote.results.participants=Участников\: {0}
 polls.vote.results.chart.percentage=Процент
 polls.vote.results.chart.voteCount=Количество голосов
-polls.vote.results.participants=Участников\: {0}
-polls.vote.results.table.average=Среднее
+polls.vote.results.chart.columnsNumberWarning=Только первая {0} колонка может быть показана на графике.
 polls.vote.results.table.option=Ответ
 polls.vote.results.table.percentage=Процент
 polls.vote.results.table.percentageVoters=% голосов
 polls.vote.results.table.voteCount=Голоса
 polls.vote.results.table.voters=Участники
-polls.vote.results.title.after=Результаты
-polls.vote.results.title.during=Промежуточные результаты
-polls.vote.timeline.closed=Опроc закрыт для голосования.
-polls.vote.timeline.notOpen=Опрос пока не открыт для голосования. Он будет открыт с {0} до {1}.
-polls.vote.timeline.ongoing=Опрос открыт с {0} до {1}.
-polls.vote.tools.decValue=Уменьшить значение на 1
-polls.vote.tools.incValue=Увеличить значение на 1
-polls.vote.tools.movedown=[вниз]
-polls.vote.tools.movedown.tooltip=Передвинуть вниз
-polls.vote.tools.moveup=[вверх]
-polls.vote.tools.moveup.tooltip=Передвинуть вверх
-polls.vote.warning.unauthorized=Чтобы проголосовать, вы должны зайти под своей учетной записью и обладать соответствующими правами на эту страницу.
+polls.vote.results.table.average=Среднее
+##
+## Document version log
+##
+polls.versionSummary.pollCreated=Опрос создан
+polls.versionSummary.optionAdded=Ответ добавлен
+polls.versionSummary.userVoted={0} проголосовало
+##
+## Class translations
+##
+Polls.PollClass_type_single=Один из нескольких
+Polls.PollClass_type_multiple=Множественный выбор
+Polls.PollClass_type_weighted=Взвешенный множественный выбор
+Polls.PollClass_type_rating=Рейтинг
+Polls.PollClass_type_ranking=Ранжирование
+Polls.PollClass_question=Вопрос
+Polls.PollClass_optionsPerVoter=Ответов на голосовавшего
+Polls.PollClass_type=Тип
+Polls.PollClass_from=с
+Polls.PollClass_to=до
 </content>
 </xwikidoc>
