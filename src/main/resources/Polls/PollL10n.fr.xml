@@ -99,8 +99,8 @@ polls.vote.instructions.rating=Note de 0 (non favorable) à {0} (très favorable
 polls.vote.instructions.ranking.noscript=Utilisez la fonctionnalité de déplacement vers le haut ou vers le bas pour ordonner les options selon votre préférence.
 polls.vote.instructions.ranking.script=Glissez et déposez les options pour ordonner les options selon votre préférence.
 ## Timeline
-polls.vote.timeline.notOpen=Ce sondage n''est pas encore ouvert, il le sera du {0} au {1}. 
-polls.vote.timeline.ongoing=Ce sondage est ouvert du {0} au {1}. 
+polls.vote.timeline.notOpen=Ce sondage n''est pas encore ouvert, il le sera du {0} au {1}.
+polls.vote.timeline.ongoing=Ce sondage est ouvert du {0} au {1}.
 polls.vote.timeline.closed=Ce sondage est clos.
 ## Voting form
 polls.vote.label.voted=Vous avez répondu \:
