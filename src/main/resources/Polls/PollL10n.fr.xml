@@ -76,7 +76,7 @@ polls.form.label.optionCount.multiple=Nombre maximum de choix
 polls.form.label.optionCount.multiple.details=réponses multiples ou réponses multiples pondérées seulement
 polls.form.label.optionCount.separator=ou
 polls.form.label.optionCount.rating=Note maximale
-polls.form.label.optionCount.rating.details=Note
+polls.form.label.optionCount.rating.details=note
 polls.form.label.timeline=Période du sondage
 polls.form.label.timeline.dateFormat=(format de la date : {0})
 ## Tools
@@ -94,7 +94,7 @@ polls.form.actions.cancel=Annuler
 ## Voting instructions
 polls.vote.instructions.single=Sélectionnez une des réponses ci-dessous.
 polls.vote.instructions.multiple=Répondez en sélectionnant au moins 1 et jusqu''à {0} réponses parmi les choix proposés ci-dessous.
-polls.vote.instructions.weighted=Saisissez une note différente de 0 pour 1 à {0} options. La somme totale de vos notes doit être égale à 100.
+polls.vote.instructions.weighted=Saisissez un pourcentage entre 1 et {0} options. La somme totale de vos notes doit être égale à 100.
 polls.vote.instructions.rating=Note de 0 (non favorable) à {0} (très favorable) pour chacune des options.
 polls.vote.instructions.ranking.noscript=Utilisez la fonctionnalité de déplacement vers le haut ou vers le bas pour ordonner les options selon votre préférence.
 polls.vote.instructions.ranking.script=Glissez et déposez les options pour ordonner les options selon votre préférence.
