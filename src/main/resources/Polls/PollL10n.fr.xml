@@ -156,7 +156,7 @@ Polls.PollClass_type_ranking=Classement
 Polls.PollClass_question=Question
 Polls.PollClass_optionsPerVoter=Nombre maximum de réponses par votant
 Polls.PollClass_type=Type de réponse
-Polls.PollClass_from=de
+Polls.PollClass_from=du
 Polls.PollClass_to=à
 </content>
 </xwikidoc>
