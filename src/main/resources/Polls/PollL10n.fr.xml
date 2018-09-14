@@ -66,7 +66,7 @@ polls.form.error.wrongDateOrder=La date de fin du sondage doit être postérieur
 polls.form.section.general=Quel est l'objet du sondage ?
 polls.form.section.options=Options
 polls.form.section.voteType=Type de vote
-### Missing: polls.form.section.timeline=Timeline
+polls.form.section.timeline=Période
 polls.form.section.votes=Votes
 ## Fiels labels
 polls.form.label.space=Emplacement :
@@ -157,6 +157,6 @@ Polls.PollClass_question=Question
 Polls.PollClass_optionsPerVoter=Nombre maximum de réponses par votant
 Polls.PollClass_type=Type de réponse
 Polls.PollClass_from=de
-Polls.PollClass_to=pour
+Polls.PollClass_to=à
 </content>
 </xwikidoc>
