@@ -48,14 +48,14 @@ polls.index.type=Type
 polls.index.from=Début
 polls.index.to=Fin
 polls.index.doc.creator=Lancé par
-polls.index._actions=Action
+polls.index._actions=Actions
 ##
 ## Creation/editing
 ##
 polls.create.title=Lancer un nouveau sondage
 ## Error messages
-polls.form.error.missingTitle=Le titre est obligatoire
-polls.form.error.missingOptions=Merci de proposer au moins 2 choix
+polls.form.error.missingTitle=Le titre est obligatoire.
+polls.form.error.missingOptions=Merci de proposer au moins 2 choix.
 polls.form.error.missingQuestion=La question est obligatoire
 polls.form.error.missingVoteType=Le type de vote est obligatoire
 polls.form.error.missingRatingLevel=Une note maximale doit être enregistrée et doit être supérieure à 0 et inférieure à {0}.
@@ -73,7 +73,7 @@ polls.form.label.space=Emplacement :
 polls.form.label.title=Titre
 polls.form.label.allOptions=Saisissez les différentes réponses, une par ligne
 polls.form.label.optionCount.multiple=Nombre maximum de choix
-polls.form.label.optionCount.multiple.details=uniquement réponses multiples ou réponses multiples pondérées
+polls.form.label.optionCount.multiple.details=réponses multiples ou réponses multiples pondérées seulement
 polls.form.label.optionCount.separator=ou
 polls.form.label.optionCount.rating=Note maximale
 polls.form.label.optionCount.rating.details=Note
@@ -106,7 +106,7 @@ polls.vote.timeline.closed=Ce sondage est clos.
 polls.vote.label.voted=Vous avez répondu :
 polls.vote.actions.vote=Envoyer
 polls.vote.actions.updateVote=Mettre à jour la réponse
-polls.vote.actions.cancel=Accéder à la page d’accueil du sondage
+polls.vote.actions.cancel=Accéder à la page des Sondages
 ## Tools
 polls.vote.tools.moveup=[monter]
 polls.vote.tools.moveup.tooltip=Monter
