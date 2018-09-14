@@ -106,7 +106,7 @@ polls.vote.timeline.closed=Ce sondage est clos.
 polls.vote.label.voted=Vous avez répondu :
 polls.vote.actions.vote=Envoyer
 polls.vote.actions.updateVote=Mettre à jour la réponse
-polls.vote.actions.cancel=Accéder à la page d’accueil du sondage
+polls.vote.actions.cancel=Accéder à la page des Sondages
 ## Tools
 polls.vote.tools.moveup=[monter]
 polls.vote.tools.moveup.tooltip=Monter
@@ -157,6 +157,6 @@ Polls.PollClass_question=Question
 Polls.PollClass_optionsPerVoter=Nombre maximum de réponses par votant
 Polls.PollClass_type=Type de réponse
 Polls.PollClass_from=du
-Polls.PollClass_to=à
+Polls.PollClass_to=au
 </content>
 </xwikidoc>
