@@ -96,8 +96,8 @@ polls.vote.instructions.single=Sélectionnez une des réponses ci-dessous.
 polls.vote.instructions.multiple=Répondez en sélectionnant au moins 1 et jusqu''à {0} réponses parmi les choix proposés ci-dessous.
 polls.vote.instructions.weighted=Saisissez un pourcentage entre 1 et {0} aux options ci-dessous. La somme totale doit être égale à 100%.
 polls.vote.instructions.rating=Note de 0 (non favorable) à {0} (très favorable) pour chacune des options.
-polls.vote.instructions.ranking.noscript=Utilisez la fonctionnalité de déplacement vers le haut ou vers le bas pour ordonner les options selon votre préférence.
-polls.vote.instructions.ranking.script=Glissez et déposez les options pour ordonner les options selon votre préférence.
+polls.vote.instructions.ranking.noscript=Utilisez la fonctionnalité de déplacement vers le haut ou vers le bas pour ordonner les options selon votre préférence (les meilleurs en haut).
+polls.vote.instructions.ranking.script=Glissez et déposez les options pour ordonner les options selon votre préférence (les meilleurs en haut).
 ## Timeline
 polls.vote.timeline.notOpen=Ce sondage n''est pas encore ouvert, il le sera du {0} au {1}.
 polls.vote.timeline.ongoing=Ce sondage est ouvert du {0} au {1}.
