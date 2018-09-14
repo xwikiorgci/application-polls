@@ -106,7 +106,7 @@ polls.vote.timeline.closed=Ce sondage est clos.
 polls.vote.label.voted=Vous avez répondu :
 polls.vote.actions.vote=Envoyer
 polls.vote.actions.updateVote=Mettre à jour la réponse
-polls.vote.actions.cancel=Accéder à la page des Sondages
+polls.vote.actions.cancel=Accéder à la page d’accueil du sondage
 ## Tools
 polls.vote.tools.moveup=[monter]
 polls.vote.tools.moveup.tooltip=Monter
