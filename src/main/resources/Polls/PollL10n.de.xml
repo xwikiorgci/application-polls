@@ -69,7 +69,7 @@ polls.form.section.voteType=Umfragetyp
 polls.form.section.timeline=Zeitraum
 polls.form.section.votes=Stimmen
 ## Fiels labels
-polls.form.label.space=Wo\:
+polls.form.label.space=Wo:
 polls.form.label.title=Titel
 polls.form.label.allOptions=Gib alle Optionen ein, eine pro Zeile
 polls.form.label.optionCount.multiple=Maximale Anzahl an Auswahlmöglichkeiten
@@ -78,7 +78,7 @@ polls.form.label.optionCount.separator=oder
 polls.form.label.optionCount.rating=Maximale Bewertungs-Stufe
 polls.form.label.optionCount.rating.details=Nur Bewertung
 polls.form.label.timeline=Umfragezeitraum
-polls.form.label.timeline.dateFormat=(Datumsformat\: {0})
+polls.form.label.timeline.dateFormat=(Datumsformat: {0})
 ## Tools
 polls.form.tools.delete=[löschen]
 polls.form.tools.delete.tooltip=Löschen
@@ -92,59 +92,59 @@ polls.form.actions.cancel=Abbrechen
 ## Viewing/voting
 ##
 ## Voting instructions
-### Missing: polls.vote.instructions.single=Choose one of the options below.
-### Missing: polls.vote.instructions.multiple=Choose at least 1 and at most {0} of the options below.
-### Missing: polls.vote.instructions.weighted=Assign non-zero percentages to at least 1 and at most {0} of the options below. The sum must be 100%.
-### Missing: polls.vote.instructions.rating=Rate from 0 (least favorable) to {0} (most favorable) each one of the options.
+polls.vote.instructions.single=Wählen Sie eine der folgenden Optionen.
+polls.vote.instructions.multiple=Wählen Sie mindestens 1 und höchstens {0} der folgenden Optionen.
+polls.vote.instructions.weighted=Mindestens 1 und höchstens {0} der folgenden Optionen Prozentwerte zuweisen. Die Summe muss 100% betragen.
+polls.vote.instructions.rating=Bewerten Sie von 0 (am schlechtesten) bis {0} (am besten) jede der Optionen.
 ### Missing: polls.vote.instructions.ranking.noscript=Use the "move up/move down" tools to reorder the items according to your preference (higher is better).
-### Missing: polls.vote.instructions.ranking.script=Drag and drop the items to reorder them according to your preference (higher is better).
+polls.vote.instructions.ranking.script=Ziehen Sie die Auswahlmöglichkeiten per Drag &amp; Drop, um Sie nach Ihren Wünschen anzuordnen (höher ist besser).
 ## Timeline
-### Missing: polls.vote.timeline.notOpen=This poll is not open yet. It will be available from {0} to {1}.
-### Missing: polls.vote.timeline.ongoing=This poll is open from {0} to {1}.
-### Missing: polls.vote.timeline.closed=This poll is now closed.
+polls.vote.timeline.notOpen=Diese Umfrage ist noch nicht geöffnet. Sie wird von {0} bis {1} verfügbar sein.
+polls.vote.timeline.ongoing=Diese Umfrage ist geöffnet von {0} bis {1}.
+polls.vote.timeline.closed=Diese Umfrage ist jetzt geschlossen.
 ## Voting form
-### Missing: polls.vote.label.voted=You answered:
-### Missing: polls.vote.actions.vote=Submit
-### Missing: polls.vote.actions.updateVote=Update answer
-### Missing: polls.vote.actions.cancel=Go to the Polls home page
+polls.vote.label.voted=Ihre Antwort:
+polls.vote.actions.vote=Abstimmen
+polls.vote.actions.updateVote=Auswahl aktualisieren
+polls.vote.actions.cancel=Gehe zur Umfragen Startseite
 ## Tools
-### Missing: polls.vote.tools.moveup=[move up]
-### Missing: polls.vote.tools.moveup.tooltip=Move up
-### Missing: polls.vote.tools.movedown=[move down]
-### Missing: polls.vote.tools.movedown.tooltip=Move down
-### Missing: polls.vote.tools.incValue=Increase value by 1
-### Missing: polls.vote.tools.decValue=Decrease value by 1
+polls.vote.tools.moveup=[Nach oben verschieben]
+polls.vote.tools.moveup.tooltip=Nach oben verschieben
+polls.vote.tools.movedown=[Nach unten verschieben]
+polls.vote.tools.movedown.tooltip=[Nach unten verschieben]
+polls.vote.tools.incValue=Wert um 1 erhöhen
+polls.vote.tools.decValue=Wert um 1 verringern
 ## Error messages
-### Missing: polls.vote.warning.unauthorized=You must be logged-in and have proper rights on this document in order to vote.
-### Missing: polls.vote.error.single.noneSelected=Please choose one of the options below.
-### Missing: polls.vote.error.multiple.noneSelected=Please select at least one option.
-### Missing: polls.vote.error.multiple.wrongSelectedNumber=Please choose at least one and at most {0} of the options below.
+polls.vote.warning.unauthorized=Sie müssen eingeloggt sein und ausreichende Rechte an diesem Dokument haben, um abstimmen zu können.
+polls.vote.error.single.noneSelected=Wählen Sie bitte eine der folgenden Optionen.
+polls.vote.error.multiple.noneSelected=Wählen Sie mindestens eine Option.
+polls.vote.error.multiple.wrongSelectedNumber=Wählen Sie mindestens 1 und höchstens {0} der folgenden Optionen.
 ### Missing: polls.vote.error.weighted.wrongSelectedNumber=Please assign non-zero weights to at most {0} of the options.
-### Missing: polls.vote.error.weighted.wrongTotalWeight=Please assign weights that sum up to 100. The sum of your current weight assignments is {0}.
-### Missing: polls.vote.error.rating.optionMissing=Please select a rating for each option.
-### Missing: polls.vote.error.rating.ratingOutOfRange=Rating out of range for option {0}.
-### Missing: polls.vote.error.ranking.unknownElement=Invalid order: unknown element {0}.
-### Missing: polls.vote.error.ranking.duplicateElement=Invalid order: duplicate element {0}.
+polls.vote.error.weighted.wrongTotalWeight=Bitte wählen Sie Anteile die in Summe 100 ergeben. Die Summe Ihrer aktuellen Gewichtung ist {0}.
+polls.vote.error.rating.optionMissing=Bitte wählen Sie eine Bewertung für jede Option.
+polls.vote.error.rating.ratingOutOfRange=Bewertung außerhalb des Bereichs für Option {0}.
+polls.vote.error.ranking.unknownElement=Ungültige Anordnung: Unbekanntes Element {0}.
+polls.vote.error.ranking.duplicateElement=Ungültige Anordnung: Doppeltes Element {0}.
 ## Results
 polls.vote.results.title.before=
-### Missing: polls.vote.results.title.during=Intermediate results
-### Missing: polls.vote.results.title.after=Results
-### Missing: polls.vote.results.participants={0} participant{0,choice,0#s|1#|1&lt;s}
-### Missing: polls.vote.results.chart.percentage=Percentage
-### Missing: polls.vote.results.chart.voteCount=Number of votes
-### Missing: polls.vote.results.chart.columnsNumberWarning=Only the first {0} columns can be displayed in the chart.
-### Missing: polls.vote.results.table.option=Option
-### Missing: polls.vote.results.table.percentage=Percentage
-### Missing: polls.vote.results.table.percentageVoters=Percentage of voters
-### Missing: polls.vote.results.table.voteCount=Number of votes
-### Missing: polls.vote.results.table.voters=Chosen by
-### Missing: polls.vote.results.table.average=Average
+polls.vote.results.title.during=Zwischenergebnisse
+polls.vote.results.title.after=Ergebnisse
+polls.vote.results.participants={0} Teilnehmer{0,choice,0#s|1#|1&lt;s}
+polls.vote.results.chart.percentage=Prozent
+polls.vote.results.chart.voteCount=Anzahl der Stimmen
+polls.vote.results.chart.columnsNumberWarning=Nur die ersten {0} Spalten können im Diagramm angezeigt werden.
+polls.vote.results.table.option=Option
+polls.vote.results.table.percentage=Prozent
+polls.vote.results.table.percentageVoters=Prozentsatz der Stimmen
+polls.vote.results.table.voteCount=Anzahl der Stimmen
+polls.vote.results.table.voters=Ausgewählt von
+polls.vote.results.table.average=Durchschnitt
 ##
 ## Document version log
 ##
-### Missing: polls.versionSummary.pollCreated=Poll created
+polls.versionSummary.pollCreated=Umfrage erstellt
 polls.versionSummary.optionAdded=Umfrageoption hinzugefügt
-### Missing: polls.versionSummary.userVoted={0} voted
+polls.versionSummary.userVoted={0} haben abgestimmt
 ##
 ## Class translations
 ##
