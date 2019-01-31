@@ -157,6 +157,5 @@ Polls.PollClass_question=Otázka
 ### Missing: Polls.PollClass_optionsPerVoter=Maximum number of options per voter
 ### Missing: Polls.PollClass_type=Choice type
 Polls.PollClass_from=od
-Polls.PollClass_to=pre
-</content>
+Polls.PollClass_to=pre</content>
 </xwikidoc>

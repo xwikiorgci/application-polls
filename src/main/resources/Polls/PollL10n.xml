@@ -43,8 +43,7 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
-  <content>
-##
+  <content>##
 ## Home page
 ##
 polls.home.title=Polls
@@ -163,8 +162,7 @@ Polls.PollClass_question=Question
 Polls.PollClass_optionsPerVoter=Maximum number of options per voter
 Polls.PollClass_type=Choice type
 Polls.PollClass_from=from
-Polls.PollClass_to=to
-</content>
+Polls.PollClass_to=to</content>
   <object>
     <name>Polls.PollL10n</name>
     <number>0</number>

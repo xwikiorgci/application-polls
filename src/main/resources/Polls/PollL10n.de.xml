@@ -157,6 +157,5 @@ Polls.PollClass_question=Frage
 Polls.PollClass_optionsPerVoter=Maximale Anzahl an Optionen pro Teilnehmer
 Polls.PollClass_type=Auswahltyp
 Polls.PollClass_from=von
-Polls.PollClass_to=bis
-</content>
+Polls.PollClass_to=bis</content>
 </xwikidoc>
