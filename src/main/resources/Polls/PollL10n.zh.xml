@@ -158,6 +158,5 @@ Polls.PollClass_question=问题
 Polls.PollClass_optionsPerVoter=每个投票者的最多选项数量
 Polls.PollClass_type=选择类型
 Polls.PollClass_from=来自
-### Missing: Polls.PollClass_to=to
-</content>
+### Missing: Polls.PollClass_to=to</content>
 </xwikidoc>
