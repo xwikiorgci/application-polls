@@ -136,7 +136,7 @@ polls.vote.results.chart.columnsNumberWarning=Только первые {0} ст
 polls.vote.results.table.option=Ответ
 polls.vote.results.table.percentage=Процент
 polls.vote.results.table.percentageVoters=% голосов
-polls.vote.results.table.voteCount=Голоса
+polls.vote.results.table.voteCount=Количество голосов
 polls.vote.results.table.voters=Участники
 polls.vote.results.table.average=Среднее
 ##
