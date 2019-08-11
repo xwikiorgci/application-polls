@@ -96,7 +96,7 @@ polls.vote.instructions.single=Wählen Sie eine der folgenden Optionen.
 polls.vote.instructions.multiple=Wählen Sie mindestens 1 und höchstens {0} der folgenden Optionen.
 polls.vote.instructions.weighted=Mindestens 1 und höchstens {0} der folgenden Optionen Prozentwerte zuweisen. Die Summe muss 100% betragen.
 polls.vote.instructions.rating=Bewerten Sie von 0 (am schlechtesten) bis {0} (am besten) jede der Optionen.
-### Missing: polls.vote.instructions.ranking.noscript=Use the "move up/move down" tools to reorder the items according to your preference (higher is better).
+polls.vote.instructions.ranking.noscript=Benutzen Sie die Werkzeuge "Nach oben/unten bewegen", um die Elemente nach Ihren Wünschen neu zu ordnen (höher ist besser).
 polls.vote.instructions.ranking.script=Ziehen Sie die Auswahlmöglichkeiten per Drag &amp; Drop, um Sie nach Ihren Wünschen anzuordnen (höher ist besser).
 ## Timeline
 polls.vote.timeline.notOpen=Diese Umfrage ist noch nicht geöffnet. Sie wird von {0} bis {1} verfügbar sein.
@@ -119,7 +119,7 @@ polls.vote.warning.unauthorized=Sie müssen eingeloggt sein und ausreichende Rec
 polls.vote.error.single.noneSelected=Wählen Sie bitte eine der folgenden Optionen.
 polls.vote.error.multiple.noneSelected=Wählen Sie mindestens eine Option.
 polls.vote.error.multiple.wrongSelectedNumber=Wählen Sie mindestens 1 und höchstens {0} der folgenden Optionen.
-### Missing: polls.vote.error.weighted.wrongSelectedNumber=Please assign non-zero weights to at most {0} of the options.
+polls.vote.error.weighted.wrongSelectedNumber=Bitte weisen Sie höchstens {0} der Optionen Gewichtungen ungleich Null zu.
 polls.vote.error.weighted.wrongTotalWeight=Bitte wählen Sie Anteile die in Summe 100 ergeben. Die Summe Ihrer aktuellen Gewichtung ist {0}.
 polls.vote.error.rating.optionMissing=Bitte wählen Sie eine Bewertung für jede Option.
 polls.vote.error.rating.ratingOutOfRange=Bewertung außerhalb des Bereichs für Option {0}.
