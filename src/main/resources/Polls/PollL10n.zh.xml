@@ -85,7 +85,7 @@ polls.form.tools.delete=[删除]
 polls.form.tools.delete.tooltip=删除
 polls.form.tools.move=[移动]
 polls.form.tools.move.tooltip=拖放以更改顺序
-polls.form.tools.addOption=新增一个选项
+polls.form.tools.addOption=新增其他选项
 ## Form actions
 polls.form.actions.create=创建投票
 polls.form.actions.cancel=取消
