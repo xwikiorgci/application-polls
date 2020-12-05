@@ -76,7 +76,7 @@ polls.form.label.allOptions=每行一个，输入所有选项
 polls.form.label.optionCount.multiple=最多选项次数
 polls.form.label.optionCount.multiple.details=只允许多重选择与加权多重选择
 polls.form.label.optionCount.separator=或者
-polls.form.label.optionCount.rating=最大额定值（最小值为0，额定值可以从0 \= 最低，到最大值）
+polls.form.label.optionCount.rating=最大额定值（最小值为0，额定值可以从0 = 最低，到最大值）
 polls.form.label.optionCount.rating.details=只能评分
 polls.form.label.timeline=投票期
 polls.form.label.timeline.dateFormat=(日期格式：{0})
@@ -85,7 +85,7 @@ polls.form.tools.delete=[删除]
 polls.form.tools.delete.tooltip=删除
 polls.form.tools.move=[移动]
 polls.form.tools.move.tooltip=拖放以更改顺序
-polls.form.tools.addOption=新增一个选项
+polls.form.tools.addOption=新增其他选项
 ## Form actions
 polls.form.actions.create=创建投票
 polls.form.actions.cancel=取消
@@ -93,7 +93,7 @@ polls.form.actions.cancel=取消
 ## Viewing/voting
 ##
 ## Voting instructions
-### Missing: polls.vote.instructions.single=Choose one of the options below.
+polls.vote.instructions.single=选择下列任意一个选项
 ### Missing: polls.vote.instructions.multiple=Choose at least 1 and at most {0} of the options below.
 ### Missing: polls.vote.instructions.weighted=Assign non-zero percentages to at least 1 and at most {0} of the options below. The sum must be 100%.
 ### Missing: polls.vote.instructions.rating=Rate from 0 (least favorable) to {0} (most favorable) each one of the options.
