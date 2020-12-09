@@ -24,7 +24,7 @@
   <web>Polls</web>
   <name>PollL10n</name>
   <language>es</language>
-  <defaultLanguage/>
+  <defaultLanguage>en</defaultLanguage>
   <translation>1</translation>
   <parent>Polls.WebHome</parent>
   <creator>xwiki:XWiki.Admin</creator>
@@ -163,5 +163,4 @@ Polls.PollClass_optionsPerVoter=Número máximo de opciones por votante
 Polls.PollClass_type=Tipo de elección
 Polls.PollClass_from=desde
 Polls.PollClass_to=hasta</content>
-  
 </xwikidoc>

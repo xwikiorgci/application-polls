@@ -24,7 +24,7 @@
   <web>Polls</web>
   <name>PollL10n</name>
   <language/>
-  <defaultLanguage/>
+  <defaultLanguage>en</defaultLanguage>
   <translation>0</translation>
   <parent>Polls.WebHome</parent>
   <creator>xwiki:XWiki.Admin</creator>

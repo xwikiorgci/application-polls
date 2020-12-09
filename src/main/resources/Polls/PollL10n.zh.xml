@@ -24,7 +24,7 @@
   <web>Polls</web>
   <name>PollL10n</name>
   <language>zh</language>
-  <defaultLanguage/>
+  <defaultLanguage>en</defaultLanguage>
   <translation>1</translation>
   <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1270892056000</creationDate>
