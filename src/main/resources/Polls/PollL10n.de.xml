@@ -57,8 +57,8 @@ polls.create.title=Neue Umfrage starten
 ## Error messages
 polls.form.error.missingTitle=Der Titel ist ein Pflichtfeld.
 polls.form.error.missingOptions=Bitte mindestens zwei Optionen angeben.
-polls.form.error.missingQuestion=Die Frage ist ein Pflichtfeld
-polls.form.error.missingVoteType=Der Umfragetyp ist ein Pflichtfeld
+polls.form.error.missingQuestion=Die Frage ist ein Pflichtfeld.
+polls.form.error.missingVoteType=Der Umfragetyp ist ein Pflichtfeld.
 polls.form.error.missingRatingLevel=Die maximale Bewertungs-Stufe ist ein Pflichtfeld für Bewertungs-Umfragen und muss größer 0 und höchstens {0} sein.
 polls.form.error.missingOpenDate=Das Startdatum der Umfrage ist ein Pflichtfeld und muss das Format {0} haben.
 polls.form.error.missingCloseDate=Das Enddatum der Umfrage ist ein Pflichtfeld und muss das Format {0} haben.
