@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <!--
  * See the NOTICE file distributed with this work for additional
@@ -127,7 +127,7 @@ polls.vote.error.rating.ratingOutOfRange=La note choisie pour l''option {0} est 
 polls.vote.error.ranking.unknownElement=Ordre non valide : l''élément {0} est inconnu.
 polls.vote.error.ranking.duplicateElement=Ordre non valide : l''élément {0} est en double.
 ## Results
-polls.vote.results.title.before=
+polls.vote.results.title.before=Texte proposé par défaut comme titre des résultats du sondage.
 polls.vote.results.title.during=Résultats intermédiaires
 polls.vote.results.title.after=Résultats
 polls.vote.results.participants={0} participant{0,réponse,0#s|1#|1&lt;s}
@@ -158,5 +158,6 @@ Polls.PollClass_question=Question
 Polls.PollClass_optionsPerVoter=Nombre maximum de réponses par votant
 Polls.PollClass_type=Type de réponse
 Polls.PollClass_from=du
-Polls.PollClass_to=au</content>
+Polls.PollClass_to=au
+</content>
 </xwikidoc>
