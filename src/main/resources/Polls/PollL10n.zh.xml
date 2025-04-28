@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <!--
  * See the NOTICE file distributed with this work for additional
@@ -127,7 +127,7 @@ polls.vote.error.multiple.noneSelected=请至少选择一个选项
 ### Missing: polls.vote.error.ranking.unknownElement=Invalid order: unknown element {0}.
 ### Missing: polls.vote.error.ranking.duplicateElement=Invalid order: duplicate element {0}.
 ## Results
-polls.vote.results.title.before=
+polls.vote.results.title.before=投票结果标题显示的默认占位符文本。
 ### Missing: polls.vote.results.title.during=Intermediate results
 ### Missing: polls.vote.results.title.after=Results
 ### Missing: polls.vote.results.participants={0} participant{0,choice,0#s|1#|1&lt;s}
@@ -158,5 +158,6 @@ Polls.PollClass_question=问题
 Polls.PollClass_optionsPerVoter=每个投票者的最多选项数量
 Polls.PollClass_type=选择类型
 Polls.PollClass_from=来自
-### Missing: Polls.PollClass_to=to</content>
+### Missing: Polls.PollClass_to=to
+</content>
 </xwikidoc>
