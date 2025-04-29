@@ -127,7 +127,7 @@ polls.vote.error.rating.ratingOutOfRange=Bewertung außerhalb des Bereichs für 
 polls.vote.error.ranking.unknownElement=Ungültige Anordnung: Unbekanntes Element {0}.
 polls.vote.error.ranking.duplicateElement=Ungültige Anordnung: Doppeltes Element {0}.
 ## Results
-### Missing: polls.vote.results.title.before=
+polls.vote.results.title.before=Standard-Platzhaltertext für den Titel der Umfrageergebnisse.
 polls.vote.results.title.during=Zwischenergebnisse
 polls.vote.results.title.after=Ergebnisse
 polls.vote.results.participants={0} Teilnehmer{0,choice,0#s|1#|1&lt;s}
