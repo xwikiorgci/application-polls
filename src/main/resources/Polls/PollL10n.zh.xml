@@ -55,16 +55,16 @@ polls.index._actions=操作
 ##
 polls.create.title=发起新投票
 ## Error messages
-polls.form.error.missingTitle=标题为强制项
-polls.form.error.missingOptions=请至少选择两项
-polls.form.error.missingQuestion=投票问题为强制项
-polls.form.error.missingVoteType=投票类型为强制项
+polls.form.error.missingTitle=标题字段是必填的。
+polls.form.error.missingOptions=请至少选择两项。
+polls.form.error.missingQuestion=投票问题为强制项。
+polls.form.error.missingVoteType=投票类型为强制项。
 polls.form.error.missingRatingLevel=评分投票的最大评分等级是必须的，并必须大于0且最多为{0}。
 polls.form.error.missingOpenDate=投票开始日期是强制性的，必须具有格式{0}。
 polls.form.error.missingCloseDate=投票截止日期是强制性的，必须具有格式{0}。
 polls.form.error.wrongDateOrder=投票截止日期必须在开启日期之后。
 ## Section titles
-polls.form.section.general=你的投票
+polls.form.section.general=你的投票？
 polls.form.section.options=选项
 polls.form.section.voteType=投票类型
 polls.form.section.timeline=时间线
@@ -93,53 +93,53 @@ polls.form.actions.cancel=取消
 ## Viewing/voting
 ##
 ## Voting instructions
-polls.vote.instructions.single=选择下列任意一个选项
-### Missing: polls.vote.instructions.multiple=Choose at least 1 and at most {0} of the options below.
-### Missing: polls.vote.instructions.weighted=Assign non-zero percentages to at least 1 and at most {0} of the options below. The sum must be 100%.
-### Missing: polls.vote.instructions.rating=Rate from 0 (least favorable) to {0} (most favorable) each one of the options.
-### Missing: polls.vote.instructions.ranking.noscript=Use the "move up/move down" tools to reorder the items according to your preference (higher is better).
-### Missing: polls.vote.instructions.ranking.script=Drag and drop the items to reorder them according to your preference (higher is better).
+polls.vote.instructions.single=选择下列任意一个选项。
+polls.vote.instructions.multiple=从以下选项中选择至少1个，最多｛0｝个。
+polls.vote.instructions.weighted=将非零的百分比按以下选项分配，至少1个，最多｛0｝个。总和必须为100%。
+polls.vote.instructions.rating=对每个选项进行评分，从0（最不利）到｛0｝（最有利）。
+polls.vote.instructions.ranking.noscript=使用“上移/下移”工具根据您的喜好重新排序项目（上移的代表等级更高）。
+polls.vote.instructions.ranking.script=拖放项目以根据您的喜好重新排序（位置越靠上的代表等级更高）。
 ## Timeline
-### Missing: polls.vote.timeline.notOpen=This poll is not open yet. It will be available from {0} to {1}.
-### Missing: polls.vote.timeline.ongoing=This poll is open from {0} to {1}.
-### Missing: polls.vote.timeline.closed=This poll is now closed.
+polls.vote.timeline.notOpen=此投票尚未开放。它将从｛0｝到｛1｝可用。
+polls.vote.timeline.ongoing=此投票的开放时间为｛0｝到｛1｝。
+polls.vote.timeline.closed=本轮投票现已结束。
 ## Voting form
-### Missing: polls.vote.label.voted=You answered:
+polls.vote.label.voted=你的回答：
 polls.vote.actions.vote=提交
 polls.vote.actions.updateVote=更新答案
 polls.vote.actions.cancel=前往投票主页
 ## Tools
-### Missing: polls.vote.tools.moveup=[move up]
-### Missing: polls.vote.tools.moveup.tooltip=Move up
-### Missing: polls.vote.tools.movedown=[move down]
-### Missing: polls.vote.tools.movedown.tooltip=Move down
-### Missing: polls.vote.tools.incValue=Increase value by 1
-### Missing: polls.vote.tools.decValue=Decrease value by 1
+polls.vote.tools.moveup=[向上移动]
+polls.vote.tools.moveup.tooltip=上移
+polls.vote.tools.movedown=[向下移动]
+polls.vote.tools.movedown.tooltip=下移
+polls.vote.tools.incValue=将值增加1
+polls.vote.tools.decValue=将值减小1
 ## Error messages
-### Missing: polls.vote.warning.unauthorized=You must be logged-in and have proper rights on this document in order to vote.
-### Missing: polls.vote.error.single.noneSelected=Please choose one of the options below.
-polls.vote.error.multiple.noneSelected=请至少选择一个选项
-### Missing: polls.vote.error.multiple.wrongSelectedNumber=Please choose at least one and at most {0} of the options below.
-### Missing: polls.vote.error.weighted.wrongSelectedNumber=Please assign non-zero weights to at most {0} of the options.
-### Missing: polls.vote.error.weighted.wrongTotalWeight=Please assign weights that sum up to 100. The sum of your current weight assignments is {0}.
-### Missing: polls.vote.error.rating.optionMissing=Please select a rating for each option.
-### Missing: polls.vote.error.rating.ratingOutOfRange=Rating out of range for option {0}.
-### Missing: polls.vote.error.ranking.unknownElement=Invalid order: unknown element {0}.
-### Missing: polls.vote.error.ranking.duplicateElement=Invalid order: duplicate element {0}.
+polls.vote.warning.unauthorized=您必须登录并对该文档拥有适当的权限才能投票。
+polls.vote.error.single.noneSelected=请选择以下选项之一。
+polls.vote.error.multiple.noneSelected=请至少选择一个选项。
+polls.vote.error.multiple.wrongSelectedNumber=请从以下选项中至少选择1个，最多选择｛0｝个。
+polls.vote.error.weighted.wrongSelectedNumber=请为最多｛0｝个选项分配非零权重。
+polls.vote.error.weighted.wrongTotalWeight=请指定总计为100的权重。您当前的权重分配总和为｛0｝。
+polls.vote.error.rating.optionMissing=请为每个选项选择一个评分。
+polls.vote.error.rating.ratingOutOfRange=选项｛0｝的评分超出范围。
+polls.vote.error.ranking.unknownElement=无效顺序：未知元素｛0｝。
+polls.vote.error.ranking.duplicateElement=无效顺序：重复元素｛0｝。
 ## Results
 polls.vote.results.title.before=投票结果标题显示的默认占位符文本。
-### Missing: polls.vote.results.title.during=Intermediate results
-### Missing: polls.vote.results.title.after=Results
-### Missing: polls.vote.results.participants={0} participant{0,choice,0#s|1#|1&lt;s}
-### Missing: polls.vote.results.chart.percentage=Percentage
+polls.vote.results.title.during=投票中期结果
+polls.vote.results.title.after=投票结果
+polls.vote.results.participants=｛0｝参与者 {0,选择,0#s|1#|1&lt;s}
+polls.vote.results.chart.percentage=百分比
 ### Missing: polls.vote.results.chart.voteCount=Number of votes
-### Missing: polls.vote.results.chart.columnsNumberWarning=Only the first {0} columns can be displayed in the chart.
+polls.vote.results.chart.columnsNumberWarning=图表中只能显示前｛0｝列。
 ### Missing: polls.vote.results.table.option=Option
-### Missing: polls.vote.results.table.percentage=Percentage
-### Missing: polls.vote.results.table.percentageVoters=Percentage of voters
+polls.vote.results.table.percentage=百分比
+polls.vote.results.table.percentageVoters=投票者占比
 ### Missing: polls.vote.results.table.voteCount=Number of votes
-### Missing: polls.vote.results.table.voters=Chosen by
-### Missing: polls.vote.results.table.average=Average
+polls.vote.results.table.voters=选择人
+polls.vote.results.table.average=平均值
 ##
 ## Document version log
 ##
