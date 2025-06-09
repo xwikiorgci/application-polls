@@ -127,7 +127,7 @@ polls.vote.error.rating.ratingOutOfRange=Для ответа {0} значени�
 polls.vote.error.ranking.unknownElement=Неправильный порядок: неизвестный элемент {0}.
 polls.vote.error.ranking.duplicateElement=Неверный порядок: повторяющийся элемент {0}.
 ## Results
-### Missing: polls.vote.results.title.before=
+polls.vote.results.title.before=Заголовок результатов голосования по умолчанию.
 polls.vote.results.title.during=Промежуточные результаты
 polls.vote.results.title.after=Результаты
 polls.vote.results.participants={0} участник{0,choice,0#ов|1#|2#а|5#ов}
