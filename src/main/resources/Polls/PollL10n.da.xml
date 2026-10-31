@@ -46,122 +46,122 @@
   <content>##
 ## Home page
 ##
-### Missing: polls.home.title=
-### Missing: polls.home.create=
-### Missing: polls.index.doc.title=
-### Missing: polls.index.type=
-### Missing: polls.index.from=
-### Missing: polls.index.to=
-### Missing: polls.index.doc.creator=
-### Missing: polls.index._actions=
+polls.home.title=Afstemninger
+polls.home.create=Tilføj afstemning
+polls.index.doc.title=Afstemningens navn
+polls.index.type=Type
+polls.index.from=Starter
+polls.index.to=Slutter
+polls.index.doc.creator=Startet af
+polls.index._actions=Handlinger
 ##
 ## Creation/editing
 ##
-### Missing: polls.create.title=
+polls.create.title=Start en ny afstemning
 ## Error messages
-### Missing: polls.form.error.missingTitle=
-### Missing: polls.form.error.missingOptions=
-### Missing: polls.form.error.missingQuestion=
-### Missing: polls.form.error.missingVoteType=
-### Missing: polls.form.error.missingRatingLevel=
-### Missing: polls.form.error.missingOpenDate=
-### Missing: polls.form.error.missingCloseDate=
-### Missing: polls.form.error.wrongDateOrder=
+polls.form.error.missingTitle=Titelfeltet er obligatorisk.
+polls.form.error.missingOptions=Angiv mindst to valgmuligheder.
+polls.form.error.missingQuestion=Afstemningens spørgsmål er obligatorisk.
+polls.form.error.missingVoteType=Stemmetypen er obligatorisk.
+polls.form.error.missingRatingLevel=Det højeste bedømmelsesniveau er obligatorisk for bedømmelsesafstemninger og skal være større end 0 og højst {0}.
+polls.form.error.missingOpenDate=Afstemningens startdato er obligatorisk og skal have formatet {0}.
+polls.form.error.missingCloseDate=Afstemningens slutdato er obligatorisk og skal have formatet {0}.
+polls.form.error.wrongDateOrder=Afstemningens slutdato skal ligge efter startdatoen.
 ## Section titles
-### Missing: polls.form.section.general=
-### Missing: polls.form.section.options=
-### Missing: polls.form.section.voteType=
-### Missing: polls.form.section.timeline=
-### Missing: polls.form.section.votes=
+polls.form.section.general=Hvad vil du spørge om?
+polls.form.section.options=Valgmuligheder
+polls.form.section.voteType=Stemmetype
+polls.form.section.timeline=Tidsrum
+polls.form.section.votes=Stemmer
 ## Fiels labels
-### Missing: polls.form.label.space=
-### Missing: polls.form.label.title=
-### Missing: polls.form.label.allOptions=
-### Missing: polls.form.label.optionCount.multiple=
-### Missing: polls.form.label.optionCount.multiple.details=
-### Missing: polls.form.label.optionCount.separator=
-### Missing: polls.form.label.optionCount.rating=
-### Missing: polls.form.label.optionCount.rating.details=
-### Missing: polls.form.label.timeline=
-### Missing: polls.form.label.timeline.dateFormat=
+polls.form.label.space=Hvor:
+polls.form.label.title=Titel
+polls.form.label.allOptions=Skriv alle valgmuligheder, én pr. linje
+polls.form.label.optionCount.multiple=Højeste antal valg
+polls.form.label.optionCount.multiple.details=kun flervalg og vægtet flervalg
+polls.form.label.optionCount.separator=eller
+polls.form.label.optionCount.rating=Højeste bedømmelsesniveau (mindst 0; bedømmelserne kan gå fra 0 = lavest til og med dette maksimum)
+polls.form.label.optionCount.rating.details=kun bedømmelse
+polls.form.label.timeline=Afstemningsperiode
+polls.form.label.timeline.dateFormat=(datoformat: {0})
 ## Tools
-### Missing: polls.form.tools.delete=
-### Missing: polls.form.tools.delete.tooltip=
-### Missing: polls.form.tools.move=
-### Missing: polls.form.tools.move.tooltip=
-### Missing: polls.form.tools.addOption=
+polls.form.tools.delete=[slet]
+polls.form.tools.delete.tooltip=Slet
+polls.form.tools.move=[flyt]
+polls.form.tools.move.tooltip=Træk og slip for at ændre rækkefølgen
+polls.form.tools.addOption=Tilføj endnu en valgmulighed
 ## Form actions
-### Missing: polls.form.actions.create=
-### Missing: polls.form.actions.cancel=
+polls.form.actions.create=Opret afstemning
+polls.form.actions.cancel=Annuller
 ##
 ## Viewing/voting
 ##
 ## Voting instructions
-### Missing: polls.vote.instructions.single=
-### Missing: polls.vote.instructions.multiple=
-### Missing: polls.vote.instructions.weighted=
-### Missing: polls.vote.instructions.rating=
-### Missing: polls.vote.instructions.ranking.noscript=
-### Missing: polls.vote.instructions.ranking.script=
+polls.vote.instructions.single=Vælg en af valgmulighederne nedenfor.
+polls.vote.instructions.multiple=Vælg mindst 1 og højst {0} af valgmulighederne nedenfor.
+polls.vote.instructions.weighted=Giv procentsatser, der ikke er nul, til mindst 1 og højst {0} af valgmulighederne nedenfor. Summen skal være 100 %.
+polls.vote.instructions.rating=Bedøm hver af valgmulighederne fra 0 (mindst positiv) til {0} (mest positiv).
+polls.vote.instructions.ranking.noscript=Brug værktøjerne "flyt op/flyt ned" til at sortere elementerne efter, hvad du foretrækker (højest er bedst).
+polls.vote.instructions.ranking.script=Træk og slip elementerne for at sortere dem efter, hvad du foretrækker (højest er bedst).
 ## Timeline
-### Missing: polls.vote.timeline.notOpen=
-### Missing: polls.vote.timeline.ongoing=
-### Missing: polls.vote.timeline.closed=
+polls.vote.timeline.notOpen=Afstemningen er ikke åben endnu. Den er tilgængelig fra {0} til {1}.
+polls.vote.timeline.ongoing=Afstemningen er åben fra {0} til {1}.
+polls.vote.timeline.closed=Afstemningen er nu lukket.
 ## Voting form
-### Missing: polls.vote.label.voted=
-### Missing: polls.vote.actions.vote=
-### Missing: polls.vote.actions.updateVote=
-### Missing: polls.vote.actions.cancel=
+polls.vote.label.voted=Du svarede:
+polls.vote.actions.vote=Send
+polls.vote.actions.updateVote=Opdater svar
+polls.vote.actions.cancel=Gå til afstemningernes startside
 ## Tools
-### Missing: polls.vote.tools.moveup=
-### Missing: polls.vote.tools.moveup.tooltip=
-### Missing: polls.vote.tools.movedown=
-### Missing: polls.vote.tools.movedown.tooltip=
-### Missing: polls.vote.tools.incValue=
-### Missing: polls.vote.tools.decValue=
+polls.vote.tools.moveup=[flyt op]
+polls.vote.tools.moveup.tooltip=Flyt op
+polls.vote.tools.movedown=[flyt ned]
+polls.vote.tools.movedown.tooltip=Flyt ned
+polls.vote.tools.incValue=Øg værdien med 1
+polls.vote.tools.decValue=Sænk værdien med 1
 ## Error messages
-### Missing: polls.vote.warning.unauthorized=
-### Missing: polls.vote.error.single.noneSelected=
-### Missing: polls.vote.error.multiple.noneSelected=
-### Missing: polls.vote.error.multiple.wrongSelectedNumber=
-### Missing: polls.vote.error.weighted.wrongSelectedNumber=
-### Missing: polls.vote.error.weighted.wrongTotalWeight=
-### Missing: polls.vote.error.rating.optionMissing=
-### Missing: polls.vote.error.rating.ratingOutOfRange=
-### Missing: polls.vote.error.ranking.unknownElement=
-### Missing: polls.vote.error.ranking.duplicateElement=
+polls.vote.warning.unauthorized=Du skal være logget på og have de rette rettigheder til denne side for at stemme.
+polls.vote.error.single.noneSelected=Vælg en af valgmulighederne nedenfor.
+polls.vote.error.multiple.noneSelected=Vælg mindst én valgmulighed.
+polls.vote.error.multiple.wrongSelectedNumber=Vælg mindst én og højst {0} af valgmulighederne nedenfor.
+polls.vote.error.weighted.wrongSelectedNumber=Giv vægte, der ikke er nul, til højst {0} af valgmulighederne.
+polls.vote.error.weighted.wrongTotalWeight=Giv vægte, der tilsammen giver 100. Summen af dine nuværende vægte er {0}.
+polls.vote.error.rating.optionMissing=Vælg en bedømmelse for hver valgmulighed.
+polls.vote.error.rating.ratingOutOfRange=Bedømmelsen ligger uden for intervallet for valgmuligheden {0}.
+polls.vote.error.ranking.unknownElement=Ugyldig rækkefølge: ukendt element {0}.
+polls.vote.error.ranking.duplicateElement=Ugyldig rækkefølge: element {0} optræder flere gange.
 ## Results
-### Missing: polls.vote.results.title.before=
-### Missing: polls.vote.results.title.during=
-### Missing: polls.vote.results.title.after=
-### Missing: polls.vote.results.participants=
-### Missing: polls.vote.results.chart.percentage=
-### Missing: polls.vote.results.chart.voteCount=
-### Missing: polls.vote.results.chart.columnsNumberWarning=
-### Missing: polls.vote.results.table.option=
-### Missing: polls.vote.results.table.percentage=
-### Missing: polls.vote.results.table.percentageVoters=
-### Missing: polls.vote.results.table.voteCount=
-### Missing: polls.vote.results.table.voters=
-### Missing: polls.vote.results.table.average=
+polls.vote.results.title.before=Standardpladsholdertekst til titlen på afstemningens resultater.
+polls.vote.results.title.during=Foreløbige resultater
+polls.vote.results.title.after=Resultater
+polls.vote.results.participants={0} deltager{0,choice,0#e|1#|1&lt;e}
+polls.vote.results.chart.percentage=Procent
+polls.vote.results.chart.voteCount=Antal stemmer
+polls.vote.results.chart.columnsNumberWarning=Kun de første {0} kolonner kan vises i diagrammet.
+polls.vote.results.table.option=Valgmulighed
+polls.vote.results.table.percentage=Procent
+polls.vote.results.table.percentageVoters=Procent af deltagerne
+polls.vote.results.table.voteCount=Antal stemmer
+polls.vote.results.table.voters=Valgt af
+polls.vote.results.table.average=Gennemsnit
 ##
 ## Document version log
 ##
-### Missing: polls.versionSummary.pollCreated=
-### Missing: polls.versionSummary.optionAdded=
-### Missing: polls.versionSummary.userVoted=
+polls.versionSummary.pollCreated=Afstemningen er oprettet
+polls.versionSummary.optionAdded=Valgmulighed tilføjet til afstemningen
+polls.versionSummary.userVoted={0} stemte
 ##
 ## Class translations
 ##
-### Missing: Polls.PollClass_type_single=
-### Missing: Polls.PollClass_type_multiple=
-### Missing: Polls.PollClass_type_weighted=
-### Missing: Polls.PollClass_type_rating=
-### Missing: Polls.PollClass_type_ranking=
-### Missing: Polls.PollClass_question=
-### Missing: Polls.PollClass_optionsPerVoter=
-### Missing: Polls.PollClass_type=
-### Missing: Polls.PollClass_from=
-### Missing: Polls.PollClass_to=
+Polls.PollClass_type_single=Enkeltvalg
+Polls.PollClass_type_multiple=Flervalg
+Polls.PollClass_type_weighted=Vægtet flervalg
+Polls.PollClass_type_rating=Bedømmelse
+Polls.PollClass_type_ranking=Rangordning
+Polls.PollClass_question=Spørgsmål
+Polls.PollClass_optionsPerVoter=Højeste antal valgmuligheder pr. deltager
+Polls.PollClass_type=Valgtype
+Polls.PollClass_from=fra
+Polls.PollClass_to=til
 </content>
 </xwikidoc>
